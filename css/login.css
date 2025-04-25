@@ -3,16 +3,17 @@ body{
     padding: 0;
 }
 .container{
-  max-width: 1440;
+  max-width: 1440px;
   margin: 0 auto;
 
 }
 .main-container {
-  width: 1440px; /* or any specific width */
+  width: 100%; /* or any specific width */
     background-color: #091320;
     padding: 44px 100px 0 100px;
-    height: 1173px;
+    height: 100vh;
     position: relative;
+    margin: 0 auto;
     overflow: hidden;
 }
 .logo {
