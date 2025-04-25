@@ -8,7 +8,7 @@ body{
 
 }
 .main-container {
-  width: 100%; /* or any specific width */
+    width: 100%; /* or any specific width */
     background-color: #091320;
     height: 100vh;
     position: relative;
@@ -44,16 +44,17 @@ body{
     font-weight: 400px;
   }
   .signup-intro {
-    width: 533px;
+    width: 100%;
     height: 86px;
     position: absolute;
-    left: 447px;
-    top: 120px;
-    display: inline-flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-}
+    top: 220px;
+    margin: 0 auto;
+    display: flex; /* Use flexbox */
+    align-items: center; /* Vertically center */
+    justify-content: center; /* Horizontally center */
+    flex-direction: column; /* Stack items vertically */
+  }
+  
 .signup-intro h1 {
   align-self: stretch;
   text-align: center;
@@ -71,7 +72,7 @@ body{
     color: #FFFFFF;
     font-size: 20px;
     font-family: 'Montserrat', 'sans-serif';
-    font-weight: 600;
+    font-weight: 150%;
     word-wrap: break-word;
     margin: 0;
 }
@@ -86,10 +87,10 @@ body{
     word-wrap: break-word;
 }
 .signup-box {
-    width: 533px;
+    width: 100%;
     position: absolute;
-    left: 447px;
-    top: 350px;
+    margin: 0 auto;
+    top: 380px;
     display: inline-flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -101,13 +102,13 @@ body{
 .form {
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 8px;
 }
 
 label {
     font-size: 12px;
     font-family: 'Montserrat', 'sans-serif';
-    font-weight: 600;
+    font-weight: 150%;
     color: #ffffff;
     text-align: left;
 }
@@ -122,7 +123,7 @@ label {
 
 .input-wrapper input,
 .input-wrapper select {
-    width: 480px;
+    width: 505px;
     height: 51px;
     padding-left: 36px;
     padding-right: 12px;
@@ -151,20 +152,20 @@ label {
 }
 .remeber a{
   text-decoration: none;
-  margin-left: 230px;
+  margin-left: 260px;
   font-size:16px;
   font-family: 'Montserrat', 'sans-serif';
   color: #FFFFFF;
 }
   .button-next{
-    width: 533px;
+    width: 100%;
     position: absolute;
-    left: 447px;
-    top: 550px;
+    top: 580px;
     display: inline-flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
+    margin: 0 auto;
   }
   .button {
     width: 533px;
@@ -174,18 +175,19 @@ label {
     margin: 0;
     font-family: 'Montserrat', 'sans-serif';
     font-size: 18px;
-    font-weight: 600;
+    font-weight: 150%;
     background-color: #3876C7;
+    
   }
   .button:hover{
     background-color:#091320;
     transform: scale(1.05);
   }
   .text-log{
-    width: 533px;
+    width: 100%;
     position: absolute;
-    left: 447px;
-    top: 810px;
+    margin: 0 auto;
+    top: 670px;
     display: inline-flex;
     flex-direction: column;
     justify-content: flex-start;

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>signup</title>
-    <link rel="stylesheet" href="../css/signup.css">
+    <link rel="stylesheet" href="../css/signupdr.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
@@ -26,37 +26,30 @@
 
      <div class="signup-box">
         <div class="form">
-            <label for="fullName">Full Name</label>
+            <label for="education">Education Qualification </label>
             <div class="input-wrapper">
-                <i class="ri-user-line input-icon"></i>
-                <input type="text" id="fullName" placeholder="Enter your full name">
+                 <i class="ri-graduation-cap-line input-icon"></i>
+                <input type="text" id="fullName" placeholder="">
             </div>
-            <label for="contact">Mobile/Email</label>
+            <label for="number">Medical Registration Number</label>
             <div class="input-wrapper">
-                <i class="ri-mail-line input-icon"></i>
-                <input type="text" id="contact" placeholder="Enter your mobile or email">
+                <i class="ri-file-list-3-line input-icon"></i>
+                <input type="text" id="Number" placeholder="">
             </div>
-            <label for="category">Role</label>
+            <label for="address">Address</label>
             <div class="input-wrapper">
-                <i class="ri-user-settings-line input-icon"></i>
-                <select id="category">
-                    <option value="admin">Admin</option>
-                    <option value="doctor">Doctor</option>
-                    <option value="radiologist">Radiologist</option>
-                </select>
+                <i class="ri-map-pin-line input-icon"></i>
+                <input type="Address" id="Address" placeholder="">
             </div>
-            <label for="password">Password</label>
+            <label for="bio">Short Bio (Optional)</label>
             <div class="input-wrapper">
-                <i class="ri-lock-line input-icon"></i>
-                <input type="password" id="password" placeholder="Enter password">
+                <i class="ri-information-line input-icon"></i>
+                <input type="text" id="comments" placeholder="">
             </div>
-            <p class="note">Password should be at least 8 characters</p>
-            <label for="confirmPassword">Confirm Password</label>
-            <div class="input-wrapper">
-                <i class="ri-lock-password-line input-icon"></i>
-                <input type="password" id="confirmPassword" placeholder="Confirm password">
+            <div class="remeber">
+                <input type="checkbox" id="remeber me" name="remeber" value="Remember me">
+                <label for="remeber">I agree to the Terms & Conditions and Privacy Polic</label>
             </div>
-            <p class="note">Ensure your passwords match exactly to avoid any errors</p>
             
         
         </div>
