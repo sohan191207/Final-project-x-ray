@@ -15,17 +15,21 @@ line-height: 150%;
   margin: 0 auto;
   width: 1440px; /* or any specific width */
   background-color: #091320;
+  padding: 44px 100px 0 100px;
 }
 
 .title-2{
   font-family: 'Anton', sans-serif;
-  font-size: 76px;
+  font-size: 56px;
   font-style: normal;
   font-weight: 400;
-  line-height: 120%;
+  line-height: 150%;
+  text-align: center;
+
 }
 .subTitle{  
   text-align: center;
+  margin-top: 8px;
   font-family: Montserrat;
   font-size: 18px;
   font-style: normal;
@@ -44,7 +48,6 @@ line-height: 150%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 44px 100px 0 100px;
   background-color: #0b1320;
 }
 
@@ -122,9 +125,9 @@ line-height: 150%;
   margin: 0 auto;
 /* background-color: #99cfff9f; */
 }
-#heroSection .textArea{
+.textArea{
  width: 764px;
- margin: 90px auto;
+ margin: 90px auto 0 auto;
 }
 
 #heroSection .textArea .title{
@@ -156,16 +159,16 @@ line-height: 150%;
   border-radius: 8px;
 }
 
-
 .imageArea {
-  margin: 0 auto;
-  width: 80%;
-  max-height: 39vh;
+  margin-top: 97px;
+  width: 100%;
+  max-height: 56vh; /* or whatever portion you want visible */
   overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: flex-start;
 }
+
 
 .imageArea img {
   width: 100%;
@@ -183,6 +186,72 @@ line-height: 150%;
 /* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! Why Choose Us!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
 
 
+#WhyChoose{
+  margin: 112px 0;
+}
+
+#WhyChoose .cardArea {
+  margin-top: 56px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  /* padding: 40px 0; */
+}
+
+#WhyChoose .cardArea .card {
+  width: 400px;
+  height: 224px;
+  background: #122640;
+  border-radius: 12px;
+  padding: 20px;
+  color: #E0E0E0;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+#WhyChoose .cardArea .card:hover {
+  width: 400px;
+  height: 224px;
+  background: linear-gradient(127deg, var(--950, #183253) 32.9%, rgba(56, 118, 199, 0.62) 120.67%);
+  border-radius: 12px;
+  padding: 20px;
+  color: #ffffff;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+#WhyChoose .cardArea .card img {
+  width: 32px;
+  height: 32px;
+  transition: color 0.3s ease, width 0.3s ease, height 0.3s ease, padding 0.3s ease;
+}
+
+#WhyChoose .cardArea .card {
+  position: relative; 
+}
+
+#WhyChoose .cardArea .card:hover img {
+  width: 40px; 
+  height: 40px;
+  padding: 4px;
+}
 
 
+#WhyChoose .cardArea .card h3 {
+  font-size: 18px;
+  font-weight: 600; 
+  font-family: 'Montserrat', sans-serif;
+margin-top: 20px;}
+
+#WhyChoose .cardArea .card p {
+  font-size: 16px;
+  font-weight: 400;
+  font-family: 'Montserrat', sans-serif;
+  line-height: 150%;
+  margin: 12px 0 0 0;
+}
 
