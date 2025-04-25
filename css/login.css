@@ -1,20 +1,15 @@
 body{
     margin: 0;
-  background: #091320;
-  color: #fff;
-  font-family: Arial, sans-serif;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  padding: 20px; 
-  box-sizing: border-box;
+    padding: 0;
 }
 
 .main-container {
   width: 1440px; /* or any specific width */
-  background-color: #091320;
-  padding: 44px 100px 0 100px;
+    background-color: #091320;
+    padding: 44px 100px 0 100px;
+    height: 1173px;
+    position: relative;
+    overflow: hidden;
 }
 .logo {
     position: absolute;
