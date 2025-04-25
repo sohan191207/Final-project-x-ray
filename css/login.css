@@ -50,13 +50,23 @@ body{
     height: 86px;
     position: absolute;
     left: 447px;
-    top: 140px;
+    top: 120px;
     display: inline-flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
 }
-
+.signup-intro h1 {
+  align-self: stretch;
+  text-align: center;
+  color: #FFFFFF;
+  font-family: 'Montserrat', 'sans-serif';
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 24px;
+  word-wrap: break-word;
+  margin-bottom: 60px;
+}
 .signup-intro h2 {
     align-self: stretch;
     text-align: center;
@@ -64,7 +74,6 @@ body{
     font-size: 20px;
     font-family: 'Montserrat', 'sans-serif';
     font-weight: 600;
-    line-height: 24px;
     word-wrap: break-word;
     margin: 0;
 }
@@ -82,7 +91,7 @@ body{
     width: 533px;
     position: absolute;
     left: 447px;
-    top: 300px;
+    top: 350px;
     display: inline-flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -137,19 +146,23 @@ label {
     color: #FFFFFF;
 
 }
+.remeber label{
+  font-size:16px;
+  font-family: 'Montserrat', 'sans-serif';
 
-.input-wrapper select {
-    background-color: #091320;
-    background-repeat: no-repeat;
-    background-position: right 10px center;
-    background-size: 16px;
 }
-
+.remeber a{
+  text-decoration: none;
+  margin-left: 230px;
+  font-size:16px;
+  font-family: 'Montserrat', 'sans-serif';
+  color: #FFFFFF;
+}
   .button-next{
     width: 533px;
     position: absolute;
     left: 447px;
-    top: 600px;
+    top: 550px;
     display: inline-flex;
     flex-direction: column;
     justify-content: flex-start;
