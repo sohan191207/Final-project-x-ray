@@ -10,7 +10,11 @@ body{
   padding: 20px; 
   box-sizing: border-box;
 }
+.container{
+  max-width: 1440;
+  margin: 0 auto;
 
+}
 .main-container {
     width: 1440px;
     height: 1173px;
