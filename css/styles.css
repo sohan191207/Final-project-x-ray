@@ -1,0 +1,236 @@
+
+  .hero-section{
+   background: var(--950, #183253);
+    width: 1440px;
+    height: 1080px;
+
+  }
+.logo-container {
+  position: absolute;
+  top: 35px;
+  left: 100px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  justify-content: flex-start;
+}
+
+.logo-img {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  overflow: hidden;
+}
+
+.logo-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.logo-text {
+  color: #1E76D2;
+  font-size: 20px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.nav-menu {
+  position: absolute;
+  top: 43px;
+  left: 467.5px;
+  display: inline-flex;
+  gap: 24px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-menu li a {
+ font-family: "Montserrat", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  color: #EDFCFC;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  padding-bottom: 2px;
+  border-bottom: 2px solid transparent;
+}
+
+.nav-menu li a:hover,
+.nav-menu li a.active {
+  font-weight: 700;
+  border-bottom: 2px solid #EDFCFC;
+}
+.container-button {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background: #183253;
+  overflow: hidden;
+}
+
+.button {
+  padding: 8px 24px;
+  background: #94DDFC;
+  border-radius: 8px;
+  color: #183253;
+  font-size: 16px;
+  font-family: Montserrat, sans-serif;
+  font-weight: 600;
+  line-height: 24px;
+  position: absolute;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.signup-button {
+  top: 35px;
+  left: 1241px;
+}
+
+.login-button {
+  top: 35px;
+  left: 1122px;
+}
+
+.button:hover {
+  background: #72cbe4;
+  transform: scale(1.05);
+}
+.content {
+  position: absolute;
+  top: 173px;
+  left: 290px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 56px;
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 850px;
+  text-align: center;
+ 
+}
+
+.text h1 {
+  margin: 0;
+  font-size: 60px;
+  font-family: 'Anton', sans-serif;
+  line-height: 70px;
+  color: #94DDFC;
+  
+}
+
+.text h1 strong {
+  font-weight: 800;
+  color: #94DDFC;
+  
+}
+
+.text p {
+  font-size: 18px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  line-height: 25px;
+  color: #EFFAFF;
+}
+.hero-buttons {
+  display: inline-flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 24px;
+  margin-top: 450px; 
+  margin-left: 550px;
+}
+
+.button-outline {
+  padding: 12px 18px;
+  border: 1px solid #2790E9;
+  border-radius: 8px;
+  color: #EDFCFC;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: transparent;
+}
+
+.button-outline:hover {
+  background: #2790E9;
+  color: #183253;
+}
+.dash-image{
+ margin-top: 30px;
+ margin-left: 100px;
+
+ 
+}
+.dash-image img{
+  width: 1240px;
+  height: 545px;
+  flex-shrink: 0;
+  
+}
+.features{
+  background-image: url(../image/background/Key-Features.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 1440px;
+  height: 909px;
+
+}
+.why-choose{
+  display: flex;
+  flex-direction: column;
+  color: #EFFAFF;
+  align-items: center;
+  text-align: center;
+  margin: 0 auto;
+}
+.why-choose h2{
+  font-size: 56px;
+  font-family: 'Montserrat';
+  font-weight: 600;
+  line-height: 61px;
+  margin-top: 70px;
+  margin-bottom: 10px;
+}
+.why-choose p{
+  font-size: 18px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  line-height: 27px;
+  width: 557px;
+  margin: 0;
+  
+}
+.FasterTime{
+display: flex;
+width: var(--G-4, 400px);
+height: 147px;
+padding: 8px 20px 32px 20px;
+flex-direction: column;
+align-items: flex-start;
+gap: 20px;
+border-radius: 12px;
+border-top: 1px solid var(--800, #1F61AE);
+border-left: 1px solid var(--800, #1F61AE);
+background: linear-gradient(127deg, var(--950, #183253) 32.9%, #179FA1 120.67%);
+margin-left: 20px;
+}
