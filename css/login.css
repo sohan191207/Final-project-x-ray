@@ -10,7 +10,6 @@ body{
 .main-container {
   width: 100%; /* or any specific width */
     background-color: #091320;
-    padding: 44px 100px 0 100px;
     height: 100vh;
     position: relative;
     margin: 0 auto;
