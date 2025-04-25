@@ -12,10 +12,9 @@ body{
 }
 
 .main-container {
-    width: 1440px;
-    height: 1173px;
-    position: relative;
-    overflow: hidden;
+  width: 1440px; /* or any specific width */
+  background-color: #091320;
+  padding: 44px 100px 0 100px;
 }
 .logo {
     position: absolute;
