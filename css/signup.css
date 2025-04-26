@@ -13,8 +13,8 @@ body{
     top: 35px;
     left: 100px;
     display: inline-flex;
-    align-items: center;
-    gap: 6px;
+    
+    gap: 10px;
     justify-content: flex-start;
   }
   .logo-img {
