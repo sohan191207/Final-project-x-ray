@@ -1,76 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>signup</title>
     <link rel="stylesheet" href="../css/signup.css">
+    <link rel="stylesheet" href="../css/global.css">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css" rel="stylesheet">
 </head>
+
 <body>
     <div class="container">
-    <div class="main-container">
-        <div class="logo">
-            <div class="logo-img">
-             <img src="../image/logo/logo.png" alt="logo">   
+        <div class="main-container">
+
+            <!-- <div class="logo">
+                <div class="logo-img">
+                    <img src="../image/logo/logo.png" alt="logo">
+                </div>
+                <div class="logo-text">XRAYO</div>
+            </div> -->
+
+
+            <div class="logo">
+                <a href="../index.html">
+                  <img src="/image/logo/logo.png" alt="logo" />
+                </a>
+              </div>
+          
+
+
+            <div class="signup-intro">
+                <h2>Create Your XRAYO Account</h2>
+                <p>Sign up to easily view X-ray reports, track report history, and access<br> urgent medical support.
+                </p>
+            </div>
+
+            <div class="signup-box">
+                <div class="form">
+                    <label for="fullName">Full Name</label>
+                    <div class="input-wrapper">
+                        <i class="ri-user-line input-icon"></i>
+                        <input type="text" id="fullName" placeholder="Enter your full name">
+                    </div>
+                    <label for="contact">Mobile/Email</label>
+                    <div class="input-wrapper">
+                        <i class="ri-mail-line input-icon"></i>
+                        <input type="text" id="contact" placeholder="Enter your mobile or email">
+                    </div>
+                    <label for="category">Role</label>
+                    <div class="input-wrapper">
+                        <i class="ri-user-settings-line input-icon"></i>
+                        <select id="category">
+                            <option value="admin">Admin</option>
+                            <option value="doctor">Doctor</option>
+                            <option value="radiologist">Radiologist</option>
+                        </select>
+                    </div>
+                    <label for="password">Password</label>
+                    <div class="input-wrapper">
+                        <i class="ri-lock-line input-icon"></i>
+                        <input type="password" id="password" placeholder="Enter password">
+                    </div>
+                    <p class="note">Password should be at least 8 characters</p>
+                    <label for="confirmPassword">Confirm Password</label>
+                    <div class="input-wrapper">
+                        <i class="ri-lock-password-line input-icon"></i>
+                        <input type="password" id="confirmPassword" placeholder="Confirm password">
+                    </div>
+                    <p class="note">Ensure your passwords match exactly to avoid any errors</p>
+
+
+                </div>
+            </div>
+
+            <div class="button-next">
+                <button class="button">Next</button>
+            </div>
+            <div class="text-log">
+                <p>Already have an account? <a href="login.html">Log In</a></p>
+            </div>
+
         </div>
-        <div class="logo-text">XRAYO</div>
-    </div>
-     <div class="signup-intro">
-        <h2>Create Your XRAYO Account</h2>
-        <p>Sign up to easily view X-ray reports, track report history, and access<br> urgent medical support.</p>
-     </div>
-
-     <div class="signup-box">
-        <div class="form">
-            <label for="fullName">Full Name</label>
-            <div class="input-wrapper">
-                <i class="ri-user-line input-icon"></i>
-                <input type="text" id="fullName" placeholder="Enter your full name">
-            </div>
-            <label for="contact">Mobile/Email</label>
-            <div class="input-wrapper">
-                <i class="ri-mail-line input-icon"></i>
-                <input type="text" id="contact" placeholder="Enter your mobile or email">
-            </div>
-            <label for="category">Role</label>
-            <div class="input-wrapper">
-                <i class="ri-user-settings-line input-icon"></i>
-                <select id="category">
-                    <option value="admin">Admin</option>
-                    <option value="doctor">Doctor</option>
-                    <option value="radiologist">Radiologist</option>
-                </select>
-            </div>
-            <label for="password">Password</label>
-            <div class="input-wrapper">
-                <i class="ri-lock-line input-icon"></i>
-                <input type="password" id="password" placeholder="Enter password">
-            </div>
-            <p class="note">Password should be at least 8 characters</p>
-            <label for="confirmPassword">Confirm Password</label>
-            <div class="input-wrapper">
-                <i class="ri-lock-password-line input-icon"></i>
-                <input type="password" id="confirmPassword" placeholder="Confirm password">
-            </div>
-            <p class="note">Ensure your passwords match exactly to avoid any errors</p>
-            
-        
-        </div>
     </div>
 
-        <div class="button-next">
-            <button class="button">Next</button>
-     </div>
-     <div class="text-log">
-        <p>Already have an account? <a href="login.html">Log In</a></p>
-     </div>
-
-    </div>
-   </div>
-    
 </body>
+
 </html>

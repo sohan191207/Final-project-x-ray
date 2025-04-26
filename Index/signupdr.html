@@ -1,69 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>signup</title>
     <link rel="stylesheet" href="../css/signupdr.css">
+    <link rel="stylesheet" href="../css/global.css">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css" rel="stylesheet">
 </head>
+
 <body>
     <div class="container">
-    <div class="main-container">
-        <div class="logo">
-            <div class="logo-img">
-             <img src="../image/logo/logo.png" alt="logo">   
+        <div class="main-container">
+
+            <!-- <div class="logo">
+                <div class="logo-img">
+                    <img src="../image/logo/logo.png" alt="logo">
+                </div>
+                <div class="logo-text">XRAYO</div>
+            </div> -->
+
+
+            <div class="logo">
+                <a href="../index.html">
+                  <img src="/image/logo/logo.png" alt="logo" />
+                </a>
+              </div>
+          
+
+            <div class="signup-intro">
+                <h2>Create Your XRAYO Account</h2>
+                <p>Sign up to easily view X-ray reports, track report history, and access<br> urgent medical support.
+                </p>
+            </div>
+
+            <div class="signup-box">
+                <div class="form">
+                    <label for="education">Education Qualification </label>
+                    <div class="input-wrapper">
+                        <i class="ri-graduation-cap-line input-icon"></i>
+                        <input type="text" id="fullName" placeholder="">
+                    </div>
+                    <label for="number">Medical Registration Number</label>
+                    <div class="input-wrapper">
+                        <i class="ri-file-list-3-line input-icon"></i>
+                        <input type="text" id="Number" placeholder="">
+                    </div>
+                    <label for="address">Address</label>
+                    <div class="input-wrapper">
+                        <i class="ri-map-pin-line input-icon"></i>
+                        <input type="Address" id="Address" placeholder="">
+                    </div>
+                    <label for="bio">Short Bio (Optional)</label>
+                    <div class="input-wrapper">
+                        <i class="ri-information-line input-icon"></i>
+                        <input type="text" id="comments" placeholder="">
+                    </div>
+                    <div class="remeber">
+                        <input type="checkbox" id="remeber me" name="remeber" value="Remember me">
+                        <label for="remeber">I agree to the Terms & Conditions and Privacy Polic</label>
+                    </div>
+
+
+                </div>
+            </div>
+
+            <div class="button-next">
+                <button class="button">Next</button>
+            </div>
+            <div class="text-log">
+                <p>Already have an account? <a href="login.html">Log In</a></p>
+            </div>
+
         </div>
-        <div class="logo-text">XRAYO</div>
-    </div>
-     <div class="signup-intro">
-        <h2>Create Your XRAYO Account</h2>
-        <p>Sign up to easily view X-ray reports, track report history, and access<br> urgent medical support.</p>
-     </div>
-
-     <div class="signup-box">
-        <div class="form">
-            <label for="education">Education Qualification </label>
-            <div class="input-wrapper">
-                 <i class="ri-graduation-cap-line input-icon"></i>
-                <input type="text" id="fullName" placeholder="">
-            </div>
-            <label for="number">Medical Registration Number</label>
-            <div class="input-wrapper">
-                <i class="ri-file-list-3-line input-icon"></i>
-                <input type="text" id="Number" placeholder="">
-            </div>
-            <label for="address">Address</label>
-            <div class="input-wrapper">
-                <i class="ri-map-pin-line input-icon"></i>
-                <input type="Address" id="Address" placeholder="">
-            </div>
-            <label for="bio">Short Bio (Optional)</label>
-            <div class="input-wrapper">
-                <i class="ri-information-line input-icon"></i>
-                <input type="text" id="comments" placeholder="">
-            </div>
-            <div class="remeber">
-                <input type="checkbox" id="remeber me" name="remeber" value="Remember me">
-                <label for="remeber">I agree to the Terms & Conditions and Privacy Polic</label>
-            </div>
-            
-        
-        </div>
     </div>
 
-        <div class="button-next">
-            <button class="button">Next</button>
-     </div>
-     <div class="text-log">
-        <p>Already have an account? <a href="login.html">Log In</a></p>
-     </div>
-
-    </div>
-   </div>
-    
 </body>
+
 </html>
