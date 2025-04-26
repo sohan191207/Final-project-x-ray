@@ -1,3 +1,62 @@
 .logo img {
     height: 40px;
   }
+
+  .btnPrimary,
+.btnSecondary,
+.btnTarsiyary {
+  display: inline-block;
+  padding: 14px 28px;
+  border-radius: 8px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+/* Specific primary button */
+.btnPrimary {
+  background-color: #3876C7;
+  color: #ffffff;
+  border: none;
+}
+
+.btnPrimary:hover {
+  background-color: #2B5A97;
+}
+
+/* Secondary Button */
+.btnSecondary {
+  background-color: transparent;
+  color: #ffffff;
+  border: 1px solid #385C8A;
+}
+
+.btnSecondary:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Tertiary Button */
+.btnTarsiyary {
+  background-color: transparent;
+  color: #ffffff;
+  border: none;
+}
+
+.btnTarsiyary:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Anchor inside all buttons */
+.btnPrimary a,
+.btnSecondary a,
+.btnTarsiyary a {
+  color: inherit;
+  text-decoration: none;
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+}
