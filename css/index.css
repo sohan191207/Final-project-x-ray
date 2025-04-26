@@ -1,324 +1,439 @@
-*{
-    margin: 0;
-    padding: 0;
-  }
-  .txt{
-    color: #ffffff;
-    font-family: Montserrat;
+* {
+  margin: 0;
+  padding: 0;
+}
+html {
+  scroll-behavior: smooth;
+}
+
+
+.txt {
+  color: #ffffff;
+  font-family: Montserrat;
   font-size: 16px;
   font-style: normal;
   font-weight: 500;
   line-height: 150%;
-  }
-  
-  .container {
-    margin: 0 auto;
-    width: 1440px; /* or any specific width */
-    background-color: #091320;
-    padding: 44px 100px 0 100px;
-  }
-  
-  .title-2{
-    font-family: 'Anton', sans-serif;
-    font-size: 56px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 150%;
-    text-align: center;
-  
-  }
-  .subTitle{  
-    text-align: center;
-    margin-top: 8px;
-    font-family: Montserrat;
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 150%; 
-  }
-  .btnSecondary a, .btnPrimary a, .btnTarsiyary a{
-    color: #ffffff;
-    font-family: 'Montserrat', sans-serif;
-    text-decoration: none;
-  }
-  
-  
-   /* ****************************************** Nav Bar Start ************************************** */
-  .navBar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #0b1320;
-  }
-  
-  .logo img {
-    height: 40px;
-  }
-  
-  .menu ul {
-    list-style: none;
-    display: flex;
-    gap: 30px;
-    margin: 0;
-    padding: 0;
-  }
-  
-  .menu ul li a {
-    color: white;
-    text-decoration: none;
-    font-weight: 400;
-    font-family: Montserrat;
-    transition: 0.3s;
-  }
-  
-  .menu ul li a:hover,
-  .menu ul li a:focus {
-    font-weight: 600;
-    border-bottom: 2px solid #99cfff;
-    padding-bottom: 5px;
-  }
-  
-  .btnLogin, .btnMain {
-    display: flex;
-    gap: 15px;
-  }
-  
-  .btnTarsiyary {
-    padding: 8px 16px;
-    color: white;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    border-radius: 8px;
-    /* border: 1px solid #385C8A; */
-  }
-  
-  
-  .btnSecondary {
-    padding: 8px 16px;
-    color: white;
-    border-radius: 6px;
-    cursor: pointer;
-    font-family: 'Montserrat', sans-serif;
-    transition: background-color 0.3s;
-    border-radius: 8px;
-    border: 1px solid #385C8A;
-  }
-  
-  .btnSecondary:hover ,
-  .btnTarsiyary:hover{
-    background-color: #ffffff22;
-  }
-  
-  .btnSecondary.outline,
-  .btnTarsiyary.outline,
-  .btnPrimary.outline {
-    border: 1px solid #337ccf;
-  }
-  
-  
-   /* ****************************************** Nav Bar End ************************************** */
-  
-  #heroSection{
-    width: 100%;
-    height: 1080;
-    margin: 0 auto;
+}
+
+.container {
+  margin: 0 auto;
+  width: 1440px;
+  /* or any specific width */
+  background-color: #091320;
+  padding: 44px 100px 0 100px;
+}
+
+.title-2 {
+  font-family: 'Anton', sans-serif;
+  font-size: 56px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%;
+  text-align: center;
+
+}
+
+.subTitle {
+  text-align: center;
+  margin-top: 8px;
+  font-family: Montserrat;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%;
+}
+
+.btnSecondary a,
+.btnPrimary a,
+.btnTarsiyary a {
+  color: #ffffff;
+  font-family: 'Montserrat', sans-serif;
+  text-decoration: none;
+}
+
+
+/* ****************************************** Nav Bar Start ************************************** */
+.navBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #0b1320;
+}
+
+.logo img {
+  height: 40px;
+}
+
+.menu ul {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+  margin: 0;
+  padding: 0;
+}
+
+.menu ul li a {
+  color: white;
+  text-decoration: none;
+  font-weight: 400;
+  font-family: Montserrat;
+  transition: 0.3s;
+}
+
+.menu ul li a:hover,
+.menu ul li a:focus {
+  font-weight: 600;
+  border-bottom: 2px solid #99cfff;
+  padding-bottom: 5px;
+}
+
+.btnLogin,
+.btnMain {
+  display: flex;
+  gap: 15px;
+}
+
+.btnTarsiyary {
+  padding: 8px 16px;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  border-radius: 8px;
+  /* border: 1px solid #385C8A; */
+}
+
+
+.btnSecondary {
+  padding: 8px 16px;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  font-family: 'Montserrat', sans-serif;
+  transition: background-color 0.3s;
+  border-radius: 8px;
+  border: 1px solid #385C8A;
+}
+
+.btnSecondary:hover,
+.btnTarsiyary:hover {
+  background-color: #ffffff22;
+}
+
+.btnSecondary.outline,
+.btnTarsiyary.outline,
+.btnPrimary.outline {
+  border: 1px solid #337ccf;
+}
+
+
+/* ****************************************** Nav Bar End ************************************** */
+
+#heroSection {
+  width: 100%;
+  height: 1080px;
+  margin: 0 auto;
   /* background-color: #99cfff9f; */
-  }
-  .textArea{
-   width: 764px;
-   margin: 90px auto 0 auto;
-  }
-  
-  #heroSection .textArea .title{
-    text-align: center;
-    font-family: 'Anton', sans-serif;
-    font-size: 76px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 120%; /* 91.2px */
-  }
-  .btnMain {
-    display: flex;
-    justify-content: center;
-    gap: 20px; /* space between buttons */
-    margin-top: 20px;
-  }
-  
-  .btnPrimary:hover {
-    background-color: #2B5A97;
-  }
-  .btnPrimary {
-    padding: 10px 20px;
-    color: white;
-    background-color: #3876C7;
-    border-radius: 6px;
-    cursor: pointer;
-    font-family: 'Montserrat', sans-serif;
-    transition: background-color 0.3s;
-    border-radius: 8px;
-  }
-  
-  .imageArea {
-    margin-top: 97px;
-    width: 100%;
-    max-height: 56vh; /* or whatever portion you want visible */
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-  }
-  
-  
-  .imageArea img {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-    object-position: center bottom;
-    display: block;
-  }
-  
-  
-  
-  
-  
-  
-  /* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! Why Choose Us!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
-  
-  
-  #WhyChoose{
-    margin: 112px 0;
-  }
-  
-  #WhyChoose .cardArea {
-    margin-top: 56px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
-    /* padding: 40px 0; */
-  }
-  
-  #WhyChoose .cardArea .card {
-    width: 400px;
-    height: 224px;
-    background: #122640;
-    border-radius: 12px;
-    padding: 20px;
-    color: #E0E0E0;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  }
-  #WhyChoose .cardArea .card:hover {
-    width: 400px;
-    height: 224px;
-    background: linear-gradient(127deg, var(--950, #183253) 32.9%, rgba(56, 118, 199, 0.62) 120.67%);
-    border-radius: 12px;
-    padding: 20px;
-    color: #ffffff;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  }
-  
-  #WhyChoose .cardArea .card img {
-    width: 32px;
-    height: 32px;
-    transition: color 0.3s ease, width 0.3s ease, height 0.3s ease, padding 0.3s ease;
-  }
-  
-  #WhyChoose .cardArea .card {
-    position: relative; 
-  }
-  
-  #WhyChoose .cardArea .card:hover img {
-    width: 40px; 
-    height: 40px;
-    padding: 4px;
-  }
-  
-  
-  #WhyChoose .cardArea .card h3 {
-    font-size: 18px;
-    font-weight: 600; 
-    font-family: 'Montserrat', sans-serif;
-  margin-top: 20px;}
-  
-  #WhyChoose .cardArea .card p {
-    font-size: 16px;
-    font-weight: 400;
-    font-family: 'Montserrat', sans-serif;
-    line-height: 150%;
-    margin: 12px 0 0 0;
-  }
-  
-  
-  
-  
-  
-  
-  /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Doctor Start>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
-  
-  
-  
-  
-  #VerifiedDoc .DocArea{
-    display: flex;
-    flex-direction: row;
-    gap: 20px;
-  
-  }
-  
-  
-    #VerifiedDoc .DocArea .card {
-      width: 295px;
-      height: 377px;
-      background-image: url('../image/Doctor/doctor_1.png'); /* Replace with actual image path */
-      background-size: cover;
-      background-position: center;
-      border-radius: 15px;
-      position: relative;
-      display: flex;
-      justify-content: flex-start;
-      align-items: flex-end;
-      padding: 0;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-      color: white;
-    }
-      #VerifiedDoc .DocArea  .card img {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      width: 40px;
-      height: 40px;
-    }
-  
-    #VerifiedDoc .DocArea .card .text-overlay {
-      width: 100%;
-      height: 107px;
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      border-radius: 0 0 12px 12px;
-      background: linear-gradient(180deg, rgba(0, 0, 0, 0.00) 8.46%, #000 106.92%);
-      padding: 15px;
-      color: white;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end; /* Align text at the bottom */
-    }
-    
-    #VerifiedDoc .DocArea .card h3 {
-      margin: 0;
-      font-size: 24px;
-      font-weight: bold;
-    }
-    
-    #VerifiedDoc .DocArea .card p {
-      margin: 5px 0 0;
-      font-size: 16px;
-    }
-    
+}
+
+.textArea {
+  width: 764px;
+  margin: 90px auto 0 auto;
+}
+
+#heroSection .textArea .title {
+  text-align: center;
+  font-family: 'Anton', sans-serif;
+  font-size: 76px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 120%;
+  /* 91.2px */
+}
+
+.btnMain {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  /* space between buttons */
+  margin-top: 20px;
+}
+
+.btnPrimary:hover {
+  background-color: #2B5A97;
+}
+
+.btnPrimary {
+  padding: 10px 20px;
+  color: white;
+  background-color: #3876C7;
+  border-radius: 6px;
+  cursor: pointer;
+  font-family: 'Montserrat', sans-serif;
+  transition: background-color 0.3s;
+  border-radius: 8px;
+}
+
+.imageArea {
+  width: 100%;
+  max-width: 1240px;
+  max-height: 528px;
+  /* or whatever portion you want visible */
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin: 97px auto 0 auto;
+}
+
+
+.imageArea img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  object-position: center bottom;
+  display: block;
+}
+
+
+
+
+
+
+/* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! Why Choose Us!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
+
+
+#WhyChoose {
+  margin: 112px auto;
+}
+
+#WhyChoose .cardArea {
+  margin-top: 56px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  /* padding: 40px 0; */
+}
+
+#WhyChoose .cardArea .card {
+  width: 400px;
+  height: 224px;
+  background: #122640;
+  border-radius: 12px;
+  padding: 20px;
+  color: #E0E0E0;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+#WhyChoose .cardArea .card:hover {
+  width: 400px;
+  height: 224px;
+  background: linear-gradient(127deg, var(--950, #183253) 32.9%, rgba(56, 118, 199, 0.62) 120.67%);
+  border-radius: 12px;
+  padding: 20px;
+  color: #ffffff;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+#WhyChoose .cardArea .card img {
+  width: 32px;
+  height: 32px;
+  transition: color 0.3s ease, width 0.3s ease, height 0.3s ease, padding 0.3s ease;
+}
+
+#WhyChoose .cardArea .card {
+  position: relative;
+}
+
+#WhyChoose .cardArea .card:hover img {
+  width: 40px;
+  height: 40px;
+  padding: 4px;
+}
+
+
+#WhyChoose .cardArea .card h3 {
+  font-size: 18px;
+  font-weight: 600;
+  font-family: 'Montserrat', sans-serif;
+  margin-top: 20px;
+}
+
+#WhyChoose .cardArea .card p {
+  font-size: 16px;
+  font-weight: 400;
+  font-family: 'Montserrat', sans-serif;
+  line-height: 150%;
+  margin: 12px 0 0 0;
+}
+
+
+
+
+
+
+/* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Doctor Start>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
+
+
+#VerifiedDoc {
+  width: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
+}
+
+#VerifiedDoc .DocArea {
+  margin-top: 56px;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  overflow-x: auto;
+  /* Allow horizontal scrolling */
+  overflow-y: hidden;
+  /* Hide vertical overflow */
+  width: 100%;
+  flex-wrap: nowrap;
+  scroll-behavior: smooth;
+  /* Smooth scroll */
+  scrollbar-width: none;
+  /* Firefox */
+  -ms-overflow-style: none;
+  /* IE and Edge */
+}
+
+#VerifiedDoc .DocArea::-webkit-scrollbar {
+  display: none;
+}
+
+
+#VerifiedDoc .DocArea .card {
+  min-width: 295px;
+  height: 377px;
+  background-image: url('../image/Doctor/doctor_1.png');
+  /* Replace with actual image path */
+  background-size: cover;
+  background-position: center;
+  border-radius: 15px;
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+  padding: 0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  color: white;
+}
+
+#VerifiedDoc .DocArea .card .text-overlay {
+  width: 100%;
+  height: 107px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  border-radius: 0 0 12px 12px;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.00) 8.46%, #000 106.92%);
+  padding: 15px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  /* Align text at the bottom */
+}
+
+#VerifiedDoc .DocArea .card h3 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+#VerifiedDoc .DocArea .card p {
+  margin: 5px 0 0;
+  font-size: 16px;
+}
+
+#VerifiedDoc .btnGetStarted {
+  max-width: 126px;
+  display: block;
+  margin: 32px auto 0 auto;
+}
+
+#VerifiedDoc .btnGetStarted a {
+  display: block;
+  /* or inline-block */
+  text-align: center;
+  padding: 10px 16px;
+}
+
+
+
+
+
+
+
+
+
+
+/* |||||||||||||||||||||||||||||||||||||||||||||||||  FAQ Start ||||||||||||||||||||||||||||||||||||||||||||||||| */
+
+#FAQ {
+  max-width: 1240px;
+  margin: 0 auto;
+}
+
+#FAQ .question{
+  margin: 56px auto 0 auto;
+}
+
+#FAQ .question .card {
+  width: 100%;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #102239;
+  margin-top: 16px;
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transition for color and scale */
+}
+
+/* Hover effect */
+#FAQ .question .card:hover {
+  background-color: #1a3b5d; /* Lighter shade for hover effect */
+  transform: scale(1.05); /* Slightly scale up the card */
+}
+
+
+#FAQ .question .title_icon {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+}
+#FAQ .question .title_stock {
+  padding: 0 0 12px 0;
+  border-bottom: 1px solid #273F5D;
+}
+
+#FAQ .question .title_icon h3 {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+#FAQ .question .title_icon img {
+  width: 20px;
+  height: 20px;
+}
+
+#FAQ .question .card p {
+  font-family: 'Montserrat', sans-serif;
+color: #CFD9E5;
+  margin-top: 10px;
+  font-size: 16px;
+  margin-left: 32px;
+}

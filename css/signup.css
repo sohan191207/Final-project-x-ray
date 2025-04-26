@@ -1,12 +1,19 @@
 body{
-    margin: 0;
+  margin: 0;
+  padding: 0;
+}
+.container{
+max-width: 1440px;
+margin: 0 auto;
+
 }
 .main-container {
-    width: 1440px;
-    height: 1173px;
-    position: relative;
-    background: #091320;
-    overflow: hidden;
+  width: 100%; /* or any specific width */
+  background-color: #091320;
+  height: 100vh;
+  position: relative;
+  margin: 0 auto;
+  overflow: hidden;
 }
 .logo {
     position: absolute;
@@ -37,15 +44,15 @@ body{
     font-weight: 400px;
   }
   .signup-intro {
-    width: 533px;
+    width: 100%;
     height: 86px;
     position: absolute;
-    left: 447px;
     top: 140px;
-    display: inline-flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
+    margin: 0 auto;
+    display: flex; /* Use flexbox */
+    align-items: center; /* Vertically center */
+    justify-content: center; /* Horizontally center */
+    flex-direction: column; /* Stack items vertically */
 }
 
 .signup-intro h2 {
@@ -54,7 +61,7 @@ body{
     color: #FFFFFF;
     font-size: 20px;
     font-family: 'Montserrat', 'sans-serif';
-    font-weight: 600;
+    font-weight: 150%;
     line-height: 24px;
     word-wrap: break-word;
     margin: 0;
@@ -70,14 +77,14 @@ body{
     word-wrap: break-word;
 }
 .signup-box {
-    width: 533px;
-    position: absolute;
-    left: 447px;
-    top: 240px;
-    display: inline-flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
+  width: 100%;
+  position: absolute;
+  margin: 0 auto;
+  top: 250px;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
    
 }
 
@@ -85,7 +92,7 @@ body{
 .form {
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 8px;
 }
 
 label {
@@ -143,14 +150,14 @@ label {
 
   }
   .button-next{
-    width: 533px;
+    width: 100%;
     position: absolute;
-    left: 447px;
-    top: 740px;
+    top: 680px;
     display: inline-flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
+    margin: 0 auto;
   }
   .button {
     width: 533px;
@@ -168,17 +175,17 @@ label {
     transform: scale(1.05);
   }
   .text-log{
-    width: 533px;
+    width: 100%;
     position: absolute;
-    left: 447px;
-    top: 810px;
+    margin: 0 auto;
+    top: 750px;
     display: inline-flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
 }
 .text-log p{
-    font-size: 18px;
+    font-size: 16px;
     font-family: 'Montserrat', 'sans-serif';
     color: #FFFFFF;
 
