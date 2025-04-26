@@ -1,27 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Forgot Password</title>
   <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="../css/global.css">
 </head>
+
 <body>
   <div class="container">
     <!-- <div class="logo">XRAYO</div> -->
 
-    <div class="logo">
-      <a href="../index.html">
-        <img src="/image/logo/logo.png" alt="logo" />
-      </a>
+    <div class="navBar">
+
+      <div class="logo">
+        <a href="../index.html">
+          <img src="../image/logo/logo.png" alt="logo" />
+        </a>
+      </div>
     </div>
 
 
-    <h2>Forgot Your Password</h2>
-    <p>Enter your registered mobile number or email address, and we'll send you a OTP to reset your password.</p>
-    <input type="text" placeholder="Enter mobile number or email" id="emailOrPhone">
-    <button onclick="sendOTP()">Send ↘</button>
+    <form class="inputForm" method="post">
+      <h2>Forgot Your Password</h2>
+      <p>Enter your registered mobile number or email address, and we'll send you a OTP to reset your password.</p>
+      <input class="size-h" type="text" placeholder="Enter mobile number or email" id="emailOrPhone">
+      <div class="btnPrimary text m-16"><a href="otp.html">Sent OTP</a> </div>
+    </form>
+
+
   </div>
 </body>
 <script src="../js/script.js"></script>
+
 </html>

@@ -1,4 +1,4 @@
-body{
+/* body{
   margin: 0;
   padding: 0;
 }
@@ -8,7 +8,7 @@ margin: 0 auto;
 
 }
 .main-container {
-  width: 100%; /* or any specific width */
+  width: 100%; 
   background-color: #091320;
   height: 100vh;
   position: relative;
@@ -49,11 +49,10 @@ margin: 0 auto;
     position: absolute;
     top: 140px;
     margin: 0 auto;
-    display: flex; /* Use flexbox */
-    align-items: center; /* Vertically center */
-    justify-content: center; /* Horizontally center */
-    flex-direction: column; /* Stack items vertically */
-}
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    flex-direction: column; 
 
 .signup-intro h2 {
     align-self: stretch;
@@ -195,4 +194,4 @@ label {
     font-family: 'Montserrat', 'sans-serif';
     color: #FFFFFF;
     text-decoration: none;
-}
+} */

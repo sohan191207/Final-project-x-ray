@@ -14,25 +14,32 @@
 
     <!-- <div class="logo">XRAYO</div> -->
 
-    <div class="logo">
-      <a href="../index.html">
-        <img src="/image/logo/logo.png" alt="logo" />
-      </a>
+    <div class="navBar">
+
+      <div class="logo">
+        <a href="../index.html">
+          <img src="../image/logo/logo.png" alt="logo" />
+        </a>
+      </div>
     </div>
 
+    <form class="inputForm" method="post">
+      <h2>Enter OTP Code</h2>
+      <p>We’ve sent a 6-digit code to your mobile/email. Please enter it below to verify your identity.</p>
+      <div class="otp-box">
+        <input class="size-h" type="text" maxlength="1">
+        <input class="size-h" type="text" maxlength="1">
+        <input class="size-h" type="text" maxlength="1">
+        <input class="size-h" type="text" maxlength="1">
+        <input class="size-h" type="text" maxlength="1">
+        <input class="size-h" type="text" maxlength="1">
+      </div>
 
-    <h2>Enter OTP Code</h2>
-    <p>We’ve sent a 6-digit code to your mobile/email. Please enter it below to verify your identity.</p>
-    <div class="otp-box">
-      <input type="text" maxlength="1">
-      <input type="text" maxlength="1">
-      <input type="text" maxlength="1">
-      <input type="text" maxlength="1">
-      <input type="text" maxlength="1">
-      <input type="text" maxlength="1">
-    </div>
-    <button onclick="verifyOTP()">Verify OTP</button>
-    <p class="resend">Didn’t receive OTP? <span id="timer">Resend in 00:30 sec</span></p>
+      <div class="btnPrimary text "><a href="../index.html">Verify OTP</a> </div>
+
+
+      <p class="resend">Didn’t receive OTP? <span id="timer">Resend in 00:30 sec</span></p>
+    </form>
   </div>
 </body>
 <script src="../js/script.js"></script>
