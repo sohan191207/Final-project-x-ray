@@ -1,20 +1,36 @@
 body {
+  
   margin: 0;
-  background: #091320;
+ 
   color: #fff;
   font-family: Arial, sans-serif;
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
+
   padding: 20px; 
   box-sizing: border-box;
 }
-
+.main-container {
+  min-height: 100vh;
+  width: 100%;
+  max-width: 1440px; /* or any specific width */
+  background: #091320;
+  height: 100vh;
+  position: relative;
+  margin: 0 auto;
+  overflow: hidden;
+}
 .container {
-  text-align: center;
   max-width: 400px;
   width: 100%;
+  margin: 100px auto 0 auto;
+  padding: 20px;
+  
+  
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 .container small{
   text-align: start;
@@ -47,7 +63,7 @@ button {
   position: absolute;
   top: 35px;
   left: 100px;
-  display: inline-flex;
+  display: fixed;
   
   gap: 10px;
   justify-content: flex-start;
@@ -118,4 +134,3 @@ small {
     font-size: 14px;
   }
 }
-
