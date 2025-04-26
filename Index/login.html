@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>signup</title>
-    <link rel="stylesheet" href="../css/login.css">
     <link rel="stylesheet" href="../css/global.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -21,61 +20,47 @@
         <div class="main-container">
 
 
-            <!-- <div class="logo">
-                <div class="logo-img">
-                    <img src="../image/logo/logo.png" alt="logo">
-                </div>
-                <div class="logo-text">XRAYO</div>
-            </div> -->
-
             <div class="logo">
                 <a href="../index.html">
-                  <img src="/image/logo/logo.png" alt="logo" />
+                    <img src="/image/logo/logo.png" alt="logo" />
                 </a>
-              </div>
-          
-
-            <div class="signup-intro">
-                <h1>Log In</h1>
-                <h2>Welcome Back to XRAYO</h2>
-                <p>Log in to book appointments, track your serial, and manage <br>your health records.</p>
             </div>
 
-            <div class="signup-box">
-                <div class="form">
-                    <label for="fullName">Mobile Number Or Email</label>
-                    <div class="input-wrapper">
-                        <i class="ri-user-line input-icon"></i>
-                        <input type="text" id="fullName" placeholder="">
-                    </div>
 
-                    <label for="password">Password</label>
-                    <div class="input-wrapper">
-                        <i class="ri-lock-line input-icon"></i>
-                        <input type="password" id="password" placeholder="">
-                    </div>
-                    <div class="remeber">
-                        <input type="checkbox" id="remeber me" name="remeber" value="Remember me">
-                        <label for="remeber"> Remember me</label>
-                        <a href="forget.html">Forgot Password?</a>
-                    </div>
+            <form class="inputForm" action="">
 
+                <h3>Welcome Back to XRAYO</h3>
+                <p>Log in to book appointments, track your serial, and manage <br>your health records.
+                </p>
+
+                <label for="txtLevel">Email</label>
+                <input type="email" id="email" placeholder="Enter your email address">
+
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Enter your password">
+
+                <div class="remember-forgot">
+                    <div class="remember">
+                        <input type="checkbox" id="remember" name="remember">
+                        <label for="remember">Remember me</label>
+                    </div>
+                    <a href="forget.html" class="forgot-link">Forgot Password?</a>
                 </div>
-            </div>
-
-            <div class="button-next">
-                <button class="button">Next</button>
-            </div>
-            <div class="text-log">
-                <p>Don’t have an account? <a href="signup.html">Sign Up</a></p>
-            </div>
 
 
+                <button type="button" class="btnPrimary text" onclick="window.location.href='../dashboard/test.html'">Sign
+                    in</button>
+
+
+                <p class="secondCTA">Don’t have an account? <a href="signup.html">Sign Up</a></p>
+
+
+            </form>
 
         </div>
     </div>
 
-
+    <script src="../js/input_box_validation_check.js"></script>
 </body>
 
 </html>

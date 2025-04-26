@@ -18,88 +18,52 @@
 
 <body>
     <div class="container">
-        <div class="main-container">
 
-            <!-- <div class="logo">
-                <div class="logo-img">
-                    <img src="../image/logo/logo.png" alt="logo">
-                </div>
-                <div class="logo-text">XRAYO</div>
-            </div> -->
-
-
-            <div class="logo">
-                <a href="../index.html">
-                    <img src="/image/logo/logo.png" alt="logo" />
-                </a>
-            </div>
-
-
-            <form class="inputForm">
-
-                <h3>Create Your XRAYO Account</h2>
-                    <p>Sign up to easily view X-ray reports, track report history, and access<br> urgent medical
-                        support.
-                    </p>
-
-
-                    <div class="btnPrimary text "><a href="signupdr.html">Next</a> </div>
-
-
-                    <label for="txtLevel">Full Name</label>
-
-                    <input type="text" id="fullName" placeholder="Enter your full name">
-
-            </form>
-
-
-            <!-- <div class="signup-box">
-                <div class="form">
-                    <label for="fullName">Full Name</label>
-                    <div class=" input-wrapper">
-                        <i class="ri-user-line input-icon"></i>
-                        <input type="text" id="fullName" placeholder="Enter your full name">
-                    </div>
-                    <label for="contact">Mobile/Email</label>
-                    <div class="input-wrapper">
-                        <i class="ri-mail-line input-icon"></i>
-                        <input size-h type="text" id="contact" placeholder="Enter your mobile or email">
-                    </div>
-                    <label for="category">Role</label>
-                    <div class="input-wrapper">
-                        <i class="ri-user-settings-line input-icon"></i>
-                        <select id="category">
-                            <option value="admin">Admin</option>
-                            <option value="doctor">Doctor</option>
-                            <option value="radiologist">Radiologist</option>
-                        </select>
-                    </div>
-                    <label for="password">Password</label>
-                    <div class="input-wrapper">
-                        <i class="ri-lock-line input-icon"></i>
-                        <input size-h type="password" id="password" placeholder="Enter password">
-                    </div>
-                    <p class="note">Password should be at least 8 characters</p>
-                    <label for="confirmPassword">Confirm Password</label>
-                    <div class="input-wrapper">
-                        <i class="ri-lock-password-line input-icon"></i>
-                        <input size-h type="password" id="confirmPassword" placeholder="Confirm password">
-                    </div>
-                    <p class="note">Ensure your passwords match exactly to avoid any errors</p>
-
-
-                </div>
-            </div> -->
-
-            <!-- <div class="button-next">
-                <div class="btnPrimary text"><a href="signupdr.html">Next</a> </div>
-            </div>
-            <div class="text-log">
-                <p>Already have an account? <a href="login.html">Log In</a></p>
-            </div> -->
-
+        <div class="logo">
+            <a href="../index.html">
+                <img src="/image/logo/logo.png" alt="logo" />
+            </a>
         </div>
+
+
+        <form class="inputForm">
+
+            <h3>Create Your XRAYO Account</h3>
+            <p>Sign up to easily view X-ray reports, track report history, and access<br> urgent medical
+                support.
+            </p>
+
+            <label for="txtLevel">Full Name</label>
+            <input type="text" id="fullName" placeholder="Enter your full name">
+
+            <label for="txtLevel">Email</label>
+            <input type="email" id="email" placeholder="Enter your email address">
+
+            <label for="category">Category</label>
+            <select id="category">
+                <option value="" disabled selected>Select category</option>
+                <option value="admin">Admin</option>
+                <option value="doctor">Doctor</option>
+                <option value="radiologist">Radiologist</option>
+            </select>
+
+
+            <label for="password">Password</label>
+            <input type="password" id="password" placeholder="Enter your password">
+
+            <label for="confirmPassword">Confirm Password</label>
+            <input type="password" id="confirmPassword" placeholder="Confirm your password">
+
+
+            <button type="button" class="btnPrimary text" onclick="window.location.href='../dashboard/test.html'">Sign
+                Up</button>
+
+            <p class="secondCTA">Already have an account? <a href="login.html">Log In</a></p>
+
+        </form>
+
     </div>
+    <script src="../js/input_box_validation_check.js"></script>
 
 </body>
 

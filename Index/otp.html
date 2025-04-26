@@ -24,23 +24,34 @@
     </div>
 
     <form class="inputForm" method="post">
-      <h2>Enter OTP Code</h2>
+      <h3>Enter OTP Code</h3>
       <p>We’ve sent a 6-digit code to your mobile/email. Please enter it below to verify your identity.</p>
+    
       <div class="otp-box">
-        <input class="size-h" type="text" maxlength="1">
-        <input class="size-h" type="text" maxlength="1">
-        <input class="size-h" type="text" maxlength="1">
-        <input class="size-h" type="text" maxlength="1">
-        <input class="size-h" type="text" maxlength="1">
-        <input class="size-h" type="text" maxlength="1">
+        <input class="size-h" type="text" maxlength="1" id="otp1" oninput="moveFocus(this, 'otp2')" />
+        <input class="size-h" type="text" maxlength="1" id="otp2" oninput="moveFocus(this, 'otp3')" />
+        <input class="size-h" type="text" maxlength="1" id="otp3" oninput="moveFocus(this, 'otp4')" />
+        <input class="size-h" type="text" maxlength="1" id="otp4" oninput="moveFocus(this, 'otp5')" />
+        <input class="size-h" type="text" maxlength="1" id="otp5" oninput="moveFocus(this, 'otp6')" />
+        <input class="size-h" type="text" maxlength="1" id="otp6" />
       </div>
+    
+      <button type="button" class="btnPrimary text" onclick="window.location.href='../Index/new-password.html'">Verify OTP</button>
 
-      <div class="btnPrimary text "><a href="../Index/new-password.html">Verify OTP</a> </div>
-
-
+    
       <p class="resend">Didn’t receive OTP? <span id="timer">Resend in 00:30 sec</span></p>
     </form>
+    
+    <script>
+      function moveFocus(current, nextInputId) {
+        if (current.value.length === 1) {
+          document.getElementById(nextInputId).focus();
+        }
+      }
+    </script>
+    
   </div>
+  <script src="../js/input_box_validation_check.js"></script>
 </body>
 <script src="../js/script.js"></script>
 
