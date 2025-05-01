@@ -15,7 +15,7 @@ signin.addEventListener('click',(event)=>{
       const user = userCredential.user;
       localStorage.setItem('loggedInuserId', user.uid);
       alert("Successfully logged in");
-      window.location.href = "../dashboard/dashboard.html";
+      window.location.href = "../dashboard/admin/dashboard.html";
     })
     .catch((error) => {
       console.error('Login Error:', error);
