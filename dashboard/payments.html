@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>X-ray Admin Dashboard</title>
+    <link rel="stylesheet" href="../css/dashboard/dashboard.css">
+</head>
+
+<body>
+
+    <div class="sidebar">
+        <div class="logo">
+            <img src="../image/logo/logo.png" alt="Company Logo" />
+        </div>
+
+        <nav class="menu">
+            <a href="dashboard.html" >Dashboard</a>
+            <a href="doctors.html">Doctors</a>
+            <a href="Hospitals.html">Hospitals</a>
+            <a href="reports.html">Reports</a>
+            <a href="payments.html"class="active">Payments</a>
+            <a href="#">Settings</a>
+        </nav>
+
+    </div>
+
+
+    <div class="main">
+        <button class="sidebar-toggle" onclick="toggleSidebar()">☰</button>
+
+        <div class="header">
+            <div class="search-container">
+                <input type="text" placeholder="Search..." />
+            </div>
+
+            <div class="user-actions">
+                <span class="notification">🔔</span>
+
+                <div class="profile-wrapper">
+                    <img src="../image/user.png" alt="Profile" class="profile-pic" />
+
+                    <div class="profile-dropdown">
+                        <strong>Rakha Kabir</strong>
+                        <small>Administrator</small>
+                        <hr />
+                        <a href="#">Personal Info</a>
+                        <a href="#">Settings</a>
+                        <a href="../index.html">Logout</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <!-- <div class="stats-grid">
+            <div class="card">
+                <h3>Total Hospitals</h3>
+                <p>25+</p>
+            </div>
+            <div class="card">
+                <h3>Verified Doctors</h3>
+                <p>20+</p>
+            </div>
+            <div class="card">
+                <h3>X-rays Uploaded</h3>
+                <p>40,000+</p>
+            </div>
+            <div class="card">
+                <h3>Reports Completed</h3>
+                <p>10,000+</p>
+            </div>
+        </div>
+
+
+        <div class="card wide">
+            <h3>Doctor Approval</h3>
+
+            <div class="approval-item">
+                <div class="doctor-info">
+                    <span class="request-date">Requested: Apr 28, 2025</span>
+                    <div class="doctor-details">
+                        <img src="../image/user.png" alt="Doctor" class="doctor-icon" />
+                        <div class="doctor-meta">
+                            <strong>Dr. Afsana Rahman</strong>
+                            <small>MBBS</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="approval-actions">
+                    <button class="approve">Approve</button>
+                    <button class="reject">Reject</button>
+                    <button class="view">View Details</button>
+                </div>
+            </div>
+
+            <div class="approval-item">
+                <div class="doctor-info">
+                    <span class="request-date">Requested: Apr 28, 2025</span>
+                    <div class="doctor-details">
+                        <img src="../image/user.png" alt="Doctor" class="doctor-icon" />
+                        <div class="doctor-meta">
+                            <strong>Dr. Afsana Rahman</strong>
+                            <small>MBBS</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="approval-actions">
+                    <button class="approve">Approve</button>
+                    <button class="reject">Reject</button>
+                    <button class="view">View Details</button>
+                </div>
+            </div>
+
+        </div>
+
+
+
+
+        <div class="card wide">
+            <h3>Hospital Approval</h3>
+
+            <div class="approval-item">
+                <div class="doctor-info">
+                    <span class="request-date">Requested: Apr 28, 2025</span>
+                    <div class="doctor-details">
+                        <img src="../image/user.png" alt="Doctor" class="doctor-icon" />
+                        <div class="doctor-meta">
+                            <strong>Dr. Afsana Rahman</strong>
+                            <small>MBBS</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="approval-actions">
+                    <button class="approve">Approve</button>
+                    <button class="reject">Reject</button>
+                    <button class="view">View Details</button>
+                </div>
+            </div>
+
+            <div class="approval-item">
+                <div class="doctor-info">
+                    <span class="request-date">Requested: Apr 28, 2025</span>
+                    <div class="doctor-details">
+                        <img src="../image/user.png" alt="Doctor" class="doctor-icon" />
+                        <div class="doctor-meta">
+                            <strong>Dr. Afsana Rahman</strong>
+                            <small>MBBS</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="approval-actions">
+                    <button class="approve">Approve</button>
+                    <button class="reject">Reject</button>
+                    <button class="view">View Details</button>
+                </div>
+            </div>
+
+        </div> -->
+
+
+
+
+    </div>
+
+</body>
+<script>
+    const profilePic = document.querySelector('.profile-pic');
+    const dropdown = document.querySelector('.profile-dropdown');
+
+    profilePic.addEventListener('click', () => {
+        dropdown.style.display = dropdown.style.display === 'flex' ? 'none' : 'flex';
+    });
+
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('.profile-wrapper')) {
+            dropdown.style.display = 'none';
+        }
+    });
+
+    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Side bar Toggle condition
+
+
+    function toggleSidebar() {
+        const sidebar = document.querySelector('.sidebar');
+        sidebar.classList.toggle('show');
+    }
+
+    // On resize, remove `.show` on large screens (and reset styles)
+    window.addEventListener('resize', () => {
+        const sidebar = document.querySelector('.sidebar');
+        if (window.innerWidth > 768) {
+            sidebar.classList.remove('show');
+        }
+    });
+
+</script>
+
+
+</html>
