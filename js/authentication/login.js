@@ -9,7 +9,22 @@ signin.addEventListener('click',(event)=>{
     const email =document.getElementById('email').value;
     const password =document.getElementById('password').value;
 
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+    if ( !email || !password) {
+      alert('Please fill in all fields.');
+      return;
+    }
+    if (!emailPattern.test(email)) {
+      alert('Please enter a valid email address.');
+      return;
+    }
+  
+    if (password.length < 8) {
+      alert('Password must be at least 8 characters.');
+      return;
+    }
+  
     signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       const user = userCredential.user;
