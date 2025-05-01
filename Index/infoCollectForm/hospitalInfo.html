@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>signup</title>
+    <link rel="stylesheet" href="../../css/global.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <!-- <div class="logo">
+            <a href="../../index.html">
+                <img src="../../image/logo/logo.png" alt="logo" />
+            </a>
+        </div> -->
+
+        <div class="container inputForm">
+            <h3>Facility Registration</h3>
+            <p>Enter all required details below.</p>
+
+            <form>
+                <label for="facility_name">Facility Name <span style="color: red;">*</span></label>
+                <input type="text" id="facility_name" required placeholder="e.g. Sunrise Diagnostic Center" />
+          
+                <label for="facility_type">Facility Type <span style="color: red;">*</span></label>
+                <input type="text" id="facility_type" required placeholder="e.g. Hospital, Diagnostic Center" />
+          
+                <label for="license_no">License Number <span style="color: red;">*</span></label>
+                <input type="text" id="license_no" required placeholder="e.g. LIC-123456" />
+                    
+                <label for="established_year">Established Year</label>
+                <input type="number" id="established_year" placeholder="e.g. 2005" />
+          
+                <label for="address">Facility Address <span style="color: red;">*</span></label>
+                <input type="text" id="address" required placeholder="Street, City, Country" />
+          
+                <label for="owner_name">Owner's Full Name <span style="color: red;">*</span></label>
+                <input type="text" id="owner_name" required placeholder="e.g. Dr. Jane Doe" />
+          
+                <label for="owner_designation">Owner Designation</label>
+                <input type="text" id="owner_designation" placeholder="e.g. Director" />
+          
+                <label for="email">Email Address <span style="color: red;">*</span></label>
+                <input type="email" id="email" required placeholder="e.g. contact@facility.com" />
+          
+                <label for="mobile">Mobile Number <span style="color: red;">*</span></label>
+                <input type="text" id="mobile" required placeholder="+8801234567890" />
+          
+                <label for="radiologist_count">Radiologist Count</label>
+                <input type="number" id="radiologist_count" placeholder="e.g. 5" />
+          
+                <label for="operating_hours">Operating Hours</label>
+                <input type="text" id="operating_hours" placeholder="e.g. Mon-Fri, 9am-6pm" />
+
+                <label for="license_file">Upload License File <span style="color: red;">*</span></label>
+                <input type="file" id="license_file" required />
+          
+                <button type="submit" class="btnPrimary">Submit</button>
+            </form>
+        </div>
+    </div>
+    <script src="../../js/input_box_validation_check.js"></script>
+</body>
+
+</html>
