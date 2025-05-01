@@ -29,7 +29,7 @@ signup.addEventListener('click',(event)=>{
       const docRef = doc(db, "authenticationData", user.uid);
       setDoc(docRef, userData)
         .then(() => {
-        window.location.href="login.html";
+        window.location.href="../Index/infoCollectForm/doctorInfo.html";
         })
         .catch((error) => {
           console.error("Error writing document:", error);
