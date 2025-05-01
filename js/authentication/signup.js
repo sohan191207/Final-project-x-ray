@@ -14,6 +14,32 @@ signup.addEventListener('click',(event)=>{
     const password = document.getElementById('password').value;
     const confirmPassword = document.getElementById('confirmPassword').value;
 
+
+//------------input filed check --------------
+
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!fullName || !email || !password || !confirmPassword || !category) {
+      alert('Please fill in all fields.');
+      return;
+    }
+    if (!emailPattern.test(email)) {
+      alert('Please enter a valid email address.');
+      return;
+    }
+  
+    if (password.length < 8) {
+      alert('Password must be at least 8 characters.');
+      return;
+    }
+  
+    if (password !== confirmPassword) {
+      alert('Passwords do not match.');
+      return;
+    }
+  
+   
+
     createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       const user = userCredential.user;
@@ -24,12 +50,22 @@ signup.addEventListener('click',(event)=>{
         password: password
       };
 
-      alert("Account Created Successfully");
+   
 
       const docRef = doc(db, "authenticationData", user.uid);
       setDoc(docRef, userData)
         .then(() => {
-        window.location.href="../Index/infoCollectForm/doctorInfo.html";
+
+          alert("Account Created Successfully");
+          if (category === "Doctor") {
+            window.location.href="../Index/infoCollectForm/adminInfo.html";
+          } else if (category === "Admin") {
+            window.location.href="../Index/infoCollectForm/doctorInfo.html";
+          } else if (category === "Radiologist") {
+            window.location.href="../Index/infoCollectForm/hospitalInfo.html";
+          } else {
+            alert("Unknown category. Please contact admin.");
+          }
         })
         .catch((error) => {
           console.error("Error writing document:", error);
