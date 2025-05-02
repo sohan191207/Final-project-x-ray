@@ -1,131 +1,156 @@
-/* ===================== Global Styles ===================== */
+/* Reset & base styles */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Montserrat', sans-serif;
-  }
-  
-  body {
-    background-color: #0b1a2f;
-    color: #ffffff;
-  }
-  
-  .container {
-    max-width: 1140px;
-    margin: 40px auto;
-    background-color: #091320;
-    padding: 40px;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  }
-  
-  h3, p {
-    text-align: center;
-    color: #ffffff;
-    margin-bottom: 16px;
-  }
-  
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background-color: #0b1a2f;
+  color: #ffffff;
+  padding: 20px;
+}
+
+/* Container */
+.inputForm {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: #091320;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Form title and description */
+.inputForm h3 {
+  font-size: 32px;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+.inputForm p {
+  text-align: center;
+  margin-bottom: 32px;
+  color: #cccccc;
+}
+
+/* Form grid layout */
+form {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+/* Make form responsive */
+@media (max-width: 768px) {
   form {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 24px;
+    grid-template-columns: 1fr;
   }
-  
-  /* ===================== Form Group ===================== */
-  .form-group {
-    flex: 1 1 48%;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .form-group-full {
-    flex: 1 1 100%;
-  }
-  
-  label {
-    margin-bottom: 8px;
-    font-size: 16px;
-    font-weight: 500;
-    color: #fff;
-  }
-  
-  input[type="text"],
-  input[type="number"],
-  input[type="file"],
-  select {
-    padding: 12px 16px;
-    border-radius: 8px;
-    border: 2px solid #3876C7;
-    background-color: #ffffff;
-    color: #000;
-    font-size: 16px;
-    transition: border-color 0.3s ease;
-  }
-  
-  input[type="text"]:focus,
-  input[type="number"]:focus,
-  select:focus {
-    border-color: #4a90e2;
-    outline: none;
-  }
-  
-  input[type="file"] {
-    background-color: #fff;
-  }
-  
-  /* ===================== Emergency Checkbox ===================== */
-  .checkbox-group {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-top: 8px;
-    font-size: 16px;
-  }
-  
-  /* ===================== Button ===================== */
-  .button-group {
-    display: flex;
-    gap: 20px;
-    margin-top: 32px;
-  }
-  
-  .btnPrimary {
-    flex: 1;
-    padding: 14px;
-    font-size: 16px;
-    font-weight: 600;
-    color: #fff;
-    background-color: #4a90e2;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-  }
-  
-  .btnPrimary:hover {
-    background-color: #3b7fd8;
-    transform: translateY(-2px);
-  }
-  
-  .btnSecondary {
-    background-color: #6b7280;
-  }
-  
-  /* ===================== Responsive ===================== */
-  @media (max-width: 768px) {
-    .form-group {
-      flex: 1 1 100%;
-    }
-  
-    .button-group {
-      flex-direction: column;
-    }
-  }
-  
-  @media (max-width: 480px) {
-    .container {
-      padding: 20px;
-    }
-  }
-  
+}
+
+/* Labels and inputs */
+label {
+  display: block;
+  font-size: 16px;
+  margin-bottom: 6px;
+  color: #ffffff;
+  font-weight: 500;
+}
+
+input,
+select {
+  display: block;
+  width: 100%;
+  padding: 12px 16px;
+  margin-bottom: 16px; /* ensure spacing under input */
+  font-size: 16px;
+  border-radius: 8px;
+  border: 2px solid #3876C7;
+  background-color: #ffffff;
+  color: #000000;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="number"],
+input[type="file"],
+select {
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 2px solid #3876C7;
+  background-color: #ffffff;
+  color: #000;
+  transition: 0.3s border-color, 0.3s box-shadow;
+}
+
+input:focus,
+select:focus {
+  outline: none;
+  border-color: #4a90e2;
+  box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.3);
+}
+
+.checkbox-row {
+  grid-column: span 2;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+}
+
+
+.checkbox-row input[type="checkbox"] {
+  margin: 0;
+  width: auto;  /* ensure checkbox is not stretched */
+}
+
+.checkbox-row label {
+  margin: 0;
+  font-size: 16px;
+  color: #ffffff;
+  font-weight: 500;
+}
+
+
+
+/* Button row */
+.button-group {
+  grid-column: span 2;
+  display: flex;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.btnPrimary {
+  flex: 1;
+  padding: 14px;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.btnPrimary:first-child {
+  background-color: #4a90e2;
+  color: white;
+}
+
+.btnPrimary:first-child:hover {
+  background-color: #3b7fd8;
+}
+
+.btnPrimary:last-child {
+  background-color: #6b7280;
+  color: white;
+}
+
+.btnPrimary:last-child:hover {
+  background-color: #5a626d;
+}
