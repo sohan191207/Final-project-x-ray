@@ -1,0 +1,154 @@
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 200;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    background-color: rgba(0, 0, 0, 0.6);
+    /* display: flex; */
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  .modal-content {
+    background: #ffffff;
+    padding: 32px;
+    border-radius: 12px;
+    max-width: 900px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.1);
+    animation: slideIn 0.3s ease-out;
+  }
+  
+
+
+  .modal h2 {
+    font-size: 24px;
+    margin-bottom: 24px;
+    color: #111827;
+    border-bottom: 1px solid #e5e7eb;
+    padding-bottom: 12px;
+  }
+  
+  .close {
+    position: absolute;
+    top: 20px;
+    right: 24px;
+    font-size: 28px;
+    color: #6b7280;
+    cursor: pointer;
+    transition: color 0.2s ease;
+  }
+  .close:hover {
+    color: #ef4444;
+  }
+  
+  .profile-layout {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  
+  .profile-info {
+    flex: 2;
+    min-width: 250px;
+  }
+  
+  .profile-photo {
+    flex: 1;
+    text-align: center;
+    min-width: 150px;
+  }
+  
+  .profile-photo label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #374151;
+  }
+  
+  .doctor-photo {
+    width: 120px;
+    height: 120px;
+    border-radius: 12px;
+    object-fit: cover;
+    border: 2px solid #d1d5db;
+  }
+  
+  .info-group {
+    margin-bottom: 16px;
+  }
+  .info-group label {
+    font-size: 12px;
+    font-weight: 600;
+    color: #4b5563;
+    display: block;
+    margin-bottom: 4px;
+  }
+  .info-group span {
+    font-size: 18px;
+    color: #111827;
+    display: block;
+  }
+  
+  .full-width {
+    margin-top: 32px;
+    height: 500px; 
+    display: flex;
+    flex-direction: column;
+  }
+
+  .info-group.full-width {
+    min-height: 1200px; 
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .info-group.full-width label {
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #374151;
+  }
+  
+  .pdf-frame {
+    flex: 1;
+    width: 100%;
+    height: 100%; 
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+  }
+  
+
+  iframe {
+    width: 100%;
+    height: 400px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+  }
+  
+  @keyframes fadeIn {
+    from { background: rgba(0, 0, 0, 0); }
+    to { background: rgba(0, 0, 0, 0.6); }
+  }
+  @keyframes slideIn {
+    from { transform: translateY(-20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+  
+  @media (max-width: 600px) {
+    .modal-content {
+      padding: 20px;
+    }
+    .profile-layout {
+      flex-direction: column;
+    }
+    .doctor-photo {
+      width: 100px;
+      height: 100px;
+    }
+  }
+  

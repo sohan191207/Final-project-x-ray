@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>X-ray Admin Dashboard</title>
   <link rel="stylesheet" href="../../css/dashboard/dashboard.css">
+  <link rel="stylesheet" href="../../css/dashboard/viewDetails.css">
 </head>
 
 <body>
@@ -90,7 +91,7 @@
           <div class="doctor-details">
             <img src="../../image/user.png" alt="Doctor" class="doctor-icon" />
             <div class="doctor-meta">
-              <strong>Dr. Afsana Rahman</strong>
+              <strong>Dr. Afsana Rahman</strong><br />
               <small>MBBS</small>
             </div>
           </div>
@@ -98,17 +99,16 @@
         <div class="approval-actions">
           <button class="approve">Approve</button>
           <button class="reject">Reject</button>
-          <button class="view">View Details</button>
+          <button class="view" onclick="openModal()">View Details</button>
         </div>
       </div>
-
       <div class="approval-item">
         <div class="doctor-info">
           <span class="request-date">Requested: Apr 28, 2025</span>
           <div class="doctor-details">
             <img src="../../image/user.png" alt="Doctor" class="doctor-icon" />
             <div class="doctor-meta">
-              <strong>Dr. Afsana Rahman</strong>
+              <strong>Dr. Afsana Rahman</strong><br />
               <small>MBBS</small>
             </div>
           </div>
@@ -116,11 +116,10 @@
         <div class="approval-actions">
           <button class="approve">Approve</button>
           <button class="reject">Reject</button>
-          <button class="view">View Details</button>
+          <button class="view" onclick="openModal()">View Details</button>
         </div>
       </div>
 
-      <!-- You can duplicate .approval-item for more entries -->
     </div>
 
 
@@ -128,7 +127,7 @@
 
     <div class="card wide">
       <h3>Hospital Approval</h3>
-
+    
       <div class="approval-item">
         <div class="doctor-info">
           <span class="request-date">Requested: Apr 28, 2025</span>
@@ -140,31 +139,15 @@
             </div>
           </div>
         </div>
+    
         <div class="approval-actions">
           <button class="approve">Approve</button>
           <button class="reject">Reject</button>
-          <button class="view">View Details</button>
-        </div>
-      </div>
-
-      <div class="approval-item">
-        <div class="doctor-info">
-          <span class="request-date">Requested: Apr 28, 2025</span>
-          <div class="doctor-details">
-            <img src="../../image/user.png" alt="Doctor" class="doctor-icon" />
-            <div class="doctor-meta">
-              <strong>Dr. Afsana Rahman</strong>
-              <small>MBBS</small>
-            </div>
-          </div>
-        </div>
-        <div class="approval-actions">
-          <button class="approve">Approve</button>
-          <button class="reject">Reject</button>
-          <button class="view">View Details</button>
+          <button class="view" onclick="openHospitalModal()">View Details</button>
         </div>
       </div>
     </div>
+    
 
 
     <div class="card wide">
@@ -184,35 +167,141 @@
         <div class="approval-actions">
           <button class="approve">Approve</button>
           <button class="reject">Reject</button>
-          <button class="view">View Details</button>
+          <button class="view"onclick="openUserModal()">View Details</button>
         </div>
       </div>
 
-      <div class="approval-item">
-        <div class="doctor-info">
-          <span class="request-date">Requested: Apr 28, 2025</span>
-          <div class="doctor-details">
-            <img src="../../image/user.png" alt="Doctor" class="doctor-icon" />
-            <div class="doctor-meta">
-              <strong>Abdul Hakim</strong>
-              <small>Student</small>
-            </div>
-          </div>
-        </div>
-        <div class="approval-actions">
-          <button class="approve">Approve</button>
-          <button class="reject">Reject</button>
-          <button class="view">View Details</button>
-        </div>
-      </div>
     </div>
 
 
 
 
-  </div>
 
+    <!-- ################################################ Doctor Details Model ######################### -->
+
+    <div class="modal" id="detailsModal">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h2>Doctor Profile</h2>
+    
+        <div class="profile-layout">
+          <!-- Left: Text Info -->
+          <div class="profile-info">
+            <div class="info-group"><label>Full Name*</label><span>Dr. John Doe</span></div>
+            <div class="info-group"><label>Gender</label><span>Male</span></div>
+            <div class="info-group"><label>Contact Number</label><span>+8801234567890</span></div>
+            <div class="info-group"><label>Medical Degree</label><span>MBBS, MD</span></div>
+            <div class="info-group"><label>Graduation Year</label><span>2015</span></div>
+            <div class="info-group"><label>Specialization</label><span>Radiology</span></div>
+            <div class="info-group"><label>License Number</label><span>BMC-123456</span></div>
+            <div class="info-group"><label>Experience</label><span>8 years</span></div>
+            <div class="info-group"><label>Workplace</label><span>Apollo Hospital</span></div>
+            <div class="info-group"><label>Designation</label><span>Senior Consultant</span></div>
+          </div>
+    
+          <!-- Right: Photo -->
+          <div class="profile-photo">
+            <label>Photo</label>
+            <img src="../../image/user.png" alt="Doctor Photo" class="doctor-photo">
+          </div>
+        </div>
+    
+        <div class="info-group full-width">
+          <label>Certificate PDF</label>
+          <iframe src="../../image/demo.pdf" title="Certificate PDF" class="pdf-frame"></iframe>
+        </div>
+        
+              
+      </div>
+    </div>
+    
+
+    <!-- ################################################ Hospital Details Model ######################### -->
+
+
+    <div class="modal" id="hospitalDetailsModal">
+      <div class="modal-content">
+        <span class="close" onclick="closeHospitalModal()">&times;</span>
+        <h2>Hospital / Facility Profile</h2>
+    
+        <div class="profile-layout">
+          <!-- Left: Info -->
+          <div class="profile-info">
+            <div class="info-group"><label>Facility Name *</label><span>Sunrise Diagnostic Center</span></div>
+            <div class="info-group"><label>Facility Type *</label><span>Diagnostic Center</span></div>
+            <div class="info-group"><label>License Number *</label><span>LIC-123456</span></div>
+            <div class="info-group"><label>Established Year</label><span>2005</span></div>
+            <div class="info-group"><label>Facility Address *</label><span>123 Main Street, Dhaka, Bangladesh</span></div>
+            <div class="info-group"><label>Owner's Full Name *</label><span>Dr. Jane Doe</span></div>
+            <div class="info-group"><label>Owner Designation</label><span>Director</span></div>
+            <div class="info-group"><label>Email Address *</label><span>contact@facility.com</span></div>
+            <div class="info-group"><label>Mobile Number *</label><span>+8801234567890</span></div>
+            <div class="info-group"><label>Radiologist Count</label><span>5</span></div>
+            <div class="info-group"><label>Operating Hours</label><span>Mon-Fri, 9am-6pm</span></div>
+          </div>
+    
+          <!-- Right: Optional Photo (if you want to add one later) -->
+          <div class="profile-photo">
+            <label>Optional Logo</label>
+            <img src="../../image/user.png" alt="Facility Logo" class="doctor-photo" />
+          </div>
+        </div>
+    
+        <div class="info-group full-width">
+          <label>License PDF</label>
+          <iframe src="../../image/demo.pdf" title="License File" class="pdf-frame"></iframe>
+        </div>
+      </div>
+    </div>
+
+    
+    <!-- ################################################ Hospital Details Model ######################### -->
+
+    <div class="modal" id="userDetailsModal">
+      <div class="modal-content">
+        <span class="close" onclick="closeUserModal()">&times;</span>
+        <h2>User Profile</h2>
+    
+        <div class="profile-layout">
+          <!-- Left Info -->
+          <div class="profile-info">
+            <div class="info-group">
+              <label>Full Name*</label>
+              <span>Dr. John Doe</span>
+            </div>
+    
+            <div class="info-group">
+              <label>Gender</label>
+              <span>Male</span>
+            </div>
+    
+            <div class="info-group">
+              <label>Contact Number</label>
+              <span>+8801234567890</span>
+            </div>
+          </div>
+    
+          <!-- Right Photo -->
+          <div class="profile-photo">
+            <label>Profile Photo</label>
+            <img src="../../image/user.png" alt="User Photo" class="doctor-photo" />
+          </div>
+        </div>
+      </div>
+    </div>
+    
+
+
+
+
+
+
+  </div>
 </body>
+<script src="../../js/dashboard/admin/viewDetails.js"></script>
+
+
+
 <script>
   const profilePic = document.querySelector('.profile-pic');
   const dropdown = document.querySelector('.profile-dropdown');

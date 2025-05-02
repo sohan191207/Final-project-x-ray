@@ -11,11 +11,12 @@ container.addEventListener('wheel', function (e) {
   e.preventDefault();
   const scaleAmount = 0.1;
   scale += e.deltaY < 0 ? scaleAmount : -scaleAmount;
-  scale = Math.min(Math.max(1, scale), 3); // limit zoom
-  img.style.transform = `scale(${scale}) translate(${originX}px, ${originY}px)`;
+  scale = Math.min(Math.max(1, scale), 3);
+  updateTransform();
 });
 
 container.addEventListener('mousedown', function (e) {
+  if (scale <= 1) return;
   isDragging = true;
   startX = e.clientX;
   startY = e.clientY;
@@ -35,5 +36,9 @@ window.addEventListener('mousemove', function (e) {
   originY += dy;
   startX = e.clientX;
   startY = e.clientY;
-  img.style.transform = `scale(${scale}) translate(${originX}px, ${originY}px)`;
+  updateTransform();
 });
+
+function updateTransform() {
+  img.style.transform = `translate(-50%, -50%) scale(${scale}) translate(${originX}px, ${originY}px)`;
+}
