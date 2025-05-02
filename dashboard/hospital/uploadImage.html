@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>X-ray Admin Dashboard</title>
+    <link rel="stylesheet" href="../../css/dashboard/hospital/uploadImage.css">
+    <!-- <link rel="stylesheet" href="../../css/global.css"> -->
+    <link rel="stylesheet" href="../../css/dashboard/dashboard.css">
+</head>
+
+<body>
+
+    <div class="sidebar">
+        <div class="logo">
+            <img src="../../image/logo/logo.png" alt="Company Logo" />
+        </div>
+
+
+
+
+        <nav class="menu">
+            <a href="dashboard.html" class="active">Dashboard</a>
+            <a href="userManagement.html">Report Management</a>
+            <a href="ReportManagement.html">Doctor Management</a>
+            <a href="paymentsWallet.html">Patient Records</a>
+            <a href="Notification.html">Payments & Billing</a>
+            <a href="analytics.html">Activity Log</a>
+            <a href="accessRoles.html">Notifications</a>
+            <a href="accessRoles.html">Profile Settings</a>
+            <a href="accessRoles.html">Support / Help</a>
+        </nav>
+
+    </div>
+
+
+    <div class="container inputForm">
+        <h3>Image Upload Form</h3>
+        <p>Enter all required details below.</p>
+
+        <form>
+
+            <label for="report_id">Report ID <span style="color: red;">*</span></label>
+            <input type="text" id="report_id" required placeholder="e.g. XR-20250430" />
+          
+            <label for="patient_name">Patient Name <span style="color: red;">*</span></label>
+            <input type="text" id="patient_name" required placeholder="e.g. Md. Saifullah" />
+          
+            <label for="ref_doctor">Referring Doctor</label>
+            <select id="ref_doctor">
+              <option value="">-- Select Doctor --</option>
+              <option value="dr_afsana">Dr. Afsana Rahman</option>
+              <option value="dr_kamal">Dr. Kamal Hossain</option>
+              <option value="dr_sadia">Dr. Sadia Akter</option>
+            </select>
+            
+          
+            <label for="gender">Gender <span style="color: red;">*</span></label>
+            <select id="gender" required>
+              <option value="">-- Select Gender --</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+              <option value="other">Other</option>
+            </select>
+          
+            <label for="age">Age <span style="color: red;">*</span></label>
+            <input type="number" id="age" required placeholder="e.g. 35" />
+          
+            <label for="xray_type">X-ray Type <span style="color: red;">*</span></label>
+            <input type="text" id="xray_type" required placeholder="e.g. Chest X-ray" />
+          
+            <label for="emergency_checkbox">Emergency Case</label>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <input type="checkbox" id="emergency_checkbox" name="emergency" />
+              <label for="emergency_checkbox" style="margin: 0;">Yes</label>
+            </div>
+            
+          
+            <label for="xray_images">Upload X-ray Images (Max 2) <span style="color: red;">*</span></label>
+            <input type="file" id="xray_images" accept="image/*" multiple required onchange="validateImageUpload(this)" />
+          
+            <div style="display: flex; gap: 16px; margin-top: 24px;">
+              <button type="submit" class="btnPrimary" style="flex: 1;">Submit</button>
+              <button type="reset" class="btnPrimary" style="flex: 1; background-color: #6b7280;">Reset</button>
+            </div>
+          
+          </form>
+          
+    </div>
+
+</body>
+
+
+<script>
+
+    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Image upload validation
+
+  function validateImageUpload(input) {
+    if (input.files.length > 2) {
+      alert("You can upload a maximum of 2 images.");
+      input.value = "";
+    }
+  }
+
+
+    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Side bar Toggle condition
+
+
+    function toggleSidebar() {
+        const sidebar = document.querySelector('.sidebar');
+        sidebar.classList.toggle('show');
+    }
+
+    // On resize, remove `.show` on large screens (and reset styles)
+    window.addEventListener('resize', () => {
+        const sidebar = document.querySelector('.sidebar');
+        if (window.innerWidth > 768) {
+            sidebar.classList.remove('show');
+        }
+    });
+
+</script>
+
+
+</html>

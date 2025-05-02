@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>X-ray Admin Dashboard</title>
+  <link rel="stylesheet" href="../../css/dashboard/dashboard.css">
+  <!-- <link rel="stylesheet" href="../../css/dashboard/doctorDashboard.css"> -->
+</head>
+
+<body>
+
+  <div class="sidebar">
+    <div class="logo">
+      <img src="../../image/logo/logo.png" alt="Company Logo" />
+    </div>
+
+
+
+
+    <nav class="menu">
+      <a href="dashboard.html" class="active">Dashboard</a>
+      <a href="userManagement.html">Report Management</a>
+      <a href="ReportManagement.html">Doctor Management</a>
+      <a href="paymentsWallet.html">Patient Records</a>
+      <a href="Notification.html"> Activity Log</a>
+      <a href="analytics.html">Notifications</a>
+      <a href="accessRoles.html">Profile Settings</a>
+      <a href="accessRoles.html">Support / Help</a>
+    </nav>
+
+  </div>
+
+
+  <div class="main">
+    <button class="sidebar-toggle" onclick="toggleSidebar()">☰</button>
+
+    <div class="header">
+      <div class="search-container">
+        <input type="text" placeholder="Search..." />
+      </div>
+
+      <div class="user-actions">
+        <span class="notification">🔔</span>
+
+        <div class="profile-wrapper">
+          <img src="../../image/user.png" alt="Profile" class="profile-pic" />
+
+          <div class="profile-dropdown">
+            <strong>Rakha Kabir</strong>
+            <small>Administrator</small>
+            <hr />
+            <!-- <a href="#">Settings</a> -->
+            <a href="../../index.html">Logout</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Stats -->
+    <h2>Doctor Summary Cards</h2>
+
+    <div class="stats-grid">
+      <div class="card">
+        <h3>Total Image Upload</h3>
+        <p>25+</p>
+      </div>
+      <div class="card">
+        <h3>Reports Reviewed</h3>
+        <p>20+</p>
+      </div>
+      <div class="card">
+        <h3>This Month’s Activity</h3>
+        <p>40,000+</p>
+      </div>
+      <div class="card">
+        <h3>Wallet Balance</h3>
+        <p>50$</p>
+      </div>
+    </div>
+    
+
+    <section>
+      <h3 style="margin-bottom: 16px;">Live X-ray Reports</h3>
+    
+      <div style="display: grid; grid-template-columns: repeat(5, 1fr); background: #f3f4f6; padding: 12px; font-weight: 600; border-radius: 8px;">
+        <div>Patient Name</div>
+        <div>Report Type</div>
+        <div>Upload Date</div>
+        <div>Status</div>
+        <div style="text-align: right;">Actions</div>
+      </div>
+    
+      <div style="display: grid; grid-template-columns: repeat(5, 1fr); padding: 14px 12px; align-items: center; border-bottom: 1px solid #e5e7eb;">
+        <div>Md. Saifullah</div>
+        <div>Chest X-ray</div>
+        <div>Apr 28, 2025</div>
+        <div><span style="color: #f59e0b; font-weight: 500;">Pending</span></div>
+        <div style="text-align: right;">
+          <button style="background-color: #2563eb; color: #fff; border: none; padding: 6px 14px; border-radius: 6px; cursor: pointer;">Create Report</button>
+        </div>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(5, 1fr); padding: 14px 12px; align-items: center; border-bottom: 1px solid #e5e7eb;">
+        <div>Md. Saifullah</div>
+        <div>Chest X-ray</div>
+        <div>Apr 28, 2025</div>
+        <div><span style="color: #f59e0b; font-weight: 500;">Pending</span></div>
+        <div style="text-align: right;">
+          <button style="background-color: #2563eb; color: #fff; border: none; padding: 6px 14px; border-radius: 6px; cursor: pointer;">Create Report</button>
+        </div>
+      </div>
+
+      <!-- Repeat row above for more reports -->
+    </section>
+    
+
+  </div>
+
+</body>
+<script>
+  const profilePic = document.querySelector('.profile-pic');
+  const dropdown = document.querySelector('.profile-dropdown');
+
+  profilePic.addEventListener('click', () => {
+    dropdown.style.display = dropdown.style.display === 'flex' ? 'none' : 'flex';
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.profile-wrapper')) {
+      dropdown.style.display = 'none';
+    }
+  });
+
+  // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Side bar Toggle condition
+
+
+  function toggleSidebar() {
+    const sidebar = document.querySelector('.sidebar');
+    sidebar.classList.toggle('show');
+  }
+
+  // On resize, remove `.show` on large screens (and reset styles)
+  window.addEventListener('resize', () => {
+    const sidebar = document.querySelector('.sidebar');
+    if (window.innerWidth > 768) {
+      sidebar.classList.remove('show');
+    }
+  });
+
+</script>
+
+
+</html>
