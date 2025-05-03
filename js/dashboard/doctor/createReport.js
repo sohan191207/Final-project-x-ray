@@ -42,3 +42,6 @@ window.addEventListener('mousemove', function (e) {
 function updateTransform() {
   img.style.transform = `translate(-50%, -50%) scale(${scale}) translate(${originX}px, ${originY}px)`;
 }
+
+
+

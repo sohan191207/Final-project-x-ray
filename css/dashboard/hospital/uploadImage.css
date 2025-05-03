@@ -95,7 +95,7 @@ select:focus {
 }
 
 .checkbox-row {
-  grid-column: span 2;
+  grid-column: span 1;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -105,7 +105,7 @@ select:focus {
 
 
 .checkbox-row input[type="checkbox"] {
-  margin: 0;
+  margin: auto 0;
   width: auto;  /* ensure checkbox is not stretched */
 }
 

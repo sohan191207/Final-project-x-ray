@@ -2,103 +2,110 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>X-ray Admin Dashboard</title>
-    <link rel="stylesheet" href="../../css/dashboard/dashboard.css">
-    <link rel="stylesheet" href="../../css/dashboard/hospital/uploadImage.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>X-ray Admin Dashboard</title>
+  <link rel="stylesheet" href="../../css/dashboard/dashboard.css">
+  <link rel="stylesheet" href="../../css/dashboard/hospital/uploadImage.css">
 </head>
 
 <body>
 
-    <div class="sidebar">
-        <div class="logo">
-            <img src="../../image/logo/logo.png" alt="Company Logo" />
-        </div>
-
-
-
-
-        <nav class="menu">
-            <a href="dashboard.html" class="active">Dashboard</a>
-            <a href="userManagement.html">Report Management</a>
-            <a href="ReportManagement.html">Doctor Management</a>
-            <a href="paymentsWallet.html">Patient Records</a>
-            <a href="Notification.html">Payments & Billing</a>
-            <a href="analytics.html">Activity Log</a>
-            <a href="accessRoles.html">Notifications</a>
-            <a href="accessRoles.html">Profile Settings</a>
-            <a href="accessRoles.html">Support / Help</a>
-        </nav>
-
+  <div class="sidebar">
+    <div class="logo">
+      <img src="../../image/logo/logo.png" alt="Company Logo" />
     </div>
 
 
-    <div class="inputForm">
-      <h3>Image Upload Form</h3>
-      <p>Enter all required details below.</p>
-    
-      <form>
-        <!-- Column 1 -->
-        <div>
-          <label for="report_id">Report ID</label>
-          <input type="text" id="report_id" placeholder="e.g. XR-20250430" />
-    
-          <label for="ref_doctor">Referring Doctor</label>
-          <select id="ref_doctor">
-            <option value="">-- Select Doctor --</option>
-            <option value="dr_afsana">Dr. Afsana Rahman</option>
-            <option value="dr_kamal">Dr. Kamal Hossain</option>
-            <option value="dr_sadia">Dr. Sadia Akter</option>
-          </select>
-    
-          <label for="xray_type">X-ray Type</label>
-          <input type="text" id="xray_type" placeholder="e.g. Chest X-ray" />
-        </div>
-    
-        <!-- Column 2 -->
-        <div>
-          <label for="patient_name">Patient Name</label>
-          <input type="text" id="patient_name" placeholder="e.g. Md. Saifullah" />
-    
-          <label for="gender">Gender</label>
-          <select id="gender">
-            <option value="">-- Select Gender --</option>
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-            <option value="other">Other</option>
-          </select>
-    
-          <label for="age">Age</label>
-          <input type="number" id="age" placeholder="e.g. 35" />
-        </div>
-    
+
+
+    <nav class="menu">
+      <a href="dashboard.html" class="active">Dashboard</a>
+      <a href="userManagement.html">Report Management</a>
+      <a href="ReportManagement.html">Doctor Management</a>
+      <a href="paymentsWallet.html">Patient Records</a>
+      <a href="Notification.html">Payments & Billing</a>
+      <a href="analytics.html">Activity Log</a>
+      <a href="accessRoles.html">Notifications</a>
+      <a href="accessRoles.html">Profile Settings</a>
+      <a href="accessRoles.html">Support / Help</a>
+    </nav>
+
+  </div>
+
+
+  <div class="inputForm">
+    <h3>Image Upload Form</h3>
+    <p>Enter all required details below.</p>
+
+    <form>
+      <div>
+        <label for="report_id">Report ID</label>
+        <input type="text" id="report_id" placeholder="e.g. XR-20250430" />
+
+        <label for="age">Age</label>
+        <input type="number" id="age" placeholder="e.g. 35" />
+
+        <label for="xray_type">X-ray Type</label>
+        <input type="text" id="xray_type" placeholder="e.g. Chest X-ray" />
+
+        <label for="condition">Patient Condition (Optional)</label>
+        <input type="text" id="condition" placeholder="Optional notes..." />
+
+        <!-- <textarea id="condition" rows="3" placeholder="Optional notes..."></textarea> -->
+
+      </div>
+
+      <div>
+        <label for="patient_name">Patient Name</label>
+        <input type="text" id="patient_name" placeholder="e.g. Md. Saifullah" />
+
+        <label for="gender">Gender</label>
+        <select id="gender">
+          <option value="">-- Select Gender --</option>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+          <option value="other">Other</option>
+        </select>
+
+        <label for="ref_doctor">Referring Doctor</label>
+        <select id="ref_doctor">
+          <option value="">-- Select Doctor --</option>
+          <option value="dr_afsana">Dr. Afsana Rahman</option>
+          <option value="dr_kamal">Dr. Kamal Hossain</option>
+          <option value="dr_sadia">Dr. Sadia Akter</option>
+        </select>
         <div class="checkbox-row">
           <input type="checkbox" id="emergency_checkbox" name="emergency" />
           <label for="emergency_checkbox">Emergency Case</label>
         </div>
-        
-        
-    
-        <div style="grid-column: span 2;">
-          <label for="xray_images">Upload X-ray Images (Max 2)</label>
-          <input type="file" id="xray_images" accept="image/*" multiple />
-        </div>
-    
-        <div class="button-group">
-          <button type="reset" class="btnPrimary">Reset</button>
-          <button type="submit" class="btnPrimary">Submit</button>
-        </div>
-      </form>
-    </div>
-    
+
+      </div>
+
+
+
+
+
+      <div style="grid-column: span 2;">
+        <label for="xray_images">Upload X-ray Images (Max 2)</label>
+        <input type="file" id="xray_images" accept="image/*" multiple />
+      </div>
+
+      <div class="button-group">
+        <button type="reset" class="btnPrimary">Reset</button>
+        <button type="submit" class="btnPrimary">Submit</button>
+      </div>
+    </form>
+  </div>
+
 
 </body>
 
+<script type="module" src="../../js/dashboard/hospital/uploadImage.js"></script>
 
 <script>
 
-    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Image upload validation
+  // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Image upload validation
 
   function validateImageUpload(input) {
     if (input.files.length > 2) {
@@ -108,21 +115,21 @@
   }
 
 
-    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Side bar Toggle condition
+  // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Side bar Toggle condition
 
 
-    function toggleSidebar() {
-        const sidebar = document.querySelector('.sidebar');
-        sidebar.classList.toggle('show');
+  function toggleSidebar() {
+    const sidebar = document.querySelector('.sidebar');
+    sidebar.classList.toggle('show');
+  }
+
+  // On resize, remove `.show` on large screens (and reset styles)
+  window.addEventListener('resize', () => {
+    const sidebar = document.querySelector('.sidebar');
+    if (window.innerWidth > 768) {
+      sidebar.classList.remove('show');
     }
-
-    // On resize, remove `.show` on large screens (and reset styles)
-    window.addEventListener('resize', () => {
-        const sidebar = document.querySelector('.sidebar');
-        if (window.innerWidth > 768) {
-            sidebar.classList.remove('show');
-        }
-    });
+  });
 
 </script>
 
