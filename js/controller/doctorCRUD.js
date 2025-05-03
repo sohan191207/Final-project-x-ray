@@ -1,4 +1,4 @@
-import { db, storage } from '../config.js';
+import { db, storage } from '../authentication/config.js';
 import { doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 import { ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-storage.js";
 
