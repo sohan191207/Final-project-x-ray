@@ -17,69 +17,45 @@
 
 <body>
     <div class="container">
-        <!-- <div class="logo">
-            <a href="../../index.html">
-                <img src="../../image/logo/logo.png" alt="logo" />
-            </a>
-        </div> -->
-
         <div class="container inputForm">
             <h3>Admin Registration</h3>
             <p>Please fill in the details below to register</p>
-          
+
             <form>
                 <label for="full_name">Full Name<span style="color: red;">*</span></label>
-              <input type="text" id="full_name" required  placeholder="Dr. John Doe" />
-          
-              <label for="gender">Gender</label>
-              <select id="gender"required >
-                <option value=""  >Select gender</option>
-                <option>Male</option>
-                <option>Female</option>
-                <option>Other</option>
-              </select>
-          
-              <label for="phone">Contact Number</label>
-              <input type="text" id="phone" placeholder="+8801234567890" />
-          
-              <!-- <label for="medical_degree">Medical Degree</label>
-              <input type="text" id="medical_degree" placeholder="MBBS, MD" /> -->
-<!--           
-              <label for="graduation_year">Graduation Year</label>
-              <input type="text" id="graduation_year" placeholder="e.g. 2015" />
-          
-              <label for="specialization">Specialization</label>
-              <input type="text" id="specialization" placeholder="e.g. Radiology, Cardiology" />
-          
-              <label for="medical_license_no">Medical License Number</label>
-              <input type="text" id="medical_license_no" placeholder="e.g. BMC-123456" />
-          
+                <input type="text" id="full_name" required placeholder="Dr. John Doe" />
 
-                   
-              <label for="experience_years">Years of Experience</label>
-              <input type="text" id="experience_years" placeholder="e.g. 8" />
-          
-              <label for="workplace_name">Current Workplace</label>
-              <input type="text" id="workplace_name" placeholder="e.g. Apollo Hospital" />
-          
-              <label for="designation">Designation</label>
-              <input type="text" id="designation" placeholder="e.g. Senior Consultant" /> -->
-          
-              <!-- <label for="available_slots">Available Time Slots</label>
-              <input type="text" id="available_slots" placeholder="e.g. Mon-Fri, 10am-1pm" /> -->
+                <label for="gender">Gender</label>
+                <select id="gender" required>
+                    <option value="">Select gender</option>
+                    <option>Male</option>
+                    <option>Female</option>
+                    <option>Other</option>
+                </select>
 
-              <!-- <label for="certifications">Upload Certifications</label>
-              <input type="file" id="certifications" /> -->
-          
-              <label for="profile_image">Upload Profile Photo</label>
-              <input type="file" id="profile_image" />
-          
-              <button type="submit" class="btnPrimary">Submit</button>
+                <label for="phone">Contact Number</label>
+                <input type="text" id="phone" placeholder="+8801234567890" />
+
+                <label for="profile_image">Upload Profile Photo</label>
+                <input type="file" id="profile_image" />
+
+                <button type="submit" class="btnPrimary">Submit</button>
             </form>
-          </div>
-          
+        </div>
+
     </div>
     <script src="../../js/input_box_validation_check.js"></script>
-</body>
+    <script type="module" src="../../js/authentication/fetchData/fetchAdminData.js"></script>
 
+</body>
 </html>
+
+<!-- <script>
+    const uid = sessionStorage.getItem("uid");
+
+    if (uid) {
+        console.log("User UID from sessionStorage:", uid);
+    } else {
+        console.warn("No UID found in sessionStorage. Please sign up or sign in again.");
+    }
+</script> -->

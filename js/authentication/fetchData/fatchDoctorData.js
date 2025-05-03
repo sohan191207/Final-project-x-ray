@@ -1,0 +1,85 @@
+import { db, storage } from '../config.js';
+import { doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+import { ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-storage.js";
+
+const uid = sessionStorage.getItem("uid");
+console.log(uid);
+
+if (!uid) {
+  console.warn("No UID found in sessionStorage.");
+} else {
+  const docRef = doc(db, "doctor_database", uid);
+
+  getDoc(docRef).then((docSnap) => {
+    if (docSnap.exists()) {
+      const userData = docSnap.data();
+      document.getElementById("full_name").value = userData.fullName || '';
+    } else {
+      console.log("New doctor registration.");
+    }
+  }).catch((error) => {
+    console.error("Error fetching doctor data:", error);
+  });
+}
+
+
+
+
+
+document.querySelector("form").addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const fullName = document.getElementById("full_name").value;
+  const gender = document.getElementById("gender").value;
+  const phone = document.getElementById("phone").value;
+  const medicalDegree = document.getElementById("medical_degree").value;
+  const graduationYear = document.getElementById("graduation_year").value;
+  const specialization = document.getElementById("specialization").value;
+  const licenseNo = document.getElementById("medical_license_no").value;
+  const experience = document.getElementById("experience_years").value;
+  const workplace = document.getElementById("workplace_name").value;
+  const designation = document.getElementById("designation").value;
+  const profileImage = document.getElementById("profile_image").files[0];
+  const certificationFile = document.getElementById("certifications").files[0];
+
+  if (!fullName || !phone || !profileImage || !certificationFile) {
+    alert("Please fill all required fields and upload documents.");
+    return;
+  }
+
+  try {
+    const docRef = doc(db, "doctor_database", uid);
+    const imageRef = ref(storage, `doctorProfileImages/${uid}`);
+    const certRef = ref(storage, `doctorCertifications/${uid}`);
+
+    await uploadBytes(imageRef, profileImage);
+    await uploadBytes(certRef, certificationFile);
+
+    const imageURL = await getDownloadURL(imageRef);
+    const certURL = await getDownloadURL(certRef);
+
+    await setDoc(docRef, {
+      fullName,
+      gender,
+      phone,
+      medicalDegree,
+      graduationYear,
+      specialization,
+      licenseNo,
+      experience,
+      workplace,
+      designation,
+      profileImageURL: imageURL,
+      certificationURL: certURL,
+      adminApprove: false
+    });
+
+    alert("Registration submitted. You'll be notified by email upon approval.");
+    sessionStorage.clear();
+    window.location.href = "../../Index/login.html";
+
+  } catch (error) {
+    console.error("Error uploading doctor data:", error);
+    alert("Failed to submit doctor info.");
+  }
+});
