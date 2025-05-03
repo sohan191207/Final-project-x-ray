@@ -46,21 +46,31 @@ signup.addEventListener('click',(event)=>{
       const userData = {
         fullName: fullName,
         email: email,
-        category: category,
-        password: password
+        category: category
       };
+//---data collection database-------- //
+      let collectionName = "";
 
-   
-
-      const docRef = doc(db, "authenticationData", user.uid);
+      if (category === "Doctor") {
+        collectionName = "doctor_database";
+      } else if (category === "Admin") {
+        collectionName = "admin_database";
+      } else if (category === "Radiologist") {
+        collectionName = "radiologist_database";
+      } else {
+        alert("Unknown category. Please contact admin.");
+        throw new Error("Unknown user category");
+      }
+      
+      const docRef = doc(db, collectionName, user.uid);
       setDoc(docRef, userData)
         .then(() => {
 
           alert("Account Created Successfully");
           if (category === "Doctor") {
-            window.location.href="../Index/infoCollectForm/adminInfo.html";
-          } else if (category === "Admin") {
             window.location.href="../Index/infoCollectForm/doctorInfo.html";
+          } else if (category === "Admin") {
+            window.location.href="../Index/infoCollectForm/adminInfo.html";
           } else if (category === "Radiologist") {
             window.location.href="../Index/infoCollectForm/hospitalInfo.html";
           } else {
