@@ -83,109 +83,37 @@
 
     <!-- Pending Reviews -->
     <div class="card wide">
-      <h3>Doctor Approval</h3>
-
-      <div class="approval-item">
-        <div class="doctor-info">
-          <span class="request-date">Requested: Apr 28, 2025</span>
-          <div class="doctor-details">
-            <img src="../../image/user.png" alt="Doctor" class="doctor-icon" />
-            <div class="doctor-meta">
-              <strong>Dr. Afsana Rahman</strong><br />
-              <small>MBBS</small>
-            </div>
-          </div>
-        </div>
-        <div class="approval-actions">
-          <button class="approve">Approve</button>
-          <button class="reject">Reject</button>
-          <button class="view" onclick="openModal()">View Details</button>
-        </div>
-      </div>
-      <div class="approval-item">
-        <div class="doctor-info">
-          <span class="request-date">Requested: Apr 28, 2025</span>
-          <div class="doctor-details">
-            <img src="../../image/user.png" alt="Doctor" class="doctor-icon" />
-            <div class="doctor-meta">
-              <strong>Dr. Afsana Rahman</strong><br />
-              <small>MBBS</small>
-            </div>
-          </div>
-        </div>
-        <div class="approval-actions">
-          <button class="approve">Approve</button>
-          <button class="reject">Reject</button>
-          <button class="view" onclick="openModal()">View Details</button>
-        </div>
-      </div>
-
+      <h3>Doctor Join Waiting List</h3>
+      <div id="doctor-waiting-list"></div>
     </div>
-
-
-
 
     <div class="card wide">
-      <h3>Hospital Approval</h3>
-    
-      <div class="approval-item">
-        <div class="doctor-info">
-          <span class="request-date">Requested: Apr 28, 2025</span>
-          <div class="doctor-details">
-            <img src="../../image/user.png" alt="Doctor" class="doctor-icon" />
-            <div class="doctor-meta">
-              <strong>Dr. Afsana Rahman</strong>
-              <small>MBBS</small>
-            </div>
-          </div>
-        </div>
-    
-        <div class="approval-actions">
-          <button class="approve">Approve</button>
-          <button class="reject">Reject</button>
-          <button class="view" onclick="openHospitalModal()">View Details</button>
-        </div>
-      </div>
+      <h3>Hospital Join Waiting List</h3>
+      <div id="hospital-waiting-list"></div>
     </div>
-    
-
 
     <div class="card wide">
-      <h3>Admin Approval</h3>
-
-      <div class="approval-item">
-        <div class="doctor-info">
-          <span class="request-date">Requested: Apr 28, 2025</span>
-          <div class="doctor-details">
-            <img src="../../image/user.png" alt="Doctor" class="doctor-icon" />
-            <div class="doctor-meta">
-              <strong>Sabuz Hossain</strong>
-              <small>Student</small>
-            </div>
-          </div>
-        </div>
-        <div class="approval-actions">
-          <button class="approve">Approve</button>
-          <button class="reject">Reject</button>
-          <button class="view"onclick="openUserModal()">View Details</button>
-        </div>
-      </div>
-
+      <h3>Admin Join Waiting List</h3>
+      <div id="admin-waiting-list"></div>
     </div>
+
+
+
+
+
 
 
 
 
 
     <!-- ################################################ Doctor Details Model ######################### -->
-
+    
     <div class="modal" id="detailsModal">
       <div class="modal-content">
         <span class="close" onclick="closeModal()">&times;</span>
         <h2>Doctor Profile</h2>
     
         <div class="profile-layout">
-          <!-- Left: Text Info -->
           <div class="profile-info">
             <div class="info-group"><label>Full Name*</label><span>Dr. John Doe</span></div>
             <div class="info-group"><label>Gender</label><span>Male</span></div>
@@ -199,7 +127,6 @@
             <div class="info-group"><label>Designation</label><span>Senior Consultant</span></div>
           </div>
     
-          <!-- Right: Photo -->
           <div class="profile-photo">
             <label>Photo</label>
             <img src="../../image/user.png" alt="Doctor Photo" class="doctor-photo">
@@ -210,22 +137,19 @@
           <label>Certificate PDF</label>
           <iframe src="../../image/demo.pdf" title="Certificate PDF" class="pdf-frame"></iframe>
         </div>
-        
-              
       </div>
     </div>
     
-
+    
     <!-- ################################################ Hospital Details Model ######################### -->
-
-
+    
+    
     <div class="modal" id="hospitalDetailsModal">
       <div class="modal-content">
         <span class="close" onclick="closeHospitalModal()">&times;</span>
         <h2>Hospital / Facility Profile</h2>
     
         <div class="profile-layout">
-          <!-- Left: Info -->
           <div class="profile-info">
             <div class="info-group"><label>Facility Name *</label><span>Sunrise Diagnostic Center</span></div>
             <div class="info-group"><label>Facility Type *</label><span>Diagnostic Center</span></div>
@@ -240,7 +164,6 @@
             <div class="info-group"><label>Operating Hours</label><span>Mon-Fri, 9am-6pm</span></div>
           </div>
     
-          <!-- Right: Optional Photo (if you want to add one later) -->
           <div class="profile-photo">
             <label>Optional Logo</label>
             <img src="../../image/user.png" alt="Facility Logo" class="doctor-photo" />
@@ -253,17 +176,16 @@
         </div>
       </div>
     </div>
-
+    
     
     <!-- ################################################ Hospital Details Model ######################### -->
-
-    <div class="modal" id="userDetailsModal">
+    
+    <div class="modal" id="openAdminModal">
       <div class="modal-content">
         <span class="close" onclick="closeUserModal()">&times;</span>
         <h2>User Profile</h2>
     
         <div class="profile-layout">
-          <!-- Left Info -->
           <div class="profile-info">
             <div class="info-group">
               <label>Full Name*</label>
@@ -281,7 +203,6 @@
             </div>
           </div>
     
-          <!-- Right Photo -->
           <div class="profile-photo">
             <label>Profile Photo</label>
             <img src="../../image/user.png" alt="User Photo" class="doctor-photo" />
@@ -289,17 +210,14 @@
         </div>
       </div>
     </div>
-    
-
-
 
 
 
 
   </div>
 </body>
-<script src="../../js/dashboard/admin/viewDetails.js"></script>
-
+<!-- <script src="../../js/dashboard/admin/viewDetails.js"></script> -->
+<script type="module" src="../../js/dashboard/admin/CRUD.js"></script>
 
 
 <script>
@@ -336,3 +254,7 @@
 
 
 </html>
+
+
+
+
