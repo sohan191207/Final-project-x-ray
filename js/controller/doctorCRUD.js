@@ -29,6 +29,9 @@ if (!uid) {
 document.querySelector("form").addEventListener("submit", async (e) => {
   e.preventDefault();
 
+  const submitButton = e.submitter || document.querySelector("button[type='submit']");
+  submitButton.classList.add("loading");
+
   const fullName = document.getElementById("full_name").value;
   const gender = document.getElementById("gender").value;
   const phone = document.getElementById("phone").value;
@@ -42,8 +45,40 @@ document.querySelector("form").addEventListener("submit", async (e) => {
   const profileImage = document.getElementById("profile_image").files[0];
   const certificationFile = document.getElementById("certifications").files[0];
 
+  // ************** form Validation****************/
+
+  const phonePattern = /^(?:\+8801|01)[0-9]{9}$/;
+  const allowedImageTypes = ["image/jpeg", "image/png"];
+  const allowedCertType = "application/pdf";
+  const maxCertSize = 1048576; // 1MB
+
   if (!fullName || !phone || !profileImage || !certificationFile) {
     alert("Please fill all required fields and upload documents.");
+    submitButton.classList.remove("loading");
+    return;
+  }
+
+  if (!phonePattern.test(phone)) {
+    alert("Please enter a valid Bangladeshi phone number.");
+    submitButton.classList.remove("loading");
+    return;
+  }
+
+  if (!allowedImageTypes.includes(profileImage.type)) {
+    alert("Profile image must be a JPG or PNG file.");
+    submitButton.classList.remove("loading");
+    return;
+  }
+
+  if (certificationFile.type !== allowedCertType) {
+    alert("Certification file must be a PDF.");
+    submitButton.classList.remove("loading");
+    return;
+  }
+
+  if (certificationFile.size > maxCertSize) {
+    alert("Certification file must be less than 1MB.");
+    submitButton.classList.remove("loading");
     return;
   }
 
@@ -81,5 +116,8 @@ document.querySelector("form").addEventListener("submit", async (e) => {
   } catch (error) {
     console.error("Error uploading doctor data:", error);
     alert("Failed to submit doctor info.");
+  }
+  finally {
+    submitButton.classList.remove("loading");
   }
 });

@@ -25,6 +25,8 @@ if (!uid) {
 document.querySelector("form").addEventListener("submit", async (e) => {
   e.preventDefault();
 
+   //----- Show loading -------//
+   
   const submitButton = e.target.querySelector("button[type='submit']");
   submitButton.classList.add("loading");
   submitButton.disabled = true;

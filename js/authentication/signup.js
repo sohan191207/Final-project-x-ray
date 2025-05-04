@@ -32,7 +32,7 @@ signupButton.addEventListener('click', async (event) => {
     return;
   }
 
-  // Show loading
+  //----- Show loading -------//
   signupButton.classList.add('loading');
   signupButton.disabled = true;
 
@@ -60,7 +60,7 @@ signupButton.addEventListener('click', async (event) => {
       alert("Unknown category. Please contact admin.");
       throw new Error("Unknown user category");
     }
-
+   // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Database Data Save %%%%%%%%%%%
     const docRef = doc(db, collectionName, user.uid);
     await setDoc(docRef, userData);
 
@@ -85,7 +85,7 @@ signupButton.addEventListener('click', async (event) => {
       alert("Error: " + error.message);
     }
   } finally {
-    // Hide loading
+    // ---------Hide loading -----------//
     signupButton.classList.remove('loading');
     signupButton.disabled = false;
   }
