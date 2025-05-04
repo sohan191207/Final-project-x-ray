@@ -35,7 +35,9 @@ onAuthStateChanged(auth, async (user) => {
       snapshot.forEach((doc) => {
         const data = doc.data();
 
+        // ✅ Only render if status is "add to queue"
         if (data.status === "add to queue") {
+          const escapedData = JSON.stringify(data).replace(/'/g, "&apos;");
           const reportHtml = `
             <div style="display: grid; grid-template-columns: repeat(5, 1fr); padding: 14px 12px; align-items: center; border-bottom: 1px solid #e5e7eb;">
               <div>${data.patient_name || "-"}</div>
@@ -43,7 +45,12 @@ onAuthStateChanged(auth, async (user) => {
               <div>${data.image_upload_date ? formatDate(data.image_upload_date) : "-"}</div>
               <div><span style="color: #f59e0b; font-weight: 500;">Pending</span></div>
               <div style="text-align: right;">
-                <button onclick="window.location.href='createReport.html?reportId=${doc.id}'" style="background-color: #2563eb; color: #fff; border: none; padding: 6px 14px; border-radius: 6px; cursor: pointer;">Create Report</button>
+                <button 
+                  onclick='openReportModal(JSON.parse(this.dataset.report))'
+                  data-report='${escapedData}'
+                  style="background-color: #2563eb; color: #fff; border: none; padding: 6px 14px; border-radius: 6px; cursor: pointer;">
+                  Create Report
+                </button>
               </div>
             </div>
           `;
@@ -56,3 +63,5 @@ onAuthStateChanged(auth, async (user) => {
     alert("Failed to load reports.");
   }
 });
+
+

@@ -371,3 +371,164 @@ button.view {
 .profile-wrapper:hover .profile-dropdown {
   display: flex;
 }
+
+
+
+
+
+
+
+/* ............................................ Popup Model >>>>>>>>>>>>>>>>>>>>  */
+
+
+/* * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+} */
+
+/* html, body {
+  height: 100%;
+  width: 100%;
+}
+
+.container {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+} */
+
+.left-panel {
+  width: 350px;
+  background-color: #091320;
+  padding: 24px;
+  border-right: 1px solid #1f2937;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  color: #fff;
+}
+
+.left-panel h2 {
+  margin-bottom: 12px;
+}
+
+.left-panel label {
+  font-size: 14px;
+  color: #d1d5db;
+}
+
+.left-panel input,
+.left-panel select {
+  padding: 10px;
+  font-size: 15px;
+  border: 1px solid #334155;
+  border-radius: 6px;
+  background-color: #1e293b;
+  color: #ffffff;
+  width: 100%;
+}
+
+.left-panel input:disabled,
+.left-panel select:disabled {
+  opacity: 0.8;
+  cursor: not-allowed;
+}
+
+.left-panel textarea {
+  padding: 10px;
+  font-size: 15px;
+  border: 1px solid #334155;
+  border-radius: 6px;
+  background-color: #ffffff;
+  color: #111827;
+  width: 100%;
+  height: 250px;
+  resize: vertical;
+}
+
+.left-panel button {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+}
+
+.left-panel button:hover {
+  background-color: #1d4ed8;
+}
+
+.right-panel {
+  flex: 1;
+  background-color: #ffffff;
+  position: relative;
+  overflow: hidden;
+}
+
+.image-container {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  cursor: grab;
+  position: relative;
+}
+
+.image-container img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  max-width: 100%;
+  max-height: 100%;
+  transform: translate(-50%, -50%) scale(1);
+  transform-origin: center center;
+  transition: transform 0.1s ease;
+  user-select: none;
+  pointer-events: none;
+}
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .left-panel {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid #1f2937;
+  }
+
+  .right-panel {
+    width: 100%;
+    height: 300px;
+  }
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content {
+  width: 100%;
+  /* max-width: 1240px; */
+  height: 100%;
+  background-color: #fff;
+  border-radius: 10px;
+  display: flex;
+  overflow: hidden;
+  position: relative;
+}
