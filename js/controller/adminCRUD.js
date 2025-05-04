@@ -25,6 +25,10 @@ if (!uid) {
 document.querySelector("form").addEventListener("submit", async (e) => {
   e.preventDefault();
 
+  const submitButton = e.target.querySelector("button[type='submit']");
+  submitButton.classList.add("loading");
+  submitButton.disabled = true;
+
   const fullNameField = document.getElementById("full_name");
   const genderField = document.getElementById("gender");
   const phoneField = document.getElementById("phone");
@@ -61,8 +65,21 @@ document.querySelector("form").addEventListener("submit", async (e) => {
     hasError = true;
     alert("Please upload a profile photo.");
   }
+  else {
+    const allowedTypes = ["image/jpeg", "image/png"];
+    if (!allowedTypes.includes(profileImageFile.type)) {
+      imageField.classList.add("error");
+      hasError = true;
+      alert("Profile photo only JPG and PNG images are allowed.");
+    }
+  }
 
-  if (hasError) return;
+
+  if (hasError) {
+    submitButton.classList.remove("loading");
+    submitButton.disabled = false;
+    return;
+  }
 
   const docRef = doc(db, "admin_database", uid);
 
@@ -93,5 +110,9 @@ document.querySelector("form").addEventListener("submit", async (e) => {
   } catch (error) {
     console.error("Error updating admin data:", error);
     alert("Failed to update admin data.");
+  }
+  finally {
+    submitButton.classList.remove("loading");
+    submitButton.disabled = false;
   }
 });
