@@ -50,8 +50,12 @@ onAuthStateChanged(auth, async (user) => {
 document.querySelector("form").addEventListener("submit", async (e) => {
     e.preventDefault();
 
+    const submitBtn = e.submitter || document.querySelector("button[type='submit']");
+    submitBtn.classList.add("loading");
+
     if (!facilityName) {
         alert("Facility not initialized.");
+        submitBtn.classList.remove("loading");
         return;
     }
 
@@ -66,6 +70,7 @@ document.querySelector("form").addEventListener("submit", async (e) => {
 
     if (!reportId || !age || !xrayType || !patientName || !gender || !referringDoctor) {
         alert("Please fill out all required fields.");
+        submitBtn.classList.remove("loading");
         return;
     }
 
@@ -76,6 +81,7 @@ document.querySelector("form").addEventListener("submit", async (e) => {
     
     if (!querySnapshot.empty) {
       alert("This Report ID already exists. Please use a unique Report ID.");
+      submitBtn.classList.remove("loading");
       return;
     }
 
@@ -85,6 +91,7 @@ document.querySelector("form").addEventListener("submit", async (e) => {
 
     if (imageFiles.length === 0 || imageFiles.length > 2) {
         alert("Please upload 1 or 2 X-ray images.");
+        submitBtn.classList.remove("loading");
         return;
     }
 
@@ -127,4 +134,7 @@ document.querySelector("form").addEventListener("submit", async (e) => {
         console.error("Error uploading or saving data:", err);
         alert("Submission failed. Check console for details.");
     }
+    finally {
+        submitBtn.classList.remove("loading");
+      }
 });
