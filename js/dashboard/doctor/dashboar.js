@@ -25,6 +25,28 @@ onAuthStateChanged(auth, async (user) => {
     return;
   }
 
+  const container = document.querySelector("section");
+
+  // Loading message with animation
+  const loader = document.createElement("div");
+  loader.id = "loader";
+  loader.style.textAlign = "center";
+  loader.style.margin = "30px 0";
+  loader.style.fontSize = "18px";
+  loader.style.color = "#4b5563";
+  loader.textContent = "Loading ";
+
+  // Dot animation
+  let dotCount = 0;
+  const intervalId = setInterval(() => {
+    dotCount = (dotCount + 1) % 4;
+    loader.textContent = "Loading " + ".".repeat(dotCount);
+  }, 500);
+  container.appendChild(loader);
+
+  let totalReports = 0;
+
+
   try {
     const container = document.querySelector("section");
 
@@ -58,9 +80,26 @@ onAuthStateChanged(auth, async (user) => {
         }
       });
     }
+     // Done loading: stop animation
+     clearInterval(intervalId);
+     loader.remove();
+ 
+     /* Optional: Show a message if no reports
+     if (totalReports === 0) {
+       const noReports = document.createElement("div");
+       noReports.textContent = "No live X-ray reports found.";
+       noReports.style.textAlign = "center";
+       noReports.style.color = "#9ca3af";
+       container.appendChild(noReports);
+     }*/
+
+
+    
   } catch (err) {
     console.error("Error loading queued reports:", err);
     alert("Failed to load reports.");
+    clearInterval(loader.dataset.intervalId);
+    loader.remove();
   }
 });
 
