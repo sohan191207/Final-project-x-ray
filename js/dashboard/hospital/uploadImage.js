@@ -3,7 +3,7 @@ import { doc, addDoc, getDoc, query, where, collection, getDocs, serverTimestamp
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
 import { ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-storage.js";
 
-let facilityName = null; // global to use in submit handler
+let facilityName = null;
 
 onAuthStateChanged(auth, async (user) => {
     if (!user) {
@@ -20,6 +20,7 @@ onAuthStateChanged(auth, async (user) => {
         console.log(userDocSnap);
         if (!userDocSnap.exists()) {
             alert("User data not found.");
+            window.location.href = "../../../Index/login.html";
             return;
         }
 
@@ -28,7 +29,6 @@ onAuthStateChanged(auth, async (user) => {
 
         console.log("Facility Collection:", facilityName);
 
-        // Optional: Ensure the collection exists
         const facilityCollectionRef = collection(db, facilityName);
         const facilityDocsSnap = await getDocs(facilityCollectionRef);
 
@@ -46,7 +46,6 @@ onAuthStateChanged(auth, async (user) => {
 });
 
 
-// ✅ Handle form submission
 document.querySelector("form").addEventListener("submit", async (e) => {
     e.preventDefault();
 
@@ -75,7 +74,6 @@ document.querySelector("form").addEventListener("submit", async (e) => {
     }
 
 
-    // &&&&&&&&&&&&&&&&&&&&&&&&&&&& Check Report Id Dublicate. or not
     const q = query(collection(db, facilityName), where("report_track_id", "==", reportId));
     const querySnapshot = await getDocs(q);
 
@@ -96,7 +94,6 @@ document.querySelector("form").addEventListener("submit", async (e) => {
     }
 
     try {
-        // Upload images and get URLs
         const imageUrls = [];
 
         for (let i = 0; i < imageFiles.length; i++) {
@@ -107,7 +104,6 @@ document.querySelector("form").addEventListener("submit", async (e) => {
             imageUrls.push(url);
         }
 
-        // Store form + image data in Firestore
         const formData = {
             report_track_id: reportId,
             hospital_register_id: auth.currentUser.uid,
@@ -117,17 +113,19 @@ document.querySelector("form").addEventListener("submit", async (e) => {
             bodyparts_position: xrayType,
             xray_image_url: imageUrls,
             image_upload_date: serverTimestamp(),
-            report_delivery_date: "", // default blank
+            report_delivery_date: "",
             status: "add to queue",
-            Patient_condition: "", // optional, empty by default
-            reference_doctor: referringDoctor || "", // optional
+            Patient_condition: "",
+            reference_doctor: referringDoctor || "",
             emergency: emergency || false,
-            findings: "" // default blank
+            findings: ""
         };
 
 
-        const docRef = await addDoc(collection(db, facilityName), formData);
-        console.log("Data saved with ID:", docRef.id);
+        const docRef1 = await addDoc(collection(db, facilityName), formData);
+        const docRef2 = await addDoc(collection(db, "AllPendingReport"), formData);
+
+        // console.log("Data saved to:", docRef1.id, "and", docRef2.id);
         document.querySelector("form").reset();
         alert("Form and images submitted successfully!");
     } catch (err) {
@@ -138,3 +136,35 @@ document.querySelector("form").addEventListener("submit", async (e) => {
         submitBtn.classList.remove("loading");
     }
 });
+
+
+
+
+
+
+  // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Upload Image Controler 
+  const dropdown = document.querySelector('.profile-dropdown');
+
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.profile-wrapper')) {
+      dropdown.style.display = 'none';
+    }
+  });
+
+
+
+  // Toggle View Logic
+  const dashboardView = document.getElementById('dashboardView');
+  const uploadView = document.getElementById('uploadView');
+  const openUploadBtn = document.getElementById('openUploadForm');
+  const backToDashboard = document.getElementById('backToDashboard');
+
+  openUploadBtn.addEventListener('click', () => {
+    dashboardView.style.display = 'none';
+    uploadView.style.display = 'block';
+  });
+
+  backToDashboard.addEventListener('click', () => {
+    uploadView.style.display = 'none';
+    dashboardView.style.display = 'block';
+  });

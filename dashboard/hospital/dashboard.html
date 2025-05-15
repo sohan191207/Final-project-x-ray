@@ -7,45 +7,40 @@
   <title>X-ray Admin Dashboard</title>
   <link rel="stylesheet" href="../../css/dashboard/dashboard.css">
   <link rel="stylesheet" href="../../css/dashboard/hospitalDashboard.css">
+  <link rel="stylesheet" href="../../css/dashboard/hospital/uploadImage.css">
 </head>
 
 <body>
-
+  <!-- Sidebar -->
   <div class="sidebar">
     <div class="logo">
       <img src="../../image/logo/logo.png" alt="Company Logo" />
     </div>
-
-
-
-
     <nav class="menu">
-      <a href="dashboard.html" class="active">Dashboard</a>
-      <a href="userManagement.html">Report Management</a>
-      <a href="ReportManagement.html">Doctor Management</a>
-      <a href="paymentsWallet.html">Patient Records</a>
-      <a href="Notification.html">Payments & Billing</a>
-      <a href="analytics.html">Activity Log</a>
-      <a href="accessRoles.html">Notifications</a>
-      <a href="accessRoles.html">Profile Settings</a>
-      <a href="accessRoles.html">Support / Help</a>
+      <a href="#" class="active">Dashboard</a>
+      <a href="#">Report Management</a>
+      <a href="#">Doctor Management</a>
+      <a href="#">Patient Records</a>
+      <a href="#">Payments & Billing</a>
+      <a href="#">Activity Log</a>
+      <a href="#">Notifications</a>
+      <a href="#">Profile Settings</a>
+      <a href="#">Support / Help</a>
     </nav>
-
   </div>
+
+  <!-- Main Content -->
   <div class="main">
     <button class="sidebar-toggle" onclick="toggleSidebar()">☰</button>
 
-    <div class="header">
+    <!-- <div class="header">
       <div class="search-container">
         <input type="text" placeholder="Search..." />
       </div>
-
       <div class="user-actions">
         <span class="notification">🔔</span>
-
         <div class="profile-wrapper">
           <img src="../../image/user.png" alt="Profile" class="profile-pic" />
-
           <div class="profile-dropdown">
             <strong>Rakha Kabir</strong>
             <small>Administrator</small>
@@ -54,126 +49,172 @@
           </div>
         </div>
       </div>
+    </div> -->
+
+    <!-- DASHBOARD VIEW -->
+    <div id="dashboardView" class="view-section">
+      <h2>Hospital Summary Cards</h2>
+      <div class="stats-grid">
+        <div class="card">
+          <h3>Total X-rays Uploaded</h3>
+          <p id="total-xrays">0</p>
+        </div>
+        <div class="card">
+          <h3>Reports Completed</h3>
+          <p id="completed-reports">0</p>
+        </div>
+        <div class="card">
+          <h3>Pending Diagnoses</h3>
+          <p id="pending-diagnoses">0</p>
+        </div>
+        <div class="card">
+          <h3>This Month’s Activity</h3>
+          <p id="monthly-activity">0</p>
+        </div>
+      </div>
+      
+
+      <section class="assignment-section">
+        <div class="section-header">
+          <h3 class="section-title">Live X-ray Assignments</h3>
+          <button class="btn-upload" id="openUploadForm">Upload Image</button>
+        </div>
+
+        <div class="assignment-header">
+          <div>Report ID</div>
+          <div>Patient Name</div>
+          <div>Doctor</div>
+          <div>Status</div>
+          <div>Uploaded On</div>
+          <div class="text-right">Action</div>
+        </div>
+
+        <div id="assignmentRowsContainer"></div>
+      </section>
     </div>
 
+    <!-- UPLOAD VIEW -->
+    <div id="uploadView" class="view-section" style="display: none;">
+      <button id="backToDashboard">← Back</button>
+      <div class="inputForm">
+        <h3>Image Upload Form</h3>
+        <p>Enter all required details below.</p>
+        <form>
+          <div>
+            <label for="report_id">Report ID</label>
+            <input type="text" id="report_id" placeholder="e.g. XR-20250430" />
 
-    <h2>Hospital Summary Cards</h2>
+            <label for="age">Age</label>
+            <input type="number" id="age" placeholder="e.g. 35" />
 
-    <div class="stats-grid">
-      <div class="card">
-        <h3>Total X-rays Uploaded</h3>
-        <p>25+</p>
+            <label for="xray_type">X-ray Type</label>
+            <input type="text" id="xray_type" placeholder="e.g. Chest X-ray" />
+
+            <label for="condition">Patient Condition (Optional)</label>
+            <input type="text" id="condition" placeholder="Optional notes..." />
+          </div>
+
+          <div>
+            <label for="patient_name">Patient Name</label>
+            <input type="text" id="patient_name" placeholder="e.g. Md. Saifullah" />
+
+            <label for="gender">Gender</label>
+            <select id="gender">
+              <option value="">-- Select Gender --</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+              <option value="other">Other</option>
+            </select>
+
+            <label for="ref_doctor">Referring Doctor</label>
+            <select id="ref_doctor">
+              <option value="">-- Select Doctor --</option>
+              <option value="dr_afsana">Dr. Afsana Rahman</option>
+              <option value="dr_kamal">Dr. Kamal Hossain</option>
+              <option value="dr_sadia">Dr. Sadia Akter</option>
+            </select>
+
+            <div class="checkbox-row">
+              <input type="checkbox" id="emergency_checkbox" name="emergency" />
+              <label for="emergency_checkbox">Emergency Case</label>
+            </div>
+          </div>
+
+          <div style="grid-column: span 2;">
+            <label for="xray_images">Upload X-ray Images (Max 2)</label>
+            <input type="file" id="xray_images" accept="image/*" multiple />
+          </div>
+
+          <div class="button-group">
+            <button type="reset" class="btnPrimary">Reset</button>
+            <button type="submit" class="btnPrimary">Submit</button>
+          </div>
+        </form>
       </div>
-      <div class="card">
-        <h3>Reports Completed</h3>
-        <p>20+</p>
+    </div>
+    
+<!-- View Modal -->
+<div id="viewModal" class="modal">
+  <div class="modal-content">
+    <span class="close-modal">&times;</span>
+    <div class="modal-header">
+      <h3>X-ray Report Details</h3>
+      <div class="status-badge" id="modal_status_badge">Pending</div>
+    </div>
+    
+    <div class="modal-body">
+      <div class="detail-grid">
+        <div class="detail-group">
+          <span class="detail-label">Report ID</span>
+          <span class="detail-value" id="modal_report_id">XR-20231234</span>
+        </div>
+        <div class="detail-group">
+          <span class="detail-label">Patient Name</span>
+          <span class="detail-value" id="modal_patient_name">John Doe</span>
+        </div>
+        <div class="detail-group">
+          <span class="detail-label">Age/Gender</span>
+          <span class="detail-value" id="modal_age_gender">35/Male</span>
+        </div>
+        <div class="detail-group">
+          <span class="detail-label">Uploaded On</span>
+          <span class="detail-value" id="modal_uploaded_on">2023-12-24 14:30</span>
+        </div>
+        <div class="detail-group">
+          <span class="detail-label">Referring Doctor</span>
+          <span class="detail-value" id="modal_reference_doctor">Dr. Smith</span>
+        </div>
+        <div class="detail-group">
+          <span class="detail-label">X-ray Type</span>
+          <span class="detail-value" id="modal_xray_type">Chest PA</span>
+        </div>
+        <div class="detail-group">
+          <span class="detail-label">Report Status</span>
+          <span class="detail-value" id="modal_status">Pending</span>
+        </div>
       </div>
-      <div class="card">
-        <h3>Pending Diagnoses</h3>
-        <p>40,000+</p>
-      </div>
-      <div class="card">
-        <h3>This Month’s Activity</h3>
-        <p>50</p>
+      <div class="image-preview">
+        <h4>X-ray Images</h4>
+        <div class="image-grid" id="modal_image_container">
+        </div>
       </div>
     </div>
 
+    <div class="modal-footer">
+      <button class="btn-download">Download Report</button>
+    </div>
 
-    <section class="assignment-section">
-      <div class="section-header">
-        <h3 class="section-title">Live X-ray Assignments</h3>
-
-        <a href="uploadImage.html"> <button class="btn-upload">Upload Image</button></a>
-      </div>
-
-      <div class="assignment-header">
-        <div>Report ID</div>
-        <div>Patient Name</div>
-        <div>Doctor</div>
-        <div>Status</div>
-        <div>Uploaded On</div>
-        <div class="text-right">Action</div>
-      </div>
-
-
-
-      <div class="assignment-row">
-        <div>#XR20250428</div>
-        <div>Md. Saifullah</div>
-        <div>Dr. Afsana Rahman</div>
-        <div><span class="status-assigned">Assigned</span></div>
-        <div>Apr 28, 2025</div>
-        <div class="text-right">
-          <button class="btn-view">View</button>
-          <button class="btn-edit">Edit</button>
-        </div>
-      </div>
-      <div class="assignment-row">
-        <div>#XR20250428</div>
-        <div>Md. Saifullah</div>
-        <div>Dr. Afsana Rahman</div>
-        <div><span class="status-assigned">Assigned</span></div>
-        <div>Apr 28, 2025</div>
-        <div class="text-right">
-          <button class="btn-view">View</button>
-          <button class="btn-edit">Edit</button>
-        </div>
-      </div>
-      <div class="assignment-row">
-        <div>#XR20250428</div>
-        <div>Md. Saifullah</div>
-        <div>Dr. Afsana Rahman</div>
-        <div><span class="status-assigned">Assigned</span></div>
-        <div>Apr 28, 2025</div>
-        <div class="text-right">
-          <button class="btn-view">View</button>
-          <button class="btn-edit">Edit</button>
-        </div>
-      </div>
-
-    </section>
-
-
-
+  </div>
+</div>
 
   </div>
 
+  <script type="module" src="../../js/dashboard/hospital/dashboard.js"></script>
+  <script type="module" src="../../js/dashboard/hospital/uploadImage.js"></script>
+
+  <script>
+
+  </script>
 </body>
-
-
-
-
-<script>
-  const profilePic = document.querySelector('.profile-pic');
-  const dropdown = document.querySelector('.profile-dropdown');
-
-  profilePic.addEventListener('click', () => {
-    dropdown.style.display = dropdown.style.display === 'flex' ? 'none' : 'flex';
-  });
-
-  document.addEventListener('click', (e) => {
-    if (!e.target.closest('.profile-wrapper')) {
-      dropdown.style.display = 'none';
-    }
-  });
-
-  // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Side bar Toggle condition
-
-
-  function toggleSidebar() {
-    const sidebar = document.querySelector('.sidebar');
-    sidebar.classList.toggle('show');
-  }
-
-  // On resize, remove `.show` on large screens (and reset styles)
-  window.addEventListener('resize', () => {
-    const sidebar = document.querySelector('.sidebar');
-    if (window.innerWidth > 768) {
-      sidebar.classList.remove('show');
-    }
-  });
-
-</script>
-
 
 </html>
