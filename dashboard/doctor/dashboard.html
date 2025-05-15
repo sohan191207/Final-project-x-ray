@@ -105,80 +105,15 @@
 
 
   </div>
-
-  <script>
-
-    function openReportModal(data) {
-
-      console.log(data);
-      document.getElementById('patientName').value = data.patient_name || '';
-      document.getElementById('patientAge').value = data.Patient_age || '';
-      document.getElementById('patientSex').value = data.Patient_sex || 'Male';
-      document.getElementById('bodypartPosition').value = data.bodyparts_position || '';
-
-      const xrayImg = document.getElementById('xrayImage');
-      xrayImg.src = data.xray_image_url?.[0] || '';
-
-
-      document.getElementById('reportModal').style.display = 'flex';
-
-
-      enableImageZoom();
-    }
-
-    function closeReportModal() {
-      document.getElementById('reportModal').style.display = 'none';
-    }
-    function enableImageZoom() {
-      const img = document.getElementById('xrayImage');
-      const container = document.getElementById('imageContainer');
-
-      let scale = 1;
-      let originX = 0;
-      let originY = 0;
-      let isDragging = false;
-      let startX, startY;
-
-      container.addEventListener('wheel', function (e) {
-        e.preventDefault();
-        const scaleAmount = 0.1;
-        scale += e.deltaY < 0 ? scaleAmount : -scaleAmount;
-        scale = Math.min(Math.max(1, scale), 3);
-        updateTransform();
-      });
-
-      container.addEventListener('mousedown', function (e) {
-        if (scale <= 1) return;
-        isDragging = true;
-        startX = e.clientX;
-        startY = e.clientY;
-        container.style.cursor = 'grabbing';
-      });
-
-      window.addEventListener('mouseup', function () {
-        isDragging = false;
-        container.style.cursor = 'grab';
-      });
-
-      window.addEventListener('mousemove', function (e) {
-        if (!isDragging) return;
-        const dx = (e.clientX - startX) / scale;
-        const dy = (e.clientY - startY) / scale;
-        originX += dx;
-        originY += dy;
-        startX = e.clientX;
-        startY = e.clientY;
-        updateTransform();
-      });
-
-      function updateTransform() {
-        img.style.transform = `translate(-50%, -50%) scale(${scale}) translate(${originX}px, ${originY}px)`;
-      }
-    }
-  </script>
-
-
 </body>
+
+
+
+
+
+
+
+<!-- *********************************************************** Report Create^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ -->
 
 <div id="reportModal" class="modal-overlay" style="display: none;">
   <div class="modal-content">

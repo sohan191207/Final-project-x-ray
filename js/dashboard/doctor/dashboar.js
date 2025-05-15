@@ -7,7 +7,23 @@ import {
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
 
 // Replace with your actual known collection names
-const facilityCollections = ["GreenHospital", "MomotazHospital", "FacilityC"];
+// Fetch dynamic facilities
+async function getFacilityCollections() {
+  const facilityRef = collection(db, "radiologist_database");
+  const snapshot = await getDocs(facilityRef);
+  const facilities = new Set();
+
+  snapshot.forEach((doc) => {
+    const data = doc.data();
+    if (data.facilityName) {
+      const cleanName = data.facilityName.replace(/\s+/g, '');
+      facilities.add(cleanName);
+    }
+  });
+
+  return Array.from(facilities);
+}
+
 
 function formatDate(timestamp) {
   const date = timestamp.toDate();
@@ -18,6 +34,8 @@ function formatDate(timestamp) {
   });
 }
 
+let intervalId;
+
 onAuthStateChanged(auth, async (user) => {
   if (!user) {
     alert("Not logged in.");
@@ -27,7 +45,6 @@ onAuthStateChanged(auth, async (user) => {
 
   const container = document.querySelector("section");
 
-  // Loading message with animation
   const loader = document.createElement("div");
   loader.id = "loader";
   loader.style.textAlign = "center";
@@ -36,19 +53,18 @@ onAuthStateChanged(auth, async (user) => {
   loader.style.color = "#4b5563";
   loader.textContent = "Loading ";
 
-  // Dot animation
   let dotCount = 0;
-  const intervalId = setInterval(() => {
+
+  intervalId = setInterval(() => {
     dotCount = (dotCount + 1) % 4;
     loader.textContent = "Loading " + ".".repeat(dotCount);
   }, 500);
-  container.appendChild(loader);
 
+  container.appendChild(loader);
   let totalReports = 0;
 
-
   try {
-    const container = document.querySelector("section");
+    const facilityCollections = await getFacilityCollections(); // <-- dynamic now
 
     for (const facility of facilityCollections) {
       const colRef = collection(db, facility);
@@ -57,7 +73,6 @@ onAuthStateChanged(auth, async (user) => {
       snapshot.forEach((doc) => {
         const data = doc.data();
 
-        // ✅ Only render if status is "add to queue"
         if (data.status === "add to queue") {
           const escapedData = JSON.stringify(data).replace(/'/g, "&apos;");
           const reportHtml = `
@@ -80,27 +95,98 @@ onAuthStateChanged(auth, async (user) => {
         }
       });
     }
-     // Done loading: stop animation
-     clearInterval(intervalId);
-     loader.remove();
- 
-     /* Optional: Show a message if no reports
-     if (totalReports === 0) {
-       const noReports = document.createElement("div");
-       noReports.textContent = "No live X-ray reports found.";
-       noReports.style.textAlign = "center";
-       noReports.style.color = "#9ca3af";
-       container.appendChild(noReports);
-     }*/
 
+    clearInterval(intervalId);
+    loader.remove();
 
-    
   } catch (err) {
     console.error("Error loading queued reports:", err);
     alert("Failed to load reports.");
-    clearInterval(loader.dataset.intervalId);
+    clearInterval(intervalId);
     loader.remove();
   }
 });
 
 
+
+
+
+
+
+
+
+
+
+
+
+window.openReportModal = openReportModal;
+window.closeReportModal = closeReportModal;
+
+function openReportModal(data) {
+
+  console.log(data);
+  document.getElementById('patientName').value = data.patient_name || '';
+  document.getElementById('patientAge').value = data.Patient_age || '';
+  document.getElementById('patientSex').value = data.Patient_sex || 'Male';
+  document.getElementById('bodypartPosition').value = data.bodyparts_position || '';
+
+  const xrayImg = document.getElementById('xrayImage');
+  xrayImg.src = data.xray_image_url?.[0] || '';
+  console.log(data.xray_image_url);
+
+
+  document.getElementById('reportModal').style.display = 'flex';
+
+
+  enableImageZoom();
+}
+
+function closeReportModal() {
+  document.getElementById('reportModal').style.display = 'none';
+}
+function enableImageZoom() {
+  const img = document.getElementById('xrayImage');
+  const container = document.getElementById('imageContainer');
+
+  let scale = 1;
+  let originX = 0;
+  let originY = 0;
+  let isDragging = false;
+  let startX, startY;
+
+  container.addEventListener('wheel', function (e) {
+    e.preventDefault();
+    const scaleAmount = 0.1;
+    scale += e.deltaY < 0 ? scaleAmount : -scaleAmount;
+    scale = Math.min(Math.max(1, scale), 3);
+    updateTransform();
+  });
+
+  container.addEventListener('mousedown', function (e) {
+    if (scale <= 1) return;
+    isDragging = true;
+    startX = e.clientX;
+    startY = e.clientY;
+    container.style.cursor = 'grabbing';
+  });
+
+  window.addEventListener('mouseup', function () {
+    isDragging = false;
+    container.style.cursor = 'grab';
+  });
+
+  window.addEventListener('mousemove', function (e) {
+    if (!isDragging) return;
+    const dx = (e.clientX - startX) / scale;
+    const dy = (e.clientY - startY) / scale;
+    originX += dx;
+    originY += dy;
+    startX = e.clientX;
+    startY = e.clientY;
+    updateTransform();
+  });
+
+  function updateTransform() {
+    img.style.transform = `translate(-50%, -50%) scale(${scale}) translate(${originX}px, ${originY}px)`;
+  }
+}

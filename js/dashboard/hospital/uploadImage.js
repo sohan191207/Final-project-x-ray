@@ -1,5 +1,5 @@
 import { auth, db, storage } from "../../authentication/config.js";
-import { doc, addDoc, getDoc,query, where, collection, getDocs, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+import { doc, addDoc, getDoc, query, where, collection, getDocs, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
 import { ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-storage.js";
 
@@ -17,7 +17,7 @@ onAuthStateChanged(auth, async (user) => {
     try {
         const userDocRef = doc(db, "radiologist_database", uid);
         const userDocSnap = await getDoc(userDocRef);
-
+        console.log(userDocSnap);
         if (!userDocSnap.exists()) {
             alert("User data not found.");
             return;
@@ -75,14 +75,14 @@ document.querySelector("form").addEventListener("submit", async (e) => {
     }
 
 
-// &&&&&&&&&&&&&&&&&&&&&&&&&&&& Check Report Id Dublicate. or not
+    // &&&&&&&&&&&&&&&&&&&&&&&&&&&& Check Report Id Dublicate. or not
     const q = query(collection(db, facilityName), where("report_track_id", "==", reportId));
     const querySnapshot = await getDocs(q);
-    
+
     if (!querySnapshot.empty) {
-      alert("This Report ID already exists. Please use a unique Report ID.");
-      submitBtn.classList.remove("loading");
-      return;
+        alert("This Report ID already exists. Please use a unique Report ID.");
+        submitBtn.classList.remove("loading");
+        return;
     }
 
 
@@ -136,5 +136,5 @@ document.querySelector("form").addEventListener("submit", async (e) => {
     }
     finally {
         submitBtn.classList.remove("loading");
-      }
+    }
 });
