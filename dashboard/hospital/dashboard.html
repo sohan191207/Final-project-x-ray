@@ -19,15 +19,16 @@
     <nav class="menu">
       <a href="#" class="active">Dashboard</a>
       <a href="#">Report Management</a>
-      <a href="#">Doctor Management</a>
-      <a href="#">Patient Records</a>
-      <a href="#">Payments & Billing</a>
-      <a href="#">Activity Log</a>
-      <a href="#">Notifications</a>
-      <a href="#">Profile Settings</a>
-      <a href="#">Support / Help</a>
+      <a href="#" class="disabled">Doctor Management</a>
+      <a href="#" class="disabled">Patient Records</a>
+      <a href="#" class="disabled">Payments & Billing</a>
+      <a href="#" class="disabled">Activity Log</a>
+      <a href="#" class="disabled">Notifications</a>
+      <a href="#" class="disabled">Profile Settings</a>
+      <a href="#" class="disabled">Support / Help</a>
     </nav>
   </div>
+  
 
   <!-- Main Content -->
   <div class="main">
@@ -101,6 +102,8 @@
         <p>Enter all required details below.</p>
         <form>
           <div>
+            <input type="hidden" id="doc_id" />
+            
             <label for="report_id">Report ID</label>
             <input type="text" id="report_id" placeholder="e.g. XR-20250430" />
 
@@ -148,6 +151,7 @@
           <div class="button-group">
             <button type="reset" class="btnPrimary">Reset</button>
             <button type="submit" class="btnPrimary">Submit</button>
+
           </div>
         </form>
       </div>

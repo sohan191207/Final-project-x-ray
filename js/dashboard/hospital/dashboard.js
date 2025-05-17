@@ -10,6 +10,7 @@ import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/fi
 
 let reportDataMap = {}; // global to access in edit
 
+
 document.addEventListener("DOMContentLoaded", () => {
   const viewModal = document.getElementById("viewModal");
   const closeModalBtn = document.querySelector(".close-modal");
@@ -29,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    const uid = user.uid;
+    const uid = user.uid; 
     try {
       const userSnap = await getDoc(doc(db, "radiologist_database", uid));
       if (!userSnap.exists()) {
@@ -96,7 +97,11 @@ document.addEventListener("DOMContentLoaded", () => {
               <div>#${data.report_track_id || data.id}</div>
               <div>${data.patient_name || "-"}</div>
               <div>${data.reference_doctor || "-"}</div>
-              <div>${data.status || "-"}</div>
+              <div>
+                <span class="status-badge ${data.status?.toLowerCase().replace(/\s+/g, "-") || "pending"}">
+                  ${data.status || "-"}
+                </span>
+              </div>
               <div>${formattedDate}</div>
               <div class="text-right">
                 <button class="btn-view" data-id="${data.id}">View</button>
@@ -104,6 +109,7 @@ document.addEventListener("DOMContentLoaded", () => {
               </div>
             </div>
           `);
+          
         });
       });
     } catch (error) {
@@ -166,7 +172,9 @@ document.addEventListener("DOMContentLoaded", () => {
       document.getElementById("dashboardView").style.display = "none";
       document.getElementById("uploadView").style.display = "block";
 
+      document.getElementById("doc_id").value = report.report_track_id || report.id || "";
       document.getElementById("report_id").value = report.report_track_id || report.id || "";
+      document.getElementById("report_id").disabled = true;
       document.getElementById("age").value = report.Patient_age || "";
       document.getElementById("xray_type").value = report.bodyparts_position || "";
       document.getElementById("condition").value = report.condition || "";
@@ -207,18 +215,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
 /// response troggle 
 
-const profilePic = document.querySelector('.profile-pic');
+// const profilePic = document.querySelector('.profile-pic');
 const dropdown = document.querySelector('.profile-dropdown');
 
-profilePic.addEventListener('click', () => {
-  dropdown.style.display = dropdown.style.display === 'flex' ? 'none' : 'flex';
-});
+// profilePic.addEventListener('click', () => {
+//   dropdown.style.display = dropdown.style.display === 'flex' ? 'none' : 'flex';
+// });
 
-document.addEventListener('click', (e) => {
-  if (!e.target.closest('.profile-wrapper')) {
-    dropdown.style.display = 'none';
-  }
-});
+// document.addEventListener('click', (e) => {
+//   if (!e.target.closest('.profile-wrapper')) {
+//     dropdown.style.display = 'none';
+//   }
+// });
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Side bar Toggle condition
 

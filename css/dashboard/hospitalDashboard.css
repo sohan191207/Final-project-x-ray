@@ -313,3 +313,11 @@
     }
   }
 }
+
+
+.menu a.disabled {
+  /* pointer-events: none;  */
+  color: gray;          
+  cursor: not-allowed;  
+  opacity: 0.6;         
+}

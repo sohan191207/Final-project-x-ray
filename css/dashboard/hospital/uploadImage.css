@@ -180,3 +180,14 @@ select:focus {
     transform: rotate(360deg);
   }
 }
+
+
+
+.image-preview-box {
+  width: 300px;
+  height: 400px;
+  object-fit: contain;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  margin: 10px;
+}

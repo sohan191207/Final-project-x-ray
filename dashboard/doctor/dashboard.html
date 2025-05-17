@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>X-ray Admin Dashboard</title>
   <link rel="stylesheet" href="../../css/dashboard/dashboard.css">
-  <!-- <link rel="stylesheet" href="../../css/dashboard/doctorDashboard.css"> -->
+  <link rel="stylesheet" href="../../css/dashboard/doctorDashboard.css">
 </head>
 
 <body>
@@ -18,13 +18,13 @@
 
     <nav class="menu">
       <a href="dashboard.html" class="active">Dashboard</a>
-      <a href="userManagement.html">Report Management</a>
-      <a href="ReportManagement.html">Doctor Management</a>
-      <a href="paymentsWallet.html">Patient Records</a>
-      <a href="Notification.html"> Activity Log</a>
-      <a href="analytics.html">Notifications</a>
-      <a href="accessRoles.html">Profile Settings</a>
-      <a href="accessRoles.html">Support / Help</a>
+      <a href="userManagement.html"class="disabled">Report Management</a>
+      <a href="ReportManagement.html"class="disabled">Doctor Management</a>
+      <a href="paymentsWallet.html"class="disabled">Patient Records</a>
+      <a href="Notification.html"class="disabled"> Activity Log</a>
+      <a href="analytics.html"class="disabled">Notifications</a>
+      <a href="accessRoles.html"class="disabled">Profile Settings</a>
+      <a href="accessRoles.html"class="disabled">Support / Help</a>
     </nav>
 
   </div>
@@ -33,36 +33,13 @@
   <div class="main">
     <button class="sidebar-toggle" onclick="toggleSidebar()">☰</button>
 
-    <div class="header">
-      <div class="search-container">
-        <input type="text" placeholder="Search..." />
-      </div>
-
-      <div class="user-actions">
-        <span class="notification">🔔</span>
-
-        <div class="profile-wrapper">
-          <img src="../../image/user.png" alt="Profile" class="profile-pic" />
-
-          <div class="profile-dropdown">
-            <strong>Rakha Kabir</strong>
-            <small>Administrator</small>
-            <hr />
-            <!-- <a href="#">Settings</a> -->
-            <a href="../../index.html">Logout</a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-
     <!-- Stats -->
     <h2>Doctor Summary Cards</h2>
 
     <div class="stats-grid">
       <div class="card">
-        <h3>Total Image Upload</h3>
-        <p>25+</p>
+        <h3>Live Job</h3>
+        <p id="TotalPendingCount">0</p>
       </div>
       <div class="card">
         <h3>Reports Reviewed</h3>
@@ -90,6 +67,7 @@
         <div>Status</div>
         <div style="text-align: right;">Actions</div>
       </div>
+
 
       <!-- <div style="display: grid; grid-template-columns: repeat(5, 1fr); padding: 14px 12px; align-items: center; border-bottom: 1px solid #e5e7eb;">
         <div>Md. Saifullah</div>
@@ -149,23 +127,6 @@
 
 
 <script>
-
-
-
-  const profilePic = document.querySelector('.profile-pic');
-  const dropdown = document.querySelector('.profile-dropdown');
-
-  profilePic.addEventListener('click', () => {
-    dropdown.style.display = dropdown.style.display === 'flex' ? 'none' : 'flex';
-  });
-
-  document.addEventListener('click', (e) => {
-    if (!e.target.closest('.profile-wrapper')) {
-      dropdown.style.display = 'none';
-    }
-  });
-
-  // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Side bar Toggle condition
 
 
   function toggleSidebar() {

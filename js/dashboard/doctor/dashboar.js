@@ -1,50 +1,46 @@
 import { auth, db } from "../../authentication/config.js";
 import {
   collection,
-  getDocs,
-  onSnapshot
+  onSnapshot,
+  doc,
+  updateDoc,
+  getDoc,
 } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
 
-// Replace with your actual known collection names
-// Fetch dynamic facilities
-async function getFacilityCollections() {
-  const facilityRef = collection(db, "radiologist_database");
-  const snapshot = await getDocs(facilityRef);
-  const facilities = new Set();
-
-  snapshot.forEach((doc) => {
-    const data = doc.data();
-    if (data.facilityName) {
-      const cleanName = data.facilityName.replace(/\s+/g, '');
-      facilities.add(cleanName);
-    }
-  });
-
-  return Array.from(facilities);
-}
-
-
+// Utility: format Firebase Timestamp
 function formatDate(timestamp) {
   const date = timestamp.toDate();
-  return date.toLocaleDateString("en-US", {
+  return date.toLocaleString("en-US", {
     month: "short",
     day: "numeric",
     year: "numeric",
+    hour: "numeric",
+    minute: "2-digit",
+    hour12: true,
   });
 }
-
 let intervalId;
 
 onAuthStateChanged(auth, async (user) => {
   if (!user) {
     alert("Not logged in.");
-    window.location.href = "/login.html";
+    window.location.href = "../../../Index/login.html";
+    return;
+  }
+
+  const doctorRef = doc(db, "doctor_database", user.uid);
+  const doctorSnap = await getDoc(doctorRef);
+
+  if (!doctorSnap.exists()) {
+    alert("User not authorized. Returning to login.");
+    window.location.href = "../../../Index/login.html";
     return;
   }
 
   const container = document.querySelector("section");
 
+  // Show loading spinner
   const loader = document.createElement("div");
   loader.id = "loader";
   loader.style.textAlign = "center";
@@ -52,59 +48,105 @@ onAuthStateChanged(auth, async (user) => {
   loader.style.fontSize = "18px";
   loader.style.color = "#4b5563";
   loader.textContent = "Loading ";
+  container.appendChild(loader);
 
   let dotCount = 0;
-
   intervalId = setInterval(() => {
     dotCount = (dotCount + 1) % 4;
     loader.textContent = "Loading " + ".".repeat(dotCount);
   }, 500);
+  // 🔄 Real-time Firestore listener
+  const colRef = collection(db, "AllPendingReport");
 
-  container.appendChild(loader);
-  let totalReports = 0;
+  onSnapshot(colRef, (snapshot) => {
+    let reports = [];
 
-  try {
-    const facilityCollections = await getFacilityCollections(); // <-- dynamic now
+    snapshot.forEach((docSnap) => {
+      const data = docSnap.data();
+      data.id = docSnap.id;
+      reports.push(data);
+    });
+    document.getElementById("TotalPendingCount").textContent = reports.length;
+    reports.sort((a, b) => {
+      if (a.emergency === b.emergency) {
+        return b.image_upload_date.toDate() - a.image_upload_date.toDate();
+      }
+      return b.emergency ? 1 : -1;
+    });
 
-    for (const facility of facilityCollections) {
-      const colRef = collection(db, facility);
-      const snapshot = await getDocs(colRef);
+    // Clear previous content
+    container.innerHTML = "";
 
-      snapshot.forEach((doc) => {
-        const data = doc.data();
+    // Header row
+    const headerHtml = `
+      <div style="display: grid; grid-template-columns: repeat(5, 1fr); background: #f3f4f6; padding: 12px; font-weight: 600; border-radius: 8px; margin-bottom: 12px;">
+        <div>Patient Name</div>
+        <div>Report Type</div>
+        <div>Upload Date</div>
+        <div>Status</div>
+        <div style="text-align: right;">Actions</div>
+      </div>
+    `;
+    container.insertAdjacentHTML("beforeend", headerHtml);
 
-        if (data.status === "add to queue") {
-          const escapedData = JSON.stringify(data).replace(/'/g, "&apos;");
-          const reportHtml = `
-            <div style="display: grid; grid-template-columns: repeat(5, 1fr); padding: 14px 12px; align-items: center; border-bottom: 1px solid #e5e7eb;">
-              <div>${data.patient_name || "-"}</div>
-              <div>${data.bodyparts_position || "-"}</div>
-              <div>${data.image_upload_date ? formatDate(data.image_upload_date) : "-"}</div>
-              <div><span style="color: #f59e0b; font-weight: 500;">Pending</span></div>
-              <div style="text-align: right;">
-                <button 
-                  onclick='openReportModal(JSON.parse(this.dataset.report))'
-                  data-report='${escapedData}'
-                  style="background-color: #2563eb; color: #fff; border: none; padding: 6px 14px; border-radius: 6px; cursor: pointer;">
-                  Create Report
-                </button>
-              </div>
-            </div>
-          `;
-          container.insertAdjacentHTML("beforeend", reportHtml);
-        }
-      });
+    let allowNext = false;
+    let hasInProgress = reports.some(r => r.status === "Processing");
+    let enabledOne = false;
+
+    for (let i = 0; i < reports.length; i++) {
+      const data = reports[i];
+      const escapedData = JSON.stringify(data).replace(/'/g, "&apos;");
+      
+      let isDisabled = true;
+
+      if (data.status === "Processing") {
+        allowNext = true;
+      } else if (!enabledOne && (!hasInProgress || allowNext)) {
+        isDisabled = false;
+        enabledOne = true;
+        allowNext = false;
+      }
+
+      const reportHtml = `
+        <div style="display: grid; grid-template-columns: repeat(5, 1fr); padding: 14px 12px; align-items: center; border-bottom: 1px solid #e5e7eb;">
+          <div class="ellipsis">${data.patient_name || "-"}</div>
+          <div class="ellipsis">${data.bodyparts_position || "-"}</div>
+          <div class="ellipsis">${formatDate(data.image_upload_date)}</div>
+          <div class="ellipsis">
+            <span style="color: #f59e0b; font-weight: 500;">
+              ${data.emergency ? ("🚨 " + (data.status === "add to queue" ? "Pending" : data.status)) : "Pending"}
+            </span>
+          </div>
+          <div class="ellipsis" style="text-align: right;">
+            <button 
+              onclick='${isDisabled ? "" : `handleCreateReport(JSON.parse(this.dataset.report))`}'
+              ${isDisabled ? "disabled" : ""}
+              data-report='${escapedData}'
+              style="
+                background-color: ${isDisabled ? '#9ca3af' : '#2563eb'};
+                color: #fff;
+                border: none;
+                padding: 6px 14px;
+                border-radius: 6px;
+                cursor: ${isDisabled ? 'not-allowed' : 'pointer'};
+                opacity: ${isDisabled ? '0.6' : '1'};
+              ">
+              Create Report
+            </button>
+          </div>
+        </div>
+      `;
+      container.insertAdjacentHTML("beforeend", reportHtml);
     }
 
     clearInterval(intervalId);
     loader.remove();
-
-  } catch (err) {
-    console.error("Error loading queued reports:", err);
-    alert("Failed to load reports.");
+  }, (err) => {
+    console.error("onSnapshot error:", err);
     clearInterval(intervalId);
     loader.remove();
-  }
+    alert("Failed to load reports in real-time.");
+  });
 });
 
 
@@ -119,31 +161,58 @@ onAuthStateChanged(auth, async (user) => {
 
 
 
+
+
+
+
+// ===========================
+// Handle "Create Report" click
+// ===========================
+window.handleCreateReport = async function (data) {
+  try {
+    if (!data.id) {
+      console.error("Missing document ID.");
+      return;
+    }
+
+    // Update Firestore
+    const docRef = doc(db, "AllPendingReport", data.id);
+    await updateDoc(docRef, { status: "Processing" });
+
+    // Update local data + open modal
+    data.status = "Processing";
+    openReportModal(data);
+  } catch (error) {
+    console.error("Failed to update status to Processing:", error);
+    alert("Failed to update report status.");
+  }
+};
+
+// ===========================
+// Open & Close Modal
+// ===========================
 window.openReportModal = openReportModal;
 window.closeReportModal = closeReportModal;
 
 function openReportModal(data) {
-
   console.log(data);
   document.getElementById('patientName').value = data.patient_name || '';
   document.getElementById('patientAge').value = data.Patient_age || '';
   document.getElementById('patientSex').value = data.Patient_sex || 'Male';
   document.getElementById('bodypartPosition').value = data.bodyparts_position || '';
-
   const xrayImg = document.getElementById('xrayImage');
   xrayImg.src = data.xray_image_url?.[0] || '';
-  console.log(data.xray_image_url);
-
-
   document.getElementById('reportModal').style.display = 'flex';
-
-
   enableImageZoom();
 }
 
 function closeReportModal() {
   document.getElementById('reportModal').style.display = 'none';
 }
+
+// ===========================
+// Zoom functionality
+// ===========================
 function enableImageZoom() {
   const img = document.getElementById('xrayImage');
   const container = document.getElementById('imageContainer');

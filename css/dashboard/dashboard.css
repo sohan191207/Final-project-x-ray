@@ -381,23 +381,6 @@ button.view {
 /* ............................................ Popup Model >>>>>>>>>>>>>>>>>>>>  */
 
 
-/* * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Segoe UI', sans-serif;
-} */
-
-/* html, body {
-  height: 100%;
-  width: 100%;
-}
-
-.container {
-  display: flex;
-  height: 100vh;
-  overflow: hidden;
-} */
 
 .left-panel {
   width: 350px;
@@ -531,4 +514,13 @@ button.view {
   display: flex;
   overflow: hidden;
   position: relative;
+}
+
+
+
+.menu a.disabled {
+  /* pointer-events: none;  */
+  color: gray;          /* visually indicate it's disabled */
+  cursor: not-allowed;  /* show a "not allowed" cursor */
+  opacity: 0.6;         /* optional: faded appearance */
 }

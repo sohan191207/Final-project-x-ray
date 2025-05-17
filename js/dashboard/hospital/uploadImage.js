@@ -1,5 +1,5 @@
 import { auth, db, storage } from "../../authentication/config.js";
-import { doc, addDoc, getDoc, query, where, collection, getDocs, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+import { doc, addDoc, getDoc, setDoc, query, where, collection, getDocs, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
 import { ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-storage.js";
 
@@ -46,6 +46,7 @@ onAuthStateChanged(auth, async (user) => {
 });
 
 
+
 document.querySelector("form").addEventListener("submit", async (e) => {
     e.preventDefault();
 
@@ -58,6 +59,7 @@ document.querySelector("form").addEventListener("submit", async (e) => {
         return;
     }
 
+    const docId = document.getElementById("doc_id").value; // Hidden input for update mode
     const reportId = document.getElementById("report_id").value.trim();
     const age = parseInt(document.getElementById("age").value.trim());
     const xrayType = document.getElementById("xray_type").value.trim();
@@ -73,35 +75,42 @@ document.querySelector("form").addEventListener("submit", async (e) => {
         return;
     }
 
-
-    const q = query(collection(db, facilityName), where("report_track_id", "==", reportId));
-    const querySnapshot = await getDocs(q);
-
-    if (!querySnapshot.empty) {
-        alert("This Report ID already exists. Please use a unique Report ID.");
-        submitBtn.classList.remove("loading");
-        return;
-    }
-
-
-
-
-
-    if (imageFiles.length === 0 || imageFiles.length > 2) {
-        alert("Please upload 1 or 2 X-ray images.");
-        submitBtn.classList.remove("loading");
-        return;
-    }
-
     try {
+        // 🔍 Check only if it's a new report
+        if (!docId) {
+            const q = query(collection(db, facilityName), where("report_track_id", "==", reportId));
+            const querySnapshot = await getDocs(q);
+
+            if (!querySnapshot.empty) {
+                alert("This Report ID already exists. Please use a unique Report ID.");
+                submitBtn.classList.remove("loading");
+                return;
+            }
+
+            // For new submission, image is required (1–2 files)
+            if (imageFiles.length === 0 || imageFiles.length > 2) {
+                alert("Please upload 1 or 2 X-ray images.");
+                submitBtn.classList.remove("loading");
+                return;
+            }
+        }
+
         const imageUrls = [];
 
-        for (let i = 0; i < imageFiles.length; i++) {
-            const file = imageFiles[i];
-            const storageRef = ref(storage, `${facilityName}/${reportId}_${i + 1}_${file.name}`);
-            await uploadBytes(storageRef, file);
-            const url = await getDownloadURL(storageRef);
-            imageUrls.push(url);
+        if (imageFiles.length > 0) {
+            if (imageFiles.length > 2) {
+                alert("You can only upload 1 or 2 images.");
+                submitBtn.classList.remove("loading");
+                return;
+            }
+
+            for (let i = 0; i < imageFiles.length; i++) {
+                const file = imageFiles[i];
+                const storageRef = ref(storage, `${facilityName}/${reportId}_${i + 1}_${file.name}`);
+                await uploadBytes(storageRef, file);
+                const url = await getDownloadURL(storageRef);
+                imageUrls.push(url);
+            }
         }
 
         const formData = {
@@ -111,7 +120,6 @@ document.querySelector("form").addEventListener("submit", async (e) => {
             Patient_age: age,
             Patient_sex: gender,
             bodyparts_position: xrayType,
-            xray_image_url: imageUrls,
             image_upload_date: serverTimestamp(),
             report_delivery_date: "",
             status: "add to queue",
@@ -121,18 +129,30 @@ document.querySelector("form").addEventListener("submit", async (e) => {
             findings: ""
         };
 
+        if (imageUrls.length > 0) {
+            formData.xray_image_url = imageUrls;
+        }
 
-        const docRef1 = await addDoc(collection(db, facilityName), formData);
-        const docRef2 = await addDoc(collection(db, "AllPendingReport"), formData);
+        if (docId) {
+            // 📝 Edit mode
+            const reportRef1 = doc(db, facilityName, docId);
+            const reportRef2 = doc(db, "AllPendingReport", docId);
+            await setDoc(reportRef1, formData, { merge: true });
+            await setDoc(reportRef2, formData, { merge: true });
+            alert("Report updated successfully!");
+        } else {
+            // 🆕 New submission
+            const newRef1 = await addDoc(collection(db, facilityName), { ...formData, xray_image_url: imageUrls });
+            const newRef2 = await addDoc(collection(db, "AllPendingReport"), formData);
+            alert("New report submitted successfully!");
+        }
 
-        // console.log("Data saved to:", docRef1.id, "and", docRef2.id);
         document.querySelector("form").reset();
-        alert("Form and images submitted successfully!");
+        document.getElementById("doc_id").value = ""; // Clear hidden field
     } catch (err) {
-        console.error("Error uploading or saving data:", err);
+        console.error("Error submitting form:", err);
         alert("Submission failed. Check console for details.");
-    }
-    finally {
+    } finally {
         submitBtn.classList.remove("loading");
     }
 });
@@ -141,30 +161,18 @@ document.querySelector("form").addEventListener("submit", async (e) => {
 
 
 
+// Toggle View Logic
+const dashboardView = document.getElementById('dashboardView');
+const uploadView = document.getElementById('uploadView');
+const openUploadBtn = document.getElementById('openUploadForm');
+const backToDashboard = document.getElementById('backToDashboard');
 
-  // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Upload Image Controler 
-  const dropdown = document.querySelector('.profile-dropdown');
-
-  document.addEventListener('click', (e) => {
-    if (!e.target.closest('.profile-wrapper')) {
-      dropdown.style.display = 'none';
-    }
-  });
-
-
-
-  // Toggle View Logic
-  const dashboardView = document.getElementById('dashboardView');
-  const uploadView = document.getElementById('uploadView');
-  const openUploadBtn = document.getElementById('openUploadForm');
-  const backToDashboard = document.getElementById('backToDashboard');
-
-  openUploadBtn.addEventListener('click', () => {
+openUploadBtn.addEventListener('click', () => {
     dashboardView.style.display = 'none';
     uploadView.style.display = 'block';
-  });
+});
 
-  backToDashboard.addEventListener('click', () => {
+backToDashboard.addEventListener('click', () => {
     uploadView.style.display = 'none';
     dashboardView.style.display = 'block';
-  });
+});
