@@ -1,84 +1,174 @@
+/* Reset and Global Styles */
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
+
 html {
   scroll-behavior: smooth;
 }
 
-
-.txt {
+body {
+  overflow-x: hidden;
+  background-color: #091320;
+  /* Assuming a dark background from the container */
   color: #ffffff;
-  font-family: Montserrat;
+  /* Default text color */
+  font-family: Montserrat, sans-serif;
+  /* Consistent font */
   font-size: 16px;
   font-style: normal;
   font-weight: 500;
   line-height: 150%;
 }
 
+.txt {
+  color: inherit;
+  /* Inherit text color from body */
+  font-family: inherit;
+  font-size: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+}
+
 .container {
   margin: 0 auto;
-  width: 1440px;
-  /* or any specific width */
-  background-color: #091320;
-  padding: 44px 100px 0 100px;
+  width: 100%;
+  max-width: 1440px;
+  padding: 0px 2% 0;
+  /* Responsive padding */
+}
+
+.title {
+  font-family: 'Anton', sans-serif;
+  font-size: clamp(40px, 8vw, 76px);
+  font-weight: 400;
+  line-height: 120%;
+  text-align: center;
 }
 
 .title-2 {
   font-family: 'Anton', sans-serif;
-  font-size: 56px;
-  font-style: normal;
+  font-size: clamp(32px, 6vw, 56px);
   font-weight: 400;
   line-height: 150%;
   text-align: center;
-
 }
 
 .subTitle {
   text-align: center;
   margin-top: 8px;
-  font-family: Montserrat;
-  font-size: 18px;
-  font-style: normal;
+  font-family: Montserrat, sans-serif;
+  font-size: clamp(14px, 2vw, 18px);
   font-weight: 400;
   line-height: 150%;
+  padding: 0 5%;
 }
 
+/* Buttons */
 .btnSecondary a,
 .btnPrimary a,
 .btnTarsiyary a {
   color: #ffffff;
-  font-family: 'Montserrat', sans-serif;
+  font-family: Montserrat, sans-serif;
   text-decoration: none;
 }
 
+.btnTarsiyary {
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
 
-/* ****************************************** Nav Bar Start ************************************** */
+.btnSecondary {
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: 1px solid #385C8A;
+  cursor: pointer;
+  font-size: clamp(14px, 1.5vw, 16px);
+  transition: background-color 0.3s;
+}
+
+.btnPrimary {
+  padding: 10px 20px;
+  background-color: #3876C7;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: Montserrat, sans-serif;
+  font-size: clamp(14px, 1.5vw, 16px);
+  transition: background-color 0.3s;
+}
+
+.btnSecondary:hover,
+.btnTarsiyary:hover {
+  background-color: #ffffff22;
+}
+
+.btnPrimary:hover {
+  background-color: #2B5A97;
+}
+
+.btnSecondary.outline,
+.btnTarsiyary.outline,
+.btnPrimary.outline {
+  border: 1px solid #337ccf;
+}
+
+.btnMain {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+/* Navigation Bar */
 .navBar {
   display: flex;
   justify-content: space-between;
   align-items: center;
   background-color: #0b1320;
+  flex-wrap: wrap;
+  gap: 15px;
+  padding: 15px 2%;
+}
+
+.logo {
+  display: flex;
+  align-items: center; 
+  gap: 10px; 
 }
 
 .logo img {
   height: 40px;
 }
 
+.logoText {
+  margin: 0; 
+  font-size: 20px; 
+}
+
+
 .menu ul {
   list-style: none;
   display: flex;
-  gap: 30px;
+  gap: 15px;
   margin: 0;
   padding: 0;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .menu ul li a {
   color: white;
   text-decoration: none;
   font-weight: 400;
-  font-family: Montserrat;
+  font-family: Montserrat, sans-serif;
   transition: 0.3s;
+  font-size: clamp(14px, 1.5vw, 16px);
 }
 
 .menu ul li a:hover,
@@ -88,105 +178,32 @@ html {
   padding-bottom: 5px;
 }
 
-.btnLogin,
-.btnMain {
+.btnLogin {
   display: flex;
   gap: 15px;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
-.btnTarsiyary {
-  padding: 8px 16px;
-  color: white;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-  border-radius: 8px;
-  /* border: 1px solid #385C8A; */
-}
-
-
-.btnSecondary {
-  padding: 8px 16px;
-  color: white;
-  border-radius: 6px;
-  cursor: pointer;
-  font-family: 'Montserrat', sans-serif;
-  transition: background-color 0.3s;
-  border-radius: 8px;
-  border: 1px solid #385C8A;
-}
-
-.btnSecondary:hover,
-.btnTarsiyary:hover {
-  background-color: #ffffff22;
-}
-
-.btnSecondary.outline,
-.btnTarsiyary.outline,
-.btnPrimary.outline {
-  border: 1px solid #337ccf;
-}
-
-
-/* ****************************************** Nav Bar End ************************************** */
-
+/* Hero Section */
 #heroSection {
   width: 100%;
-  height: 1080px;
-  margin: 0 auto;
-  /* background-color: #99cfff9f; */
+  height: auto;
+  min-height: 60vh;
+  padding-top: 30px;
 }
 
 .textArea {
-  width: 764px;
-  margin: 90px auto 0 auto;
-}
-
-#heroSection .textArea .title {
-  text-align: center;
-  font-family: 'Anton', sans-serif;
-  font-size: 76px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 120%;
-  /* 91.2px */
-}
-
-.btnMain {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  /* space between buttons */
-  margin-top: 20px;
-}
-
-.btnPrimary:hover {
-  background-color: #2B5A97;
-}
-
-.btnPrimary {
-  padding: 10px 20px;
-  color: white;
-  background-color: #3876C7;
-  border-radius: 6px;
-  cursor: pointer;
-  font-family: 'Montserrat', sans-serif;
-  transition: background-color 0.3s;
-  border-radius: 8px;
+  width: 100%;
+  max-width: 764px;
+  margin: 100px auto 0;
 }
 
 .imageArea {
   width: 100%;
   max-width: 1240px;
-  max-height: 528px;
-  /* or whatever portion you want visible */
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  margin: 97px auto 0 auto;
+  margin: 5% auto 0;
 }
-
 
 .imageArea img {
   width: 100%;
@@ -196,30 +213,26 @@ html {
   display: block;
 }
 
-
-
-
-
-
-/* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! Why Choose Us!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
-
-
+/* Why Choose Us Section */
 #WhyChoose {
-  margin: 112px auto;
+  margin: 10% auto;
 }
 
 #WhyChoose .cardArea {
-  margin-top: 56px;
+  margin-top: 5%;
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
   justify-content: center;
-  /* padding: 40px 0; */
+  padding: 0 4%;
 }
 
 #WhyChoose .cardArea .card {
-  width: 400px;
-  height: 224px;
+  width: 100%;
+  max-width: 400px;
+  min-width: 280px;
+  height: auto;
+  min-height: 224px;
   background: #122640;
   border-radius: 12px;
   padding: 20px;
@@ -228,29 +241,19 @@ html {
   display: flex;
   flex-direction: column;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  position: relative;
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
 #WhyChoose .cardArea .card:hover {
-  width: 400px;
-  height: 224px;
-  background: linear-gradient(127deg, var(--950, #183253) 32.9%, rgba(56, 118, 199, 0.62) 120.67%);
-  border-radius: 12px;
-  padding: 20px;
+  background: linear-gradient(127deg, #183253 32.9%, rgba(56, 118, 199, 0.62) 120.67%);
   color: #ffffff;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 #WhyChoose .cardArea .card img {
   width: 32px;
   height: 32px;
-  transition: color 0.3s ease, width 0.3s ease, height 0.3s ease, padding 0.3s ease;
-}
-
-#WhyChoose .cardArea .card {
-  position: relative;
+  transition: width 0.3s ease, height 0.3s ease, padding 0.3s ease;
 }
 
 #WhyChoose .cardArea .card:hover img {
@@ -259,65 +262,57 @@ html {
   padding: 4px;
 }
 
-
 #WhyChoose .cardArea .card h3 {
   font-size: 18px;
   font-weight: 600;
-  font-family: 'Montserrat', sans-serif;
+  font-family: Montserrat, sans-serif;
   margin-top: 20px;
 }
 
 #WhyChoose .cardArea .card p {
   font-size: 16px;
   font-weight: 400;
-  font-family: 'Montserrat', sans-serif;
+  font-family: Montserrat, sans-serif;
   line-height: 150%;
-  margin: 12px 0 0 0;
+  margin-top: 12px;
 }
 
-
-
-
-
-
-/* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Doctor Start>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
-
-
+/* Verified Doctors Section */
 #VerifiedDoc {
   width: 100%;
-  max-width: 1240px;
-  margin: 0 auto;
+  padding: 0 2%;
 }
 
 #VerifiedDoc .DocArea {
-  margin-top: 56px;
+  margin-top: 5%;
   display: flex;
   flex-direction: row;
   gap: 20px;
   overflow-x: auto;
-  /* Allow horizontal scrolling */
   overflow-y: hidden;
-  /* Hide vertical overflow */
   width: 100%;
   flex-wrap: nowrap;
   scroll-behavior: smooth;
-  /* Smooth scroll */
   scrollbar-width: none;
   /* Firefox */
   -ms-overflow-style: none;
   /* IE and Edge */
+  padding-bottom: 20px;
 }
 
 #VerifiedDoc .DocArea::-webkit-scrollbar {
   display: none;
 }
 
+#VerifiedDoc .DocArea {
+  display: flex; /* Or grid, depending on your desired layout */
+  /* flex-wrap: wrap; */
+  gap: 20px; /* Spacing between cards */
+}
 
 #VerifiedDoc .DocArea .card {
-  min-width: 295px;
-  height: 377px;
-  background-image: url('../image/Doctor/doctor_1.png');
-  /* Replace with actual image path */
+  min-width: 250px;
+  height: 300px;
   background-size: cover;
   background-position: center;
   border-radius: 15px;
@@ -330,6 +325,39 @@ html {
   color: white;
 }
 
+#VerifiedDoc .DocArea .card:nth-child(1) {
+  background-image: url('../image/Doctor/doctor_1.png');
+}
+
+#VerifiedDoc .DocArea .card:nth-child(2) {
+  background-image: url('../image/Doctor/doctor_2.png');
+}
+
+#VerifiedDoc .DocArea .card:nth-child(3) {
+  background-image: url('../image/Doctor/doctor_3.png');
+}
+
+#VerifiedDoc .DocArea .card:nth-child(4) {
+  background-image: url('../image/Doctor/doctor_4.png');
+}
+#VerifiedDoc .DocArea .card:nth-child(5) {
+  background-image: url('../image/Doctor/doctor_5.png');
+}
+
+/* Style for the text overlay (optional) */
+#VerifiedDoc .DocArea .card .text-overlay {
+  background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent background */
+  padding: 10px;
+  width: 100%;
+  text-align: left;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+
+/* #VerifiedDoc .DocArea .card .text-overlay h3 {
+  margin-bottom: 5px;
+} */
+
 #VerifiedDoc .DocArea .card .text-overlay {
   width: 100%;
   height: 107px;
@@ -339,55 +367,45 @@ html {
   border-radius: 0 0 12px 12px;
   background: linear-gradient(180deg, rgba(0, 0, 0, 0.00) 8.46%, #000 106.92%);
   padding: 15px;
-  color: white;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  /* Align text at the bottom */
 }
 
 #VerifiedDoc .DocArea .card h3 {
   margin: 0;
-  font-size: 24px;
+  font-size: 18px;
   font-weight: bold;
 }
 
 #VerifiedDoc .DocArea .card p {
-  margin: 5px 0 0;
+  /* margin: 5px 0 0; */
   font-size: 16px;
+  color: #e0e0e0;
 }
 
 #VerifiedDoc .btnGetStarted {
-  max-width: 126px;
+  max-width: 256px;
   display: block;
-  margin: 32px auto 0 auto;
+  margin: 5% auto 0;
 }
 
 #VerifiedDoc .btnGetStarted a {
   display: block;
-  /* or inline-block */
   text-align: center;
   padding: 10px 16px;
 }
 
-
-
-
-
-
-
-
-
-
-/* |||||||||||||||||||||||||||||||||||||||||||||||||  FAQ Start ||||||||||||||||||||||||||||||||||||||||||||||||| */
-
+/* FAQ Section */
 #FAQ {
-  max-width: 1240px;
-  margin: 0 auto;
+  width: 100%;
+  padding: 0 2%;
+  margin: 10% 0;
 }
 
-#FAQ .question{
-  margin: 56px auto 0 auto;
+#FAQ .question {
+  margin: 5% auto 0;
+  padding: 0 2%;
 }
 
 #FAQ .question .card {
@@ -395,33 +413,28 @@ html {
   padding: 20px;
   border-radius: 10px;
   background-color: #102239;
-  margin-top: 16px;
-  transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transition for color and scale */
+  margin: 16px auto;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-/* Hover effect */
 #FAQ .question .card:hover {
-  background-color: #1a3b5d; /* Lighter shade for hover effect */
-  transform: scale(1.05); /* Slightly scale up the card */
+  background-color: #1a3b5d;
+  transform: scale(1.05);
 }
-
 
 #FAQ .question .title_icon {
   display: flex;
   justify-content: space-between;
   align-items: center;
-
-}
-#FAQ .question .title_stock {
-  padding: 0 0 12px 0;
+  padding-bottom: 12px;
   border-bottom: 1px solid #273F5D;
 }
 
 #FAQ .question .title_icon h3 {
   margin: 0;
-  font-family: 'Montserrat', sans-serif;
+  font-family: Montserrat, sans-serif;
   color: #ffffff;
-  font-size: 18px;
+  font-size: clamp(16px, 3vw, 18px);
   font-weight: 600;
 }
 
@@ -431,9 +444,166 @@ html {
 }
 
 #FAQ .question .card p {
-  font-family: 'Montserrat', sans-serif;
-color: #CFD9E5;
+  font-family: Montserrat, sans-serif;
+  color: #CFD9E5;
   margin-top: 10px;
   font-size: 16px;
   margin-left: 32px;
 }
+
+/* Footer */
+.main-footer {
+  margin-top: 10%;
+  background-color: #0b1320;
+  color: #ffffff;
+  padding: 40px 0 0;
+  font-family: Arial, sans-serif;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.footer-section {
+  flex: 1;
+  min-width: 250px;
+  margin-bottom: 30px;
+}
+
+.about-section {
+  flex: 2;
+  max-width: 350px;
+}
+
+.footer-logo {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #ffffff;
+}
+
+.footer-description {
+  font-size: 14px;
+  line-height: 1.6;
+  opacity: 0.9;
+}
+
+.footer-heading {
+  font-size: 18px;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+.footer-links {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-links li {
+  margin-bottom: 10px;
+}
+
+.footer-links a {
+  color: #ffffff;
+  text-decoration: none;
+  opacity: 0.8;
+  transition: opacity 0.3s;
+}
+
+.footer-links a:hover {
+  opacity: 1;
+}
+
+.newsletter-form {
+  margin-bottom: 15px;
+  display: flex;
+  gap: 10px;
+}
+
+.email-input {
+  padding: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: transparent;
+  color: #ffffff;
+  border-radius: 4px;
+  flex: 1;
+}
+
+.subscribe-btn {
+  background-color: #ffffff;
+  color: #0b1320;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.subscribe-btn:hover {
+  background-color: #e6e6e6;
+}
+
+.newsletter-text {
+  font-size: 12px;
+  opacity: 0.8;
+  line-height: 1.5;
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  margin-top: 40px;
+  padding: 20px 0;
+}
+
+.footer-bottom-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.copyright {
+  font-size: 14px;
+  opacity: 0.7;
+}
+
+.legal-links {
+  display: flex;
+  gap: 20px;
+}
+
+.legal-links a {
+  color: #ffffff;
+  text-decoration: none;
+  opacity: 0.7;
+  font-size: 14px;
+  transition: opacity 0.3s;
+}
+
+.legal-links a:hover {
+  opacity: 1;
+}
+
+/* Media Queries */
+@media (max-width: 1024px) {
+  #WhyChoose .cardArea {
+    padding: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .navBar {
+    justify-content: center;
+    gap: 20px;
+    padding: 15px 5%;
+  }
+}
+

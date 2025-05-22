@@ -13,7 +13,9 @@
 
   <div class="sidebar">
     <div class="logo">
-      <img src="../../image/logo/logo.png" alt="Company Logo" />
+      <a href="#Home">
+        <img src="../../image/logo/logo.png" alt="logo" />
+      </a> <h3>XRAOY</h3>
     </div>
 
 
@@ -21,12 +23,12 @@
 
     <nav class="menu">
       <a href="dashboard.html" class="active">Dashboard</a>
-      <a href="userManagement.html">User Management</a>
-      <a href="ReportManagement.html">Report Management</a>
-      <a href="accessRoles.html">Access & Roles</a>
-      <a href="paymentsWallet.html">Payments & Wallet</a>
-      <a href="Notification.html">Notifications</a>
-      <a href="analytics.html">Reports & Analytics</a>
+      <a href="#" class="disabled">User Management</a>
+      <a href="#"class="disabled">Report Management</a>
+      <a href="#"class="disabled">Access & Roles</a>
+      <a href="#"class="disabled">Payments & Wallet</a>
+      <a href="#"class="disabled">Notifications</a>
+      <a href="#"class="disabled">Reports & Analytics</a>
     </nav>
 
   </div>
@@ -35,7 +37,7 @@
   <div class="main">
     <button class="sidebar-toggle" onclick="toggleSidebar()">☰</button>
 
-    <div class="header">
+    <!-- <div class="header">
       <div class="search-container">
         <input type="text" placeholder="Search..." />
       </div>
@@ -57,7 +59,7 @@
         </div>
       </div>
 
-    </div>
+    </div> -->
 
 
     <!-- Stats -->
@@ -249,6 +251,8 @@
       sidebar.classList.remove('show');
     }
   });
+
+
 
 </script>
 
