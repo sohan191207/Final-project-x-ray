@@ -257,18 +257,18 @@
   background: #f59e0b;
 }
 
-.status-badge.completed {
+.status-badge.success {
   background: #10b981;
+}
+
+
+.status-badge.processing {
+  background: #3b82f6;
 }
 
 .status-badge.emergency {
   background: #ef4444;
 }
-
-.status-badge.in-progress {
-  background: #3b82f6;
-}
-
 .image-item {
   position: relative;
   overflow: hidden;

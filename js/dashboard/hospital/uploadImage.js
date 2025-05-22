@@ -114,6 +114,7 @@ document.querySelector("form").addEventListener("submit", async (e) => {
         }
 
         const formData = {
+            collectionName: facilityName,
             report_track_id: reportId,
             hospital_register_id: auth.currentUser.uid,
             patient_name: patientName,
@@ -141,10 +142,19 @@ document.querySelector("form").addEventListener("submit", async (e) => {
             await setDoc(reportRef2, formData, { merge: true });
             alert("Report updated successfully!");
         } else {
-            // 🆕 New submission
-            const newRef1 = await addDoc(collection(db, facilityName), { ...formData, xray_image_url: imageUrls });
-            const newRef2 = await addDoc(collection(db, "AllPendingReport"), formData);
+            // Generate a new document ID manually
+            const newDocRef = doc(collection(db, facilityName));
+            const docId = newDocRef.id;
+
+            // Add to both collections using the same ID
+            const reportRef1 = doc(db, facilityName, docId);
+            const reportRef2 = doc(db, "AllPendingReport", docId);
+
+            await setDoc(reportRef1, { ...formData, xray_image_url: imageUrls, id: docId });
+            await setDoc(reportRef2, { ...formData, xray_image_url: imageUrls, id: docId });
+
             alert("New report submitted successfully!");
+
         }
 
         document.querySelector("form").reset();
