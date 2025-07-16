@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>X-ray Admin Dashboard</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="../../css/dashboard/hospital/allReport.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+
+</head>
+
+<body>
+
+    <div class="sidebar">
+        <div class="logo">
+            <a href="#Home">
+                <!-- Using a placeholder image since the original path is local -->
+                <img src="https://placehold.co/40x40/4a6cf7/ffffff?text=X" alt="logo" />
+            </a>
+            <h3>XRAOY</h3>
+        </div>
+        <nav class="menu">
+            <a href="dashboard.html" class="">Dashboard</a>
+            <a href="#" class="active">Report Management</a>
+            <a href="#" class="disabled">Doctor Management</a>
+            <a href="#" class="disabled">Patient Records</a>
+            <a href="#" class="disabled">Payments & Billing</a>
+            <a href="#" class="disabled">Activity Log</a>
+            <a href="#" class="disabled">Notifications</a>
+            <a href="#" class="disabled">Profile Settings</a>
+            <a href="#" class="disabled">Support / Help</a>
+        </nav>
+    </div>
+
+    <!-- Main Content Wrapper -->
+    <div class="main-content">
+        <div class="header">
+            <h1>Report Management</h1>
+            <button class="hamburger-menu" onclick="toggleSidebar()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+            </button>
+        </div>
+        
+        <div class="report-table-container">
+            <h2>Today's Reports</h2>
+            <div class="report-header">
+                <div class="report-number">#</div>
+                <div class="patient-details">PATIENT</div>
+                <div class="report-info">DETAILS</div>
+                <div class="report-status">STATUS</div>
+                <div class="report-action">ACTION</div>
+            </div>
+            <div id="report-table-body">
+                <!-- Dynamic report rows will be inserted here -->
+                <p style="padding: 16px;">Loading reports...</p>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div id="print-modal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Print Preview</h2>
+                <button id="modal-close-button" class="modal-close">&times;</button>
+            </div>
+            <div id="modal-body" class="modal-body">
+                <p>Loading report details...</p>
+            </div>
+            <div class="modal-footer">
+                <button id="modal-cancel-button" class="btn btn-secondary">Cancel</button>
+                <button id="modal-confirm-print-button" class="btn btn-primary">Confirm Print</button>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script type="module" src="../../js/dashboard/hospital/getAllReport.js"></script>
+</body>
+</html>

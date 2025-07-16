@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    const uid = user.uid; 
+    const uid = user.uid;
     try {
       const userSnap = await getDoc(doc(db, "radiologist_database", uid));
       if (!userSnap.exists()) {
@@ -60,8 +60,8 @@ document.addEventListener("DOMContentLoaded", () => {
           if (data.status === "pending" || data.status === "add to queue") pendingDiagnoses++;
 
           if (uploadDate &&
-              uploadDate.getMonth() === now.getMonth() &&
-              uploadDate.getFullYear() === now.getFullYear()) {
+            uploadDate.getMonth() === now.getMonth() &&
+            uploadDate.getFullYear() === now.getFullYear()) {
             monthlyActivity++;
           }
 
@@ -91,26 +91,37 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         reports.forEach((data) => {
-          const formattedDate = data.image_upload_date?.toDate().toLocaleString("en-US") || "-";
-          rowsContainer.insertAdjacentHTML("beforeend", `
-            <div class="assignment-row">
-              <div>#${data.report_track_id || data.id}</div>
-              <div>${data.patient_name || "-"}</div>
-              <div>${data.reference_doctor || "-"}</div>
-              <div>
-                <span class="status-badge ${data.status?.toLowerCase().replace(/\s+/g, "-") || "pending"}">
-                  ${data.status || "-"}
-                </span>
-              </div>
-              <div>${formattedDate}</div>
-              <div class="text-right">
-                <button class="btn-view" data-id="${data.id}">View</button>
-                <button class="btn-edit" data-id="${data.id}">Edit</button>
-              </div>
-            </div>
-          `);
           
+
+          const formattedDate = data.image_upload_date?.toDate().toLocaleString("en-US") || "-";
+
+          getDoc(doc(db, "doctor_database", data.reference_doctor))
+            .then((doctorSnap) => {
+              const fullName = doctorSnap.exists() ? doctorSnap.data().fullName : "-";
+
+              rowsContainer.insertAdjacentHTML("beforeend", `
+              <div class="assignment-row">
+                <div>#${data.report_track_id || data.id}</div>
+                <div>${data.patient_name || "-"}</div>
+                <div>${fullName}</div>
+                <div>
+                  <span class="status-badge ${data.status?.toLowerCase().replace(/\s+/g, "-") || "pending"}">
+                    ${data.status || "-"}
+                  </span>
+                </div>
+                <div>${formattedDate}</div>
+                <div class="text-right">
+                  <button class="btn-view" data-id="${data.id}">View</button>
+                  <button class="btn-edit" data-id="${data.id}">Edit</button>
+                </div>
+              </div>
+            `);
+            })
+            .catch((error) => {
+              console.error("Error fetching doctor:", error);
+            });
         });
+
       });
     } catch (error) {
       console.error("Error loading reports:", error);

@@ -1,0 +1,438 @@
+:root {
+    --sidebar-width: 260px;
+    --primary-blue: #4a6cf7;
+    --dark-bg: #111827;
+    --light-bg: #f8f9fa;
+    --border-color: #dee2e6;
+    --queue-bg: #fff3cd;
+    --queue-text: #ff9800;
+    --pending-bg: #fef3c7;
+    --pending-text: #92400e;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    background-color: var(--light-bg);
+    display: flex;
+}
+
+/* --- Main Dashboard Layout --- */
+.sidebar {
+    width: var(--sidebar-width);
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: var(--dark-bg);
+    color: #f9fafb;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+    transition: transform 0.3s ease-in-out;
+}
+
+.main-content {
+    margin-left: var(--sidebar-width);
+    flex-grow: 1;
+    padding: 24px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.header h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #111827;
+    margin: 0;
+}
+
+.hamburger-menu {
+    display: none; /* Hidden on desktop */
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 8px;
+}
+
+/* --- Sidebar Styles --- */
+.sidebar .logo {
+    display: flex;
+    align-items: center;
+    padding: 24px;
+    gap: 12px;
+    border-bottom: 1px solid #374151;
+}
+
+.sidebar .logo img {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+}
+
+.sidebar .logo h3 {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.sidebar .menu {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 24px 16px;
+    overflow-y: auto;
+}
+
+.sidebar .menu a {
+    text-decoration: none;
+    color: #d1d5db;
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.sidebar .menu a:hover {
+    background-color: #374151;
+    color: #ffffff;
+}
+
+.sidebar .menu a.active {
+    background-color: var(--primary-blue);
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.sidebar .menu a.disabled {
+    color: #6b7280;
+    cursor: not-allowed;
+}
+.sidebar .menu a.disabled:hover {
+    background-color: transparent;
+}
+
+/* --- Report Table Styles --- */
+.report-table-container {
+     background-color: #fff;
+     padding: 20px;
+     border-radius: 12px;
+     border: 1px solid var(--border-color);
+     box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+}
+.report-table-container h2 {
+    margin-top: 0;
+}
+
+.report-header {
+    display: flex;
+    padding: 12px 16px;
+    font-weight: 600;
+    color: #6c757d;
+    font-size: 0.85rem;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.report-row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    padding: 16px;
+    background-color: #ffffff;
+    border-bottom: 1px solid var(--border-color);
+    transition: background-color 0.2s ease;
+}
+.report-table-body .report-row:last-child {
+    border-bottom: none;
+}
+.report-row:hover {
+    background-color: #f8f9fa;
+}
+
+/* Column widths */
+.report-number { flex: 0 0 50px; text-align: center; }
+.patient-details { flex: 1 1 200px; }
+.report-info { display: flex; gap: 24px; flex-wrap: wrap; flex: 2 1 300px; }
+.report-status { flex: 0 0 120px; text-align: center; }
+.report-action { flex: 0 0 100px; text-align: right; }
+
+.patient-name { font-size: 1.1rem; font-weight: 600; color: #343a40; }
+.patient-id { font-size: 0.8rem; color: #6c757d; word-break: break-all; }
+.info-item { display: flex; flex-direction: column; }
+.info-label { font-size: 0.75rem; font-weight: 500; color: #868e96; text-transform: uppercase; }
+.info-value { font-size: 0.9rem; font-weight: 500; color: #495057; }
+
+.status-badge {
+    display: inline-block;
+    padding: 5px 12px;
+    border-radius: 16px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+.status-add-to-queue { background-color: var(--queue-bg); color: var(--queue-text); }
+.status-pending { background-color: var(--pending-bg); color: var(--pending-text); }
+
+.cta-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background-color: var(--primary-blue);
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+.cta-button:hover { background-color: #3858e0; transform: translateY(-1px); }
+
+/* --- Responsive Design --- */
+@media (max-width: 992px) {
+    .sidebar { transform: translateX(-100%); }
+    .sidebar.show { transform: translateX(0); }
+    .main-content { margin-left: 0; width: 100%; box-sizing: border-box; }
+    .hamburger-menu { display: block; }
+    .report-header { display: none; } /* Hide header on mobile, context is in the row */
+}
+
+@media (max-width: 768px) {
+    .report-row { flex-direction: column; align-items: flex-start; }
+    .report-action { width: 100%; margin-top: 10px; text-align: center; }
+    .cta-button { width: 100%; justify-content: center; }
+    .report-number { display: none; } /* Hide number on smallest screens */
+}
+
+
+
+/* Custom style for the disabled print button */
+.btn-print:disabled {
+    background-color: #e0e0e0; /* A light gray background */
+    color: #a0a0a0;          /* A lighter text color */
+    cursor: not-allowed;     /* Explicitly set the cursor */
+    opacity: 0.7;            /* Ensure it looks faded */
+  }
+
+
+
+
+  /* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ Print Page */
+
+
+
+
+
+
+
+
+
+
+
+
+
+  /* Modal Overlay */
+.modal-overlay {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Modal Content Box */
+.modal-content {
+    background: #fff;
+    padding: 25px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 800px; /* Adjust as needed for your report size */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+/* Modal Header */
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+}
+
+.modal-header h2 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.modal-close {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    color: #888;
+}
+
+/* Modal Body (where report details go) */
+.modal-body {
+    max-height: 60vh;
+    overflow-y: auto;
+}
+
+/* Modal Footer */
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    border-top: 1px solid #e0e0e0;
+    padding-top: 20px;
+    margin-top: 20px;
+}
+
+/* Generic Button Styles for Footer */
+.btn {
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.btn-primary {
+    background-color: #4a6cf7;
+    color: white;
+}
+
+.btn-secondary {
+    background-color: #e0e0e0;
+    color: #333;
+}
+
+/* --- Professional Report Styles for Modal and Print --- */
+.report-printable-container {
+    font-family: 'Times New Roman', Times, serif; /* Classic font for reports */
+    color: #000;
+}
+
+.report-letterhead {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.report-letterhead h1 {
+    margin: 0;
+    font-size: 1.8rem;
+    color: #111;
+}
+
+.report-letterhead p {
+    margin: 0;
+    font-size: 1.1rem;
+    color: #333;
+}
+
+.report-patient-info {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.report-patient-info .info-column {
+    width: 48%;
+}
+
+.report-patient-info p {
+    margin: 5px 0;
+    font-size: 1rem;
+}
+
+.report-separator {
+    border: none;
+    border-top: 1px solid #ccc;
+    margin: 20px 0;
+}
+
+.report-section {
+    margin-bottom: 30px;
+}
+
+.report-section h2 {
+    font-size: 1.2rem;
+    border-bottom: 2px solid #000;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+}
+
+.report-section p {
+    font-size: 1rem;
+    line-height: 1.6;
+    text-align: justify;
+}
+
+.report-signature {
+    margin-top: 80px;
+    text-align: right;
+}
+
+.report-signature .signature-line {
+    width: 250px;
+    height: 1px;
+    background-color: #000;
+    margin-left: auto;
+    margin-bottom: 10px;
+}
+
+.report-signature p {
+    margin: 0;
+    line-height: 1.4;
+}
+
+
+/* --- Print-Specific Styles --- */
+@media print {
+    /* Hide every element on the page by default */
+    body > * {
+      display: none !important;
+    }
+  
+    /* Then, ONLY show the modal overlay and its content */
+    .modal-overlay, .modal-content {
+      display: block !important;
+    }
+  
+    /* Make the modal content take up the full page */
+    .modal-content {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      max-width: 100%;
+      border: none;
+      box-shadow: none;
+      padding: 0;
+    }
+  
+    /* Hide the modal's header and footer during printing */
+    .modal-header, .modal-footer {
+      display: none !important;
+    }
+  }

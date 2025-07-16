@@ -16,11 +16,12 @@
     <div class="logo">
       <a href="#Home">
         <img src="../../image/logo/logo.png" alt="logo" />
-      </a> <h3>XRAOY</h3>
+      </a>
+      <h3>XRAOY</h3>
     </div>
     <nav class="menu">
       <a href="#" class="active">Dashboard</a>
-      <a href="#"class="disabled">Report Management</a>
+      <a href="allReport.html" class="">Report Management</a>
       <a href="#" class="disabled">Doctor Management</a>
       <a href="#" class="disabled">Patient Records</a>
       <a href="#" class="disabled">Payments & Billing</a>
@@ -30,7 +31,7 @@
       <a href="#" class="disabled">Support / Help</a>
     </nav>
   </div>
-  
+
 
   <!-- Main Content -->
   <div class="main">
@@ -75,7 +76,7 @@
           <p id="monthly-activity">0</p>
         </div>
       </div>
-      
+
 
       <section class="assignment-section">
         <div class="section-header">
@@ -96,7 +97,7 @@
       </section>
     </div>
 
-    <!-- UPLOAD VIEW -->
+    <!-- UPLOAD Image -->
     <div id="uploadView" class="view-section" style="display: none;">
       <button id="backToDashboard">← Back</button>
       <div class="inputForm">
@@ -105,12 +106,12 @@
         <form>
           <div>
             <input type="hidden" id="doc_id" />
-            
+
             <label for="report_id">Report ID</label>
             <input type="text" id="report_id" placeholder="e.g. XR-20250430" />
 
             <label for="age">Age</label>
-            <input type="number" id="age" placeholder="e.g. 35" />
+            <input type="number" id="age" required placeholder="e.g. 35" />
 
             <label for="xray_type">X-ray Type</label>
             <input type="text" id="xray_type" placeholder="e.g. Chest X-ray" />
@@ -131,13 +132,22 @@
               <option value="other">Other</option>
             </select>
 
+
+            <!-- HTML -->
             <label for="ref_doctor">Referring Doctor</label>
+            <select id="ref_doctor">
+              <option value="">-- Select Doctor --</option>
+            </select>
+
+
+
+            <!-- <label for="ref_doctor">Referring Doctor</label>
             <select id="ref_doctor">
               <option value="">-- Select Doctor --</option>
               <option value="dr_afsana">Dr. Afsana Rahman</option>
               <option value="dr_kamal">Dr. Kamal Hossain</option>
               <option value="dr_sadia">Dr. Sadia Akter</option>
-            </select>
+            </select> -->
 
             <div class="checkbox-row">
               <input type="checkbox" id="emergency_checkbox" name="emergency" />
@@ -158,60 +168,60 @@
         </form>
       </div>
     </div>
-    
-<!-- View Modal -->
-<div id="viewModal" class="modal">
-  <div class="modal-content">
-    <span class="close-modal">&times;</span>
-    <div class="modal-header">
-      <h3>X-ray Report Details</h3>
-      <div class="status-badge" id="modal_status_badge">Pending</div>
-    </div>
-    
-    <div class="modal-body">
-      <div class="detail-grid">
-        <div class="detail-group">
-          <span class="detail-label">Report ID</span>
-          <span class="detail-value" id="modal_report_id">XR-20231234</span>
-        </div>
-        <div class="detail-group">
-          <span class="detail-label">Patient Name</span>
-          <span class="detail-value" id="modal_patient_name">John Doe</span>
-        </div>
-        <div class="detail-group">
-          <span class="detail-label">Age/Gender</span>
-          <span class="detail-value" id="modal_age_gender">35/Male</span>
-        </div>
-        <div class="detail-group">
-          <span class="detail-label">Uploaded On</span>
-          <span class="detail-value" id="modal_uploaded_on">2023-12-24 14:30</span>
-        </div>
-        <div class="detail-group">
-          <span class="detail-label">Referring Doctor</span>
-          <span class="detail-value" id="modal_reference_doctor">Dr. Smith</span>
-        </div>
-        <div class="detail-group">
-          <span class="detail-label">X-ray Type</span>
-          <span class="detail-value" id="modal_xray_type">Chest PA</span>
-        </div>
-        <div class="detail-group">
-          <span class="detail-label">Report Status</span>
-          <span class="detail-value" id="modal_status">Pending</span>
-        </div>
-      </div>
-      <div class="image-preview">
-        <h4>X-ray Images</h4>
-        <div class="image-grid" id="modal_image_container">
-        </div>
-      </div>
-    </div>
 
-    <div class="modal-footer">
-      <button class="btn-download">Download Report</button>
-    </div>
+    <!-- View Modal -->
+    <div id="viewModal" class="modal">
+      <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <div class="modal-header">
+          <h3>X-ray Report Details</h3>
+          <div class="status-badge" id="modal_status_badge">Pending</div>
+        </div>
 
-  </div>
-</div>
+        <div class="modal-body">
+          <div class="detail-grid">
+            <div class="detail-group">
+              <span class="detail-label">Report ID</span>
+              <span class="detail-value" id="modal_report_id">XR-20231234</span>
+            </div>
+            <div class="detail-group">
+              <span class="detail-label">Patient Name</span>
+              <span class="detail-value" id="modal_patient_name">John Doe</span>
+            </div>
+            <div class="detail-group">
+              <span class="detail-label">Age/Gender</span>
+              <span class="detail-value" id="modal_age_gender">35/Male</span>
+            </div>
+            <div class="detail-group">
+              <span class="detail-label">Uploaded On</span>
+              <span class="detail-value" id="modal_uploaded_on">2023-12-24 14:30</span>
+            </div>
+            <div class="detail-group">
+              <span class="detail-label">Referring Doctor</span>
+              <span class="detail-value" id="modal_reference_doctor">Dr. Smith</span>
+            </div>
+            <div class="detail-group">
+              <span class="detail-label">X-ray Type</span>
+              <span class="detail-value" id="modal_xray_type">Chest PA</span>
+            </div>
+            <div class="detail-group">
+              <span class="detail-label">Report Status</span>
+              <span class="detail-value" id="modal_status">Pending</span>
+            </div>
+          </div>
+          <div class="image-preview">
+            <h4>X-ray Images</h4>
+            <div class="image-grid" id="modal_image_container">
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button class="btn-download">Download Report</button>
+        </div>
+
+      </div>
+    </div>
 
   </div>
 

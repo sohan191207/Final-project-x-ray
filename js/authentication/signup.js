@@ -23,10 +23,38 @@ signupButton.addEventListener('click', async (event) => {
     alert('Please enter a valid email address.');
     return;
   }
+
+  
+
+  //------------------------------------------------------- password validation
   if (password.length < 8) {
     alert('Password must be at least 8 characters.');
     return;
   }
+  
+  const hasNumber = /\d/.test(password);
+  const hasUppercase = /[A-Z]/.test(password);
+  const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+  
+  if (!hasNumber) {
+    alert('Password must include at least one number.');
+    return;
+  }
+  
+  if (!hasUppercase) {
+    alert('Password must include at least one uppercase letter.');
+    return;
+  }
+  
+  if (!hasSpecialChar) {
+    alert('Password must include at least one special character.');
+    return;
+  }
+
+
+
+
+
   if (password !== confirmPassword) {
     alert('Passwords do not match.');
     return;

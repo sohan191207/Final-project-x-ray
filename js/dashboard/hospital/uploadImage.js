@@ -47,6 +47,35 @@ onAuthStateChanged(auth, async (user) => {
 
 
 
+// _____________________________________________________________________________ All Doctor Collect 
+// JavaScript
+try {
+    const doctorRef = collection(db, "doctor_database");
+    const doctorSnap = await getDocs(doctorRef);
+
+    const select = document.getElementById("ref_doctor");
+
+    doctorSnap.forEach((doc) => {
+        const data = doc.data();
+        const option = document.createElement("option");
+
+        option.value = doc.id;              // Use document ID as value
+        option.textContent = data.fullName; // Display name
+
+        select.appendChild(option);
+    });
+
+} catch (error) {
+    console.error("Error getting documents:", error);
+}
+
+
+
+
+
+
+
+
 document.querySelector("form").addEventListener("submit", async (e) => {
     e.preventDefault();
 
@@ -74,7 +103,7 @@ document.querySelector("form").addEventListener("submit", async (e) => {
         submitBtn.classList.remove("loading");
         return;
     }
-
+    console.log("_______________" + referringDoctor)
     try {
         // 🔍 Check only if it's a new report
         if (!docId) {
