@@ -7,7 +7,9 @@ import {
   updateDoc,
   deleteDoc,
   getDoc,
+  setDoc,
 } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
 
 // Utility: format Firebase Timestamp
@@ -74,9 +76,15 @@ onAuthStateChanged(auth, async (user) => {
         reports.push(data);
       });
 
-      document.getElementById("TotalPendingCount").textContent = reports.length;
+      // 1. Filter reports for the current doctor
+      const filteredReports = reports.filter(report =>
+        !report.reference_doctor || report.reference_doctor === user.uid
+      );
 
-      reports.sort((a, b) => {
+      document.getElementById("TotalPendingCount").textContent = filteredReports.length;
+
+      // 2. Sort reports by emergency status, then by date
+      filteredReports.sort((a, b) => {
         if (a.emergency === b.emergency) {
           return a.image_upload_date.toDate() - b.image_upload_date.toDate(); // oldest first
         }
@@ -96,31 +104,44 @@ onAuthStateChanged(auth, async (user) => {
       `;
       container.insertAdjacentHTML("beforeend", headerHtml);
 
-      let allowNext = false;
-      let hasInProgress = reports.some((r) => {
-        if (r.status !== "Processing" || !r.ProcessStartDate) return false;
+      if (filteredReports.length === 0) {
+        const noReportsHtml = `<div style="text-align: center; padding: 20px; color: #6b7280;">No pending reports assigned to you.</div>`;
+        container.insertAdjacentHTML("beforeend", noReportsHtml);
+      }
+
+      // --- REVISED LOGIC START ---
+
+      // 3. Check if the CURRENT USER is actively processing a report
+      const currentUserIsProcessing = filteredReports.some((r) => {
+        // A report is being processed by the current user if...
+        if (r.status !== "Processing" || !r.ProcessStartDate || r.ProcessDoctorID !== user.uid) {
+          return false;
+        }
+        // ...and the lock time (<10 mins) has not expired
         const diffInMinutes = (Date.now() - r.ProcessStartDate.toDate().getTime()) / (1000 * 60);
         return diffInMinutes < 10;
       });
 
-      let enabledOne = false;
+      let enabledOne = false; // Flag to ensure only the first available report is enabled
 
-      for (let i = 0; i < reports.length; i++) {
-        const data = reports[i];
+      for (let i = 0; i < filteredReports.length; i++) {
+        const data = filteredReports[i];
         const escapedData = JSON.stringify(data).replace(/'/g, "&apos;");
-        let isDisabled = true;
 
+        let isDisabled = false; // Default to disabled
+
+        // 4. Determine if THIS button should be enabled
+        // A button is enabled if:
         if (
-          data.status === "Processing" &&
-          data.ProcessStartDate &&
-          (Date.now() - data.ProcessStartDate.toDate().getTime()) / (1000 * 60) < 10
+          data.status === 'Pending' &&      // The report is available
+          !currentUserIsProcessing &&     // The current doctor is not busy
+          !enabledOne                     // And we haven't already enabled another button
         ) {
-          allowNext = true;
-        } else if (!enabledOne && (!hasInProgress || allowNext)) {
           isDisabled = false;
-          enabledOne = true;
-          allowNext = false;
+          enabledOne = true; // Set the flag so no other buttons are enabled
         }
+
+        // --- REVISED LOGIC END ---
 
         const reportHtml = `
           <div style="display: grid; grid-template-columns: repeat(5, 1fr); padding: 14px 12px; align-items: center; border-bottom: 1px solid #e5e7eb;">
@@ -129,15 +150,14 @@ onAuthStateChanged(auth, async (user) => {
             <div class="ellipsis">${formatDate(data.image_upload_date)}</div>
             <div class="ellipsis">
               <span style="color: #f59e0b; font-weight: 500;">
-                ${
-                  data.status === "Processing"
-                    ? data.emergency
-                      ? "Processing 🚨"
-                      : "Processing"
-                    : data.emergency
-                    ? "Pending 🚨"
-                    : "Pending"
-                }
+                ${data.status === "Processing"
+            ? data.emergency
+              ? "Processing 🚨"
+              : "Processing"
+            : data.emergency
+              ? "Pending 🚨"
+              : "Pending"
+          }
               </span>
             </div>
             <div class="ellipsis" style="text-align: right;">
@@ -163,47 +183,78 @@ onAuthStateChanged(auth, async (user) => {
       }
 
       clearInterval(intervalId);
-      loader.remove();
+      if (document.getElementById("loader")) {
+        loader.remove();
+      }
     },
     (err) => {
       console.error("onSnapshot error:", err);
       clearInterval(intervalId);
-      loader.remove();
+      if (document.getElementById("loader")) {
+        loader.remove();
+      }
       alert("Failed to load reports in real-time.");
     }
   );
+
+
 });
+
+
+
+
+
 
 // ===========================
 // Handle "Create Report" click
 // ===========================
 window.handleCreateReport = async function (data) {
   try {
+    // 1. Get the current logged-in user
+    const user = auth.currentUser;
+    if (!user) {
+      alert("You must be logged in to create a report.");
+      return;
+    }
+
     if (!data.id) {
       console.error("Missing document ID.");
       return;
     }
 
+    // The data to update
+    const updateData = {
+      status: "Processing",
+      ProcessStartDate: serverTimestamp(),
+      ProcessDoctorID: user.uid, // ✅ Add the doctor's ID
+    };
+
+    // 2. Update the original collection document
     const refCollection = data.collectionName;
     const docRef2 = doc(db, refCollection, data.id);
-    await updateDoc(docRef2, {
-      status: "Processing",
-      ProcessStartDate: serverTimestamp(),
-    });
+    await updateDoc(docRef2, updateData);
 
+    // 3. Update the "AllPendingReport" document
     const docRef = doc(db, "AllPendingReport", data.id);
-    await updateDoc(docRef, {
-      status: "Processing",
-      ProcessStartDate: serverTimestamp(),
-    });
+    await updateDoc(docRef, updateData);
 
     data.status = "Processing";
+    data.ProcessDoctorID = user.uid; // Also update the local data object
     openReportModal(data);
+
   } catch (error) {
     console.error("Failed to update status to Processing:", error);
     alert("Failed to update report status.");
   }
 };
+
+
+
+
+
+
+
+
 
 // ===========================
 // Open & Close Modal
@@ -227,14 +278,27 @@ function openReportModal(data) {
   enableImageZoom();
 }
 
+
+
+
+
+
 async function closeReportModal(data) {
   try {
     if (!data?.id || !data?.collectionName) {
       console.error("Missing document ID or collection name.");
+      alert("Missing required data. Cannot submit the report.");
       return;
     }
 
-    const findingValue = document.getElementById("reportTextarea").value.trim();
+    const findingValue = document.getElementById("reportTextarea")?.value.trim() ?? "";
+
+    // ✅ Handle null or empty findings value
+    if (!findingValue) {
+      alert("Please enter findings before submitting the report.");
+      return;
+    }
+
     const docRef1 = doc(db, data.collectionName, data.id);
     const docRef2 = doc(db, "AllPendingReport", data.id);
 
@@ -244,10 +308,33 @@ async function closeReportModal(data) {
       report_delivery_date: serverTimestamp(),
     });
 
-    await deleteDoc(docRef2); // ✅ Delete the pending report
+    const pendingSnap = await getDoc(docRef2);
+
+    if (pendingSnap.exists()) {
+      const pendingData = pendingSnap.data();
+      const trackId = pendingData.report_track_id;
+
+      if (!trackId) {
+        console.error("❌ Missing 'report_track_id' in pending data.");
+        alert("Failed to save completed report. Missing tracking ID.");
+        return;
+      }
+
+      const docRef3 = doc(db, "AllCompleteData", trackId);
+
+      await setDoc(docRef3, {
+        ...pendingData,
+        findings: findingValue,
+        status: "Success",
+        report_delivery_date: serverTimestamp(),
+        completed_at: serverTimestamp(),
+      });
+    }
+
+    await deleteDoc(docRef2);
 
     document.getElementById("reportModal").style.display = "none";
-    clearModalFields(); // ✅ Clear when closing
+    clearModalFields();
 
     alert("Report successfully submitted!");
   } catch (error) {
@@ -255,6 +342,9 @@ async function closeReportModal(data) {
     alert("Failed to update report. Please try again.");
   }
 }
+
+
+
 
 // ✅ Clears all modal inputs
 function clearModalFields() {

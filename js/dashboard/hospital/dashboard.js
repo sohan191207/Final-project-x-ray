@@ -39,6 +39,9 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       const facilityName = userSnap.data().facilityName.trim().replace(/\s+/g, "");
+
+
+     
       const reportsRef = collection(db, facilityName);
       const reportsQuery = query(reportsRef);
       const rowsContainer = document.getElementById("assignmentRowsContainer");

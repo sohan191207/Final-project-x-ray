@@ -6,12 +6,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>XRAOY</title>
+  <link rel="stylesheet" href="/css/downloadSection.css">
   <link rel="stylesheet" href="/css/index.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
   <link
     href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
     rel="stylesheet">
+
 </head>
 
 <body>
@@ -24,7 +28,8 @@
         <div class="logo">
           <a href="#Home">
             <img src="/image/logo/logo.png" alt="logo" />
-          </a> <h3>XRAOY</h3>
+          </a>
+          <h3>XRAOY</h3>
         </div>
 
         <div class="menu">
@@ -52,10 +57,13 @@
           A secure web-based platform that connects hospitals with verified doctors to manage and deliver medical X-ray
           reports — anytime, anywhere.
         </div>
-        <div class="btnMain">
-          <div class="btnPrimary text"><a href="#DownloadReport">Download report</a> </div>
-          <!-- <div class="btnSecondary text"><a href="#">How It Works</a></div> -->
-        </div>
+        <form class="report-form">
+          <label for="tracking-number">Report Tracking Number</label>
+          <div class="input-wrapper">
+            <input type="text" id="tracking-number" placeholder="e.g. 39AFF8">
+            <button type="submit">Download X-ray Report</button>
+          </div>
+        </form>
       </div>
       <!-- <div class="imageArea"><img src="/image/dashboard/dashboard.png" alt="Dashboard Showcase"></div> -->
     </div>
@@ -123,9 +131,6 @@
 
 
 
-    <div id="DownloadReport">
-
-    </div>
 
 
 
@@ -190,6 +195,54 @@
     </div>
 
 
+    <!-- <div id="DownloadReport">
+      <main class="container">
+        <div class="content-left">
+            <h1>Download X-ray Reports</h1>
+            <p class="subtitle">Quick and secure access to completed X-ray reports anytime, from anywhere.</p>
+            
+
+
+            <p class="description">
+                Enter your 6-digit tracking number to access your X-ray report. Instantly download a secure, verified PDF version of your medical report. Fast, easy, and accessible — no login required.
+            </p>
+        </div>
+
+        <div class="cards-right">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">20 <span class="plus-sign">+</span></div>
+                    <div class="stat-label">Doctors Active</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-header">Reports Downloaded</div>
+                    <div class="chart-container">
+                        <svg width="100%" height="60" viewBox="0 0 100 60" preserveAspectRatio="none">
+                            <path d="M 0 45 Q 15 55, 25 35 T 50 40 T 75 20 T 100 25" fill="none" stroke="#22c55e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-header">Daily Report Submissions</div>
+                    <div class="progress-circle-container">
+                        <svg class="progress-circle" width="100" height="100" viewBox="0 0 120 120">
+                            <circle class="progress-bg" cx="60" cy="60" r="54" />
+                            <circle class="progress-bar" cx="60" cy="60" r="54" />
+                            <text class="progress-text" x="50%" y="50%" dy=".3em">75%</text>
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-number large">12K+</div>
+                    <div class="stat-label">Reports Downloaded</div>
+                </div>
+            </div>
+        </div>
+    </main>
+    </div> -->
 
     <div id="FAQ">
       <div class="textArea">
@@ -320,6 +373,10 @@
       </footer>
     </div>
   </div>
+
+  <div id="reportContainer" style="display: none;"></div>
+
+  <script type="module" src="js/downloadReport.js"></script>
 
 </body>
 

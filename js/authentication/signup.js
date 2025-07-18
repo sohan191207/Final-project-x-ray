@@ -19,6 +19,7 @@ signupButton.addEventListener('click', async (event) => {
     alert('Please fill in all fields.');
     return;
   }
+  
   if (!emailPattern.test(email)) {
     alert('Please enter a valid email address.');
     return;

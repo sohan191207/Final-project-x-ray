@@ -104,6 +104,7 @@ document.querySelector("form").addEventListener("submit", async (e) => {
         return;
     }
     console.log("_______________" + referringDoctor)
+    
     try {
         // 🔍 Check only if it's a new report
         if (!docId) {
